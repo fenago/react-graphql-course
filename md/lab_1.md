@@ -338,7 +338,7 @@ Add this line to the [scripts] object inside [package.json]:
 ```
 
 
-Now execute [npm run client] in your console, and watch how a new
+Now execute `npm run client` in your console, and watch how a new
 browser window opens. We are running [webpack-dev-server] with the
 newly created configuration file.
 
@@ -1019,7 +1019,7 @@ requires them in our [index.html] file. According to our
 [webpack.client.build.config.js] file, those three files are going
 to be saved to the [dist/client] folder.
 
-You can run this command by executing [npm run client:build].
+You can run this command by executing `npm run client:build`.
 
 Look in the [dist/client] folder, and you will see three files.
 You can open the [index.html] in your browser. Sadly, the images

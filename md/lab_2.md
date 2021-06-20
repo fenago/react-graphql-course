@@ -276,7 +276,7 @@ a path, it is executed for every request.
 
 We use this feature to serve our static files (the avatar images) with
 [express.static]. They include [bundle.js] and
-[bundle.css], created by [npm run client:build].
+[bundle.css], created by `npm run client:build`.
 
 In our case, we first pass [\'/\'] with [express.static]
 following it. The result of this is that all files and folders in
@@ -293,9 +293,9 @@ initial route for our client is [\'/\'] specified by
 [res.sendFile] and the file path to return this file---that is all
 we have to do here.
 
-Be sure to execute [npm run client:build] first. Otherwise, you
+Be sure to execute `npm run client:build` first. Otherwise, you
 will receive an error message that these files were not found.
-Furthermore, when running [npm run client], the [dist]
+Furthermore, when running `npm run client`, the [dist]
 folder is deleted, so you have to rerun the build process.
 
 Refreshing the browser now presents you with the *post* feed and form
@@ -649,7 +649,7 @@ export default {
 
 
 The preceding code requires our `index.js` file from the
-[graphql] folder and re-exports all services in one big object. We
+`graphql` folder and re-exports all services in one big object. We
 can define further services here if we need them.
 
 To make our GraphQL server publicly accessible to our clients, we are
@@ -663,7 +663,7 @@ import services from './services';
 ```
 
 
-The [services] object only holds the [graphql] index. Now we
+The [services] object only holds the `graphql` index. Now we
 must bind the GraphQL server to the Express.js web server with the
 following code:
 
@@ -681,19 +681,19 @@ for (let i = 0; i < serviceNames.length; i += 1) {
 ```
 
 
-For convenience, we loop through all indexes of the [services]
+For convenience, we loop through all indexes of the `services`
 object and use the index as the name of the route the service will be
-bound to. The path would be [/example] for the [example]
-index in the [services] object. For a typical service, such as a
-REST interface, we rely on the standard [app.use] method of
+bound to. The path would be `/example` for the `example`
+index in the `services` object. For a typical service, such as a
+REST interface, we rely on the standard `app.use` method of
 Express.js.
 
 Since the Apollo Server is kind of special, when binding it to
-Express.js, we need to run the [applyMiddleware] function provided
-by the initialized Apollo Server and avoid using the [app.use]
+Express.js, we need to run the `applyMiddleware` function provided
+by the initialized Apollo Server and avoid using the `app.use`
 function of Express.js. Apollo automatically binds itself to the
-[/graphql] path because it is the default option. You could also
-include a [path] parameter if you want it to respond from a custom
+`/graphql` path because it is the default option. You could also
+include a `path` parameter if you want it to respond from a custom
 route.
 
 Two things are missing now: the schema and the resolvers. The schema is
@@ -704,11 +704,11 @@ next on our to-do list.
 Writing your first GraphQL schema
 ---------------------------------
 
-Let\'s start by creating a [schema.js] inside the [graphql]
+Let\'s start by creating a `schema.js` inside the `graphql`
 folder. You can also stitch multiple smaller schemas to one bigger
 schema. This would be cleaner and would make sense when your
 application, types, and fields grow. For this course, one file is okay and
-we insert the following code into the [schema.js] file:
+we insert the following code into the `schema.js` file:
 
 ```
 const typeDefinitions = `
@@ -775,7 +775,7 @@ Implementing GraphQL resolvers
 
 Now that the schema is ready, we need the matching resolver functions.
 
-Create a [resolvers.js] file in the [graphql] folder as
+Create a [resolvers.js] file in the `graphql` folder as
 follows:
 
 ```

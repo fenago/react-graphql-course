@@ -73,12 +73,6 @@ We will set up Apollo Client in this `index.js` file. Our first
 setup will represent the most basic configuration to get a working
 GraphQL client.
 
-**ProTip**
-
-The following code was taken from the official Apollo documentation.
-Generally, I recommend reading through the Apollo documentation, as it
-is very well written:
-<https://www.apollographql.com/docs/react/essentials/get-started.html>
 
 
 Just insert the following code:
@@ -172,9 +166,8 @@ To test the preceding code, we should start the server and the front
 end. One option is to build the front end now, and then start the
 server. In this case, the URL to browse the front end would be
 [http://localhost:8000]. A better option would be to spawn the
-server with [npm run server], and then open a second terminal.
-Then, you can start the webpack development server by executing [npm run
-client]. A new browser tab should open automatically.
+server with `npm run server`, and then open a second terminal.
+Then, you can start the webpack development server by executing `npm run client`. A new browser tab should open automatically.
 
 However, we have forgotten something: the client is set up in our new
 file, but it is not yet used anywhere. Import it in the `index.js`
@@ -401,7 +394,7 @@ export default graphql(GET_POSTS, {
 ```
 
 
-Notably, we also imported the [graphql] HoC function from the
+Notably, we also imported the `graphql` HoC function from the
 [react-apollo] package. This function accepts the actual GraphQL
 query that we want to send as the first parameter. The second parameter
 allows us to map the result of the HoC to specific properties of the
@@ -410,8 +403,8 @@ child component, which is our [Feed] class. The [posts],
 to the [Feed] component, via the HoC. This separates the rendering
 logic from the data fetching. The last parameter is the [Feed]
 class (the component that is processed by the HoC). We pass it to a new
-function call, which is the result of the [graphql] function. We
-do not pass it as the third parameter of the [graphql] function.
+function call, which is the result of the `graphql` function. We
+do not pass it as the third parameter of the `graphql` function.
 
 This approach is my favorite solution to query data from a GraphQL API
 through Apollo. However, I would recommend that you use a different
@@ -603,7 +596,7 @@ const ADD_POST = gql`
 
 
 3.  We will adjust the way that the [Feed] class is exported. In
-    the first HoC example, we had the [graphql] method, which sent
+    the first HoC example, we had the `graphql` method, which sent
     the GraphQL query and inserted that response data into the
     underlying [Feed] component. Now, we will use the
     [compose] function of [react-apollo], which takes a set
@@ -628,7 +621,7 @@ export default compose(GET_POSTS_QUERY, ADD_POST_MUTATION)(Feed);
 ```
 
 
-Instead of using the [graphql] method directly on the [Feed]
+Instead of using the `graphql` method directly on the [Feed]
 component, we first save the mutation and query in two separate
 variables. The mutation takes a parameter, [name], which says that
 the mutation can be run under the name [addPost], inside of the

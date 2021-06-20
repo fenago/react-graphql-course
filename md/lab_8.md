@@ -396,8 +396,7 @@ is already logged in, we redirect them to a different screen using the
 routing logic of the root path. Our [LoginRoute] component handles
 this last case.
 
-You can test all changes when starting the front end with [npm run
-client] and the back end with [npm run server]. We have now
+You can test all changes when starting the front end with `npm run client` and the back end with `npm run server`. We have now
 moved the current state of our application from a standard, single-route
 application to an application that differentiates the login form and the
 news feed based on the location of the browser.

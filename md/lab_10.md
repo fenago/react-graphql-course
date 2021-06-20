@@ -165,9 +165,9 @@ for (let i = 0; i < serviceNames.length; i += 1) {
 
 
 Here, we have changed the old [if] statement to a [switch].
-Furthermore, we have added a second service beyond [graphql],
+Furthermore, we have added a second service beyond `graphql`,
 called [subscriptions]. We are going to create a new
-[subscriptions] service next to the [graphql] services
+[subscriptions] service next to the `graphql` services
 folder.
 
 The [subscriptions] service requires the [server] object as
@@ -195,9 +195,9 @@ export default utils => ({
 
 
 The [subscriptions] service also receives the [utils]
-object, like the [graphql] service.
+object, like the `graphql` service.
 
-Now, create a [subscriptions] folder next to the [graphql]
+Now, create a [subscriptions] folder next to the `graphql`
 folder. To fulfil the import of the preceding [subscriptions]
 service, insert the service\'s `index.js` file into this folder.
 There, we can implement the [subscriptions] service. As a
@@ -286,7 +286,7 @@ class. The options are as following:
 -   The [execute] property should receive a function that handles
     all the processing and execution of incoming GraphQL requests. The
     standard is to pass the [execute] function that we imported
-    from the [graphql] package previously.
+    from the `graphql` package previously.
 -   The [subscribe] property also accepts a function. This
     function has to take care of resolving a subscription to
     **AsyncIterator**, which is no more than an asynchronous [for]
@@ -1038,7 +1038,7 @@ the [updateQuery] function must match the initial
 [ChatsQuery] schema.
 
 You can now test the subscription directly in your browser by starting
-the application with [npm run server]. If you send a new chat
+the application with `npm run server`. If you send a new chat
 message, it\'s shown directly in the chat panel on the right-hand side.
 
 We have, however, got one major problem. If you test this with a second

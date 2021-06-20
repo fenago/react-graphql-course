@@ -61,7 +61,7 @@ First, let\'s add a new command to the [scripts] field of our
 ```
 
 
-If you now execute [npm run test], we\'ll run the [mocha]
+If you now execute `npm run test`, we\'ll run the [mocha]
 package in the [test] folder, which we\'ll create in a second. The
 preceding [\--require] option loads the specified file or package.
 We\'ll also load a [babel-hook.js] file, which we\'ll create as
@@ -91,7 +91,7 @@ plugin. We already use this plugin when starting the back end with [npm
 run server]. It allows us to import our Sequelize models using a
 regular expression.
 
-If we start our test with [npm run test], we require this file at
+If we start our test with `npm run test`, we require this file at
 the beginning. Inside the [babel-hook.js] file, we load
 [\@babel/register], which compiles all the files that are imported
 afterward in our test according to the preceding configuration.
@@ -158,7 +158,7 @@ which is accepted by our back end server. The expected answer will be in
 the form of server-side rendered HTML created through React.
 
 
-If you execute [npm run test] now, you\'ll receive the following error:
+If you execute `npm run test` now, you\'ll receive the following error:
 
 
 ![](./images/13f8b682-82cf-4989-9677-9ccdb4b7b970.png)
@@ -167,7 +167,7 @@ If you execute [npm run test] now, you\'ll receive the following error:
 Our first [should.not.exist] assertion failed and threw an error.
 This is because we didn\'t start the back end when we ran the test.
 Start the back end in a second terminal with the correct environment
-variables using [npm run server] and rerun the test. Now, the test
+variables using `npm run server` and rerun the test. Now, the test
 is successful:
 
 
@@ -187,7 +187,7 @@ Starting the back end with Mocha
 When we want to run a test, the server should start automatically. There
 are two options to implement this behavior:
 
--   We add the [npm run server] command to the [test] script
+-   We add the `npm run server` command to the [test] script
     inside our [package.json] file.
 -   We import all the necessary files to launch the server within our
     [app.test.js]. This allows us to run further assertions or

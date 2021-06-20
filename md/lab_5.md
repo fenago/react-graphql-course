@@ -242,7 +242,7 @@ if (loading) return <Loading />;
 ```
 
 
-Start the server with [npm run server] and the front end with [npm
+Start the server with `npm run server` and the front end with [npm
 run client]. You should now see a pulsating blue bubble where you
 inserted it. I have tested this inside of my posts feed, and it looks
 pretty good.
@@ -942,8 +942,8 @@ list, which renders the post items.
 
 Every part is saved in a separate file, so you can edit each of them
 without affecting the other components. You can test all changes by
-starting the back end with [npm run server] and the front end with
-[npm run client].
+starting the back end with `npm run server` and the front end with
+`npm run client`.
 
 The application is more stable and readable, and the new features are
 more comfortable to implement. However, there are still some areas for

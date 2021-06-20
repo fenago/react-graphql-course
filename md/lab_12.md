@@ -87,7 +87,7 @@ production. I highly discourage this because it involves giving away
 information about queries and mutations that are accepted by your back
 end. However, if you want to enable it, you can do this by setting the
 [introspection] field when initializing Apollo Server. It can be
-added inside the `index.js` file of the [graphql] folder:
+added inside the `index.js` file of the `graphql` folder:
 
 ```
 const server = new ApolloServer({
@@ -110,7 +110,7 @@ such as error tracking and performance analysis, relies on this key. We
 also have to insert it in our GraphQL server. If you entered a valid API
 key, all requests will be collected in Apollo Engine.
 
-Open `index.js` in the server\'s [graphql] folder and add
+Open `index.js` in the server\'s `graphql` folder and add
 the following object to the [ApolloServer] initialization:
 
 ```
@@ -301,7 +301,7 @@ In this example, we\'ll use HTTP header fields to track the client type.
 There will be two header fields: [apollo-client-name] and
 [apollo-client-version]. We\'ll use these to set custom values to
 filter requests later in the [Clients] page. Open the
-`index.js` file from the [graphql] folder. Add the following
+`index.js` file from the `graphql` folder. Add the following
 function to the [engine] property of the [ApolloServer]
 initialization:
 

@@ -640,7 +640,7 @@ Let\'s go through the code step by step:
     a message to indicate that the user has signed up successfully.
 
 You can now test the [signup] mutation again with Postman if you
-want while starting the back end using [npm run server]. We have
+want while starting the back end using `npm run server`. We have
 now finished the back end implementation, so we start working on the
 front end.
 
@@ -872,7 +872,7 @@ link: ApolloLink.from([
 
 
 For our back end, we need a pretty complex solution. Create a new file
-called [auth.js] inside the [graphql] [services]
+called [auth.js] inside the `graphql` [services]
 folder. We want to be able to mark specific GraphQL requests in our
 schema with a so-called directive. If we add this directive to our
 GraphQL schema, we execute a function whenever the marked GraphQL action
@@ -915,7 +915,7 @@ certain behaviors when an [UNAUTHENTICATED] error is sent to the
 client.
 
 We have to load the new [AuthDirective] class in the
-[graphql] `index.js` file, which sets up the whole Apollo
+`graphql` `index.js` file, which sets up the whole Apollo
 Server:
 
 ```

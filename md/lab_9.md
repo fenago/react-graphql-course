@@ -399,7 +399,7 @@ avoid this, put the code at the bottom of the file, below the
 [services] setup. The route catches any requests sent to the back
 end.
 
-You can try out this route by running the [npm run server]
+You can try out this route by running the `npm run server`
 command. Just visit [http://localhost:8000].
 
 Currently, the preceding catch-all route only returns an empty site,
@@ -546,7 +546,7 @@ variable.
 
 The resulting React object is saved to a new variable, called
 [App]. Now, there should be no errors if you start the server with
-[npm run server] and visit [http://localhost:8000]. Still,
+`npm run server` and visit [http://localhost:8000]. Still,
 we see an empty page. That happens because we only return an empty HTML
 page; we haven\'t rendered the React [App] object to HTML. To
 render the object to HTML, import the following package at the top of
@@ -1357,7 +1357,7 @@ subfield [currentUser]. The [ROOT\_QUERY] property is filled
 if any query can be fetched successfully. The [currentUser] field
 is only filled if the authenticated was successfully requested.
 
-If you execute [npm run server], you will see that now everything
+If you execute `npm run server`, you will see that now everything
 works perfectly. Take a look at the markup that\'s returned; you will
 see either the login form or, when logged in, all of the content of the
 page that you are visiting. You can log in on the client, the news feed

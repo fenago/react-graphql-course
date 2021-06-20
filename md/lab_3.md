@@ -811,7 +811,7 @@ We surrounded the preceding [services] object with a function,
 which was then exported. That function accepts only one parameter, which
 is our [utils] object.
 
-That object is then given to a new function, called [graphql].
+That object is then given to a new function, called `graphql`.
 Every service that we are going to use has to be a function that accepts
 this parameter. It allows us to hand over any property that we want to
 the deepest point in our application.
@@ -820,10 +820,10 @@ When executing the preceding exported function, the result is the
 regular [services] object we used before. We only wrapped it
 inside of a function to pass the [utils] object.
 
-The [graphql] import that we are doing needs to accept the
+The `graphql` import that we are doing needs to accept the
 [utils] object.
 
-Open the `index.js` file from the [graphql] folder and
+Open the `index.js` file from the `graphql` folder and
 replace everything but the [require] statements at the top with
 the following code:
 
@@ -937,7 +937,7 @@ provides at
 As we are not using the demo [posts] array anymore, you can remove
 it from the [resolvers.js] file.
 
-You can start the server with [npm run server] and execute the
+You can start the server with `npm run server` and execute the
 GraphQL posts query from Lab 2 again. The output will look as
 follows:
 
