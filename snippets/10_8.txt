@@ -1,0 +1,25 @@
+usernamesToString = (userList) => {
+  const { user } = this.props;
+  var usernamesString = '';
+  for(var i = 0; i < userList.length; i++) {
+    if(userList[i].username !== user.username) {
+      usernamesString += userList[i].username;
+    }
+    if(i - 1 === userList.length) {
+      usernamesString += ', ';
+    }
+  }
+  return usernamesString;
+}
+getAvatar = (userList) => {
+  const { user } = this.props;
+  if(userList.length > 2 ) {
+    return '/public/group.png';
+  } else {
+    if(userList[0].id !== user.id) {
+      return userList[0].avatar;
+    } else {
+      return userList[1].avatar;
+    }
+  }
+}

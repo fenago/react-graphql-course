@@ -1,0 +1,41 @@
+it('renders the current user in the top bar', function(done) {
+  const AuthLink = (operation, next) => {
+    operation.setContext(context => ({
+        ...context,
+        headers: {
+            ...context.headers,
+            Authorization: authToken
+        },
+    }));
+    return next(operation);
+  };
+
+  const httpLink = createUploadLink({
+    uri: 'http://localhost:8000/graphql',
+    credentials: 'same-origin',
+  });
+
+  const client = new ApolloClient({
+    link: ApolloLink.from([
+      AuthLink,
+      httpLink
+    ]),
+    cache: new InMemoryCache()
+  });
+
+  class Graphbook extends React.Component {
+    render() {
+      return(
+        <App client={client} context={{}} loggedIn={true} location=
+         {"/app"}/>
+      )
+    }
+  }
+
+  const wrapper = mount(<Graphbook />);
+  setTimeout(function() {
+    expect(wrapper.html()).to.contain('<div class="user"><img>
+     <span>mochatest</span></div>');
+    done();
+  },2000);
+});

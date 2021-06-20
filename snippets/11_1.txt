@@ -1,0 +1,18 @@
+const assert = require('assert');
+const request = require('request');
+const expect = require('chai').expect;
+const should = require('chai').should();
+
+describe('Graphbook application test', function() {
+
+  it('renders and serves the index page', function(done) {
+    request('http://localhost:8000', function(err, res, body) {
+      should.not.exist(err);
+      should.exist(res);
+      expect(res.statusCode).to.be.equal(200);
+      assert.ok(body.indexOf('<html') !== -1);
+      done(err);
+    });
+  });
+
+});

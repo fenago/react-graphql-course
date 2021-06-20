@@ -1,0 +1,10 @@
+renderToStringWithData(App).then((content) => {
+  if (context.url) {
+    res.redirect(301, context.url);
+  } else {
+    const head = Helmet.renderStatic();
+    res.status(200);
+    res.send(`<!doctype html>\n${template(content, head)}`);
+    res.end();
+  }
+});

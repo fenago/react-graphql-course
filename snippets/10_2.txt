@@ -1,0 +1,18 @@
+addMessage(root, { message }, context) {
+  logger.log({
+      level: 'info',
+      message: 'Message was created',
+    });
+  return Message.create({
+      ...message,
+  }).then((newMessage) => {
+      return Promise.all([
+          newMessage.setUser(context.user.id),
+          newMessage.setChat(message.chatId),
+      ]).then(() => {
+          pubsub.publish('messageAdded', {messageAdded: 
+          newMessage});
+          return newMessage;
+      });
+   );
+},

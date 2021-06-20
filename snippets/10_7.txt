@@ -1,0 +1,11 @@
+class ChatsList extends Component {
+  shorten(text) {
+    if(!text.length) {
+      return "";
+    }
+    if (text.length > 12) {
+      return text.substring(0, text.length - 9) + '...';
+    }
+    return text; 
+  }
+}

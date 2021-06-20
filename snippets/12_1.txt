@@ -1,0 +1,22 @@
+engine: {
+  apiKey: ENGINE_KEY,
+  generateClientInfo: ({
+    request
+  }) => {
+    const headers = request.http.headers;
+    const clientName = headers.get('apollo-client-name');
+    const clientVersion = headers.get('apollo-client-version');
+
+    if(clientName && clientVersion) {
+      return {
+        clientName,
+        clientVersion
+      };
+    } else {
+      return {
+        clientName: "Unknown Client",
+        clientVersion: "Unversioned",
+      };
+    }
+  },
+},

@@ -1,0 +1,18 @@
+return (
+  <div className="wrapper">
+      <ToastContainer/>
+      <MessageAddedSubscription><ChatNotification/>
+      </MessageAddedSubscription>
+      <ChatsQuery><ChatsList openChat={this.openChat} user=
+      {user}/></ChatsQuery>
+      <div className="openChats">
+          {openChats.map((chatId, i) => 
+              <ChatQuery key={"chatWindow" + chatId} variables={{ 
+               chatId }}>
+                  <ChatWindow closeChat={this.closeChat} user=
+                  {user}/>
+              </ChatQuery>
+          )}
+      </div>
+  </div>
+)

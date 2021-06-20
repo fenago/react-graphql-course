@@ -1,0 +1,31 @@
+subscribeToNewMessages = () => {
+  const self = this;
+  const { user } = this.props;
+  this.props.subscribeToMore({
+    document: MESSAGES_SUBSCRIPTION,
+    updateQuery: (prev, { subscriptionData }) => {
+      if (!subscriptionData.data || !prev.chats.length) return prev;
+
+      var index = -1;
+      for(var i = 0; i < prev.chats.length; i++) {
+        if(prev.chats[i].id == 
+        subscriptionData.data.messageAdded.chat.id) {
+          index = i;
+          break;
+        }
+      }
+
+      if (index === -1) return prev;
+
+      const newValue = Object.assign({},prev.chats[i], {
+        lastMessage: { 
+          text: subscriptionData.data.messageAdded.text,
+          __typename: subscriptionData.data.messageAdded.__typename
+        }
+      });
+      var newList = {chats:[...prev.chats]};
+      newList.chats[i] = newValue;
+      return newList;
+    }
+  });
+}

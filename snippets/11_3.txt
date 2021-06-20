@@ -1,0 +1,15 @@
+describe('authentication', function() {
+  it('redirects the user when not logged in', function(done) {
+    request({
+      url: 'http://localhost:8000/app',
+    }, function(err, res, body) {
+      should.not.exist(err);
+      should.exist(res);
+      expect(res.statusCode).to.be.equal(200);
+      assert.ok(res.req.path === '/');
+      assert.ok(body.indexOf('<html') !== -1);
+      assert.ok(body.indexOf('class="authModal"') !== -1);
+      done(err);
+    });
+  });
+});

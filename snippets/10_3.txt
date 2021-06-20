@@ -1,0 +1,13 @@
+const SUBSCRIPTIONS_ENDPOINT = protocol + location.hostname + port 
+ + '/subscriptions';
+const subClient = new SubscriptionClient(SUBSCRIPTIONS_ENDPOINT, {
+  reconnect: true,
+  connectionParams: () => {
+    var token = localStorage.getItem('jwt');
+    if(token) {
+      return { authToken: token };
+    }
+    return { };
+  }
+});
+const wsLink = new WebSocketLink(subClient);

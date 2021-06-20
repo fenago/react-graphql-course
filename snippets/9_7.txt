@@ -1,0 +1,15 @@
+app.get('*', (req, res) => {
+  const client = ApolloClient(req);
+  const context= {};
+  const App = (<Graphbook client={client} location={req.url} context=
+  {context}/>);
+  const content = ReactDOM.renderToString(App);
+  if (context.url) {
+    res.redirect(301, context.url);
+  } else {
+    const head = Helmet.renderStatic();
+    res.status(200);
+    res.send(`<!doctype html>\n${template(content, head)}`);
+    res.end();
+  }
+});

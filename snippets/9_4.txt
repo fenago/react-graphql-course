@@ -1,0 +1,11 @@
+const ReactRouter = require("react-router-dom");
+let Router;
+if(typeof window !== typeof undefined) {
+  const { BrowserRouter } = ReactRouter;
+  Router = BrowserRouter;
+} 
+else {
+  const { StaticRouter } = ReactRouter;
+  Router = StaticRouter;
+}
+const { Route, Redirect, Switch } = ReactRouter;
