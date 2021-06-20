@@ -1,9 +1,9 @@
 module.exports = {
   "development": {
     "username": "devuser",
-    "password": "Test1234%",
+    "password": "PASSWORD",
     "database": "graphbook_dev",
-    "host": "192.168.2.107",
+    "host": "localhost",
     "dialect": "mysql",
     "operatorsAliases": false,
     "pool": {
