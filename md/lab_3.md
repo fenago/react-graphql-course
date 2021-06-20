@@ -1,5 +1,8 @@
 
-Connecting to The Database
+<img align="right" src="./logo.png">
+
+
+Lab 3: Connecting to The Database
 ==========================
 
 
@@ -18,59 +21,32 @@ in a real-world use case. For future purposes, it will also help you to
 handle problems with existing SQL-based systems.
 
 
+### Lab Solution
 
-Installing MySQL for development
---------------------------------
+Complete solution for this lab is available in the following directory:
 
-MySQL is an excellent starting point for getting on track in a
-developmental career. It is also well-suited to local development on
-your machine, since the setup is pretty easy.
+`cd ~/Desktop/react-graphql-course/labs/Lab03`
 
+Install following command to install all required packages:
 
-Execute the following steps to get MySQL running:
+`npm install`
 
-1.  First, you should always install all of the updates available for
-    your system:
-
-```
-sudo apt-get update && sudo apt-get upgrade -y
-```
+![](./images/vscode2.png) 
 
 
-We want to install MySQL and a GUI, in order to see what we have inside
-of our database. The most common GUI for a MySQL server is phpMyAdmin.
-It requires the installation of a web server and PHP. We are going to
-install Apache as our web server.
+MySQL and phpMyAdmin
+---------------------
 
 
-2.  Install all dependencies with the following command:
+MySQL is already installed and running. Execute the following steps to get MySQL running:
+
+1.  Verify that mysql server is running:
 
 ```
-sudo apt-get install apache2 mysql-server php php-pear php-mysql
+service mysql status
 ```
 
-
-3.  After the installation, you will need to run the MySQL setup in the
-    root shell. You will have to enter the root password for this.
-    Alternatively, you can run [sudo -i]:
-
-```
-su -
-```
-
-
-4.  Now, you can execute the MySQL installation command; follow the
-    steps as prompted. From my point of view, you can ignore most of
-    these steps, but be careful when you are asked for the root password
-    of your MySQL instance. Since this is a development server on your
-    local machine, you can skip the security settings:
-
-```
-mysql_secure_installation
-```
-
-
-5.  We must create a separate user for development, aside from the root
+2.  We must create a separate user for development, aside from the root
     and phpMyAdmin user. It is discouraged to use the root user at all.
     Log in to our MySQL Server with the root user in order to accomplish
     this:
@@ -88,58 +64,29 @@ mysql -u root
     acceptable for local development:
 
 ```
-GRANT ALL PRIVILEGES ON *.* TO 'devuser'@'%' IDENTIFIED BY 'PASSWORD';
+CREATE USER 'devuser'@'%' IDENTIFIED BY 'PASSWORD';
+
+GRANT ALL PRIVILEGES ON *.* TO 'devuser'@'%';
+
+FLUSH PRIVILEGES;
 ```
 
 
-7.  You can install phpMyAdmin, since our MySQL server has been set up.
-    You will be asked for a web server when executing the following
-    command. Select [apache2] with the spacebar, and navigate to
-    [ok] by hitting the *Tab* key. Select the automatic setup
-    method for phpMyAdmin, when asked for it. You should not do this
-    manually.
+#### phpMyAdmin
 
-Furthermore, phpMyAdmin will want you to enter a password. I recommend
-that you choose the same password that you chose for the root user:
+
+1.  Verify that apache server is running:
 
 ```
-sudo apt-get install phpmyadmin
+aervice apache2 status
 ```
 
-
-8.  After the installation, we will need to set up Apache, in order to
-    serve phpMyAdmin. The following [ln] command creates a
-    symbolic link in the root folder of the Apache public [HTML]
-    folder. Apache will now serve phpMyAdmin:
-
-```
-cd /var/www/html/
-sudo ln -s /usr/share/phpmyadmin
-```
-
-
-We can now visit phpMyAdmin under [http://localhost/phpmyadmin]
+We can now visit phpMyAdmin under [http://localhost:81/phpmyadmin]
 and log in with the newly created user. It should look like the
 following screenshot:
 
 
 ![](./images/29f4167e-4e48-4075-8fcd-e52a48edab46.png)
-
-
-We have now finished the complete database installation for our
-development environment.
-
-PhpMyAdmin chooses the language according to your environment, so it
-might differ slightly from the preceding screenshot.
-
-**ProTip**
-
-For other operating systems, there are great prebuilt packages. I
-recommend that all Windows users use XAMPP, and that Mac users use MAMP.
-These offer an easy installation process for what we did manually on
-Linux. They also implement MySQL, Apache, and PHP, including phpMyAdmin.
-
-
 
 
 Creating a database in MySQL
@@ -179,24 +126,9 @@ database], which is correct (for now). This will change
 later, when we have implemented our database models, such as posts and
 users.
 
-In the next lab, we will start to set up Sequelize in Node.js, and
-will connect it to our SQL server.
-
 
 Integrating Sequelize into our stack
 ====================================
-
-We have just set up a MySQL database, and we want to use it inside of
-our Node.js back end. There are many libraries to connect and query your
-MySQL database. We are going to use Sequelize in this course.
-
-**ProTip**
-
-Alternatives include Waterline ORM and js-data, which offer the same
-functionalities as Sequelize. What\'s great about these is that they not
-only offer SQL dialects, but also feature database adapters for MongoDB,
-Redis, and more. So, if you need an alternative, check them out.
-
 
 Sequelize is an ORM for Node.js. It supports the PostgreSQL, MySQL,
 SQLite, and MSSQL standards.
@@ -209,32 +141,12 @@ npm install --save sequelize mysql2
 ```
 
 
-The [mysql2] package allows Sequelize to speak with our MySQL
-server.
-
-Sequelize is just a wrapper around the various libraries for the
-different database systems. It offers great features for intuitive model
-usage, as well as functions for creating and updating database
-structures and inserting development data.
-
-Typically, you would run [sequelize init] before starting with the
-database connection or models, but I prefer a more custom approach. From
-my point of view, this is a bit cleaner. This approach is also why we
-are setting up the database connection in an extra file, and do not rely
-on boilerplate code.
-
-**ProTip**
-
-You can take a look at the official tutorial in the Sequelize
-documentation if you want to see how it would usually be done. The
-approach that we are taking and the one from the tutorial do not differ
-much, but it is always good to see another way of doing things. The
-documentation can be seen at
-<http://docs.sequelizejs.com/manual/tutorial/migrations.html>.[](http://docs.sequelizejs.com/manual/tutorial/migrations.html)
+The `mysql2` package allows Sequelize to speak with our MySQL
+server. Sequelize is just a wrapper around the various libraries for the
+different database systems.
 
 
 Let\'s start by setting Sequelize up in our backend.
-
 
 
 Connecting to a database with Sequelize
@@ -275,67 +187,7 @@ export default sequelize;
 
 
 As you can see, we require Sequelize from the [node\_modules], and
-then create an instance of it. The following properties are important
-for Sequelize:
-
--   We pass the database name as the first parameter, which we just
-    created.
--   The second and third parameters are the credentials of our
-    [devuser]. Replace them with the username and password that
-    you entered for your database. The [devuser] has all user
-    rights, and can read and write all of the databases in our MySQL
-    server. This makes development a lot easier.
--   The fourth parameter is a general options object that can hold many
-    more properties. The preceding object is an example configuration.
--   The [host] of our MySQL database is our local machine alias,
-    [localhost]. If this is not the case, you can also specify the
-    IP or URL of the MySQL server.
-
-
--   The [dialect] is, of course, [mysql].
--   The [operatorsAliases] property specifies which strings can be
-    used as aliases by Sequelize, or whether they can be used at all. An
-    example would look as follows:
-
-```
-[Op.gt]: 6 // > 6
-$gt: 6 // same as using Op.gt (> 6)
-```
-
-
-This example is taken from the Sequelize documentation. Generally, it is
-discouraged to use operators aliases at all. This is why you should
-disable it, and should always sanitize user input, to avoid SQL
-injections.
-
-**ProTip**
-
-If you want to read more about this topic and what possibilities
-Sequelize gives you for operator aliases, you can find more information
-at
-<http://docs.sequelizejs.com/manual/tutorial/querying.html#operators-aliases>.
-
-
--   With the [pool] option, you tell Sequelize the configuration
-    for every database connection. The preceding configuration allows
-    for a minimum of zero connections, which means that Sequelize should
-    not maintain one connection, but should create a new one whenever it
-    is needed. The maximum number of connections is five. This option
-    also relates to the number of replica sets that your database system
-    has.
--   The [idle] field of the [pool] option specifies how long
-    a connection can be unused before it gets closed and removed from
-    the pool of active connections.
--   When trying to establish a new connection to our MySQL server, the
-    timeout before the connection is aborted is defined by the
-    [acquire] option. In cases in which a connection cannot be
-    created, this option helps to stop your server from freezing.
-
-Executing the preceding code will instantiate Sequelize, and will
-successfully create a connection to our MySQL server. Going further, we
-need to handle multiple databases for every environment in which our
-application can run, from development to production. You will see that
-in the next section.
+then create an instance of it. 
 
 
 

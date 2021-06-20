@@ -1,13 +1,10 @@
 
-Implementing Server-Side Rendering
+<img align="right" src="./logo.png">
+
+
+Lab 9: Implementing Server-Side Rendering
 ==================================
 
-With our progress from the last lab, we are now serving multiple
-pages under different paths with our React application. All of the
-routing happens directly on the client. In this lab, we will look at
-the advantages and disadvantages of server-side rendering. By the end of
-the lab, you will have configured Graphbook to serve all pages as
-pre-rendered HTML from the server instead of the client.
 
 This lab covers the following topics:
 
@@ -18,6 +15,13 @@ This lab covers the following topics:
 
 
 Let\'s get started with writing some code.
+
+
+### Lab Solution
+
+Complete solution for this lab is available in the following directory:
+
+`cd ~/Desktop/react-graphql-course/labs/Lab09`
 
 
 SSR in Express.js
@@ -558,12 +562,6 @@ browser, but also provides a special module for the server, which is why
 we use the suffix [/server] while importing it. The returned
 module provides a number of server-only functions.
 
-**ProTip**
-
-To learn some more advanced features of server-side rendering and the
-dynamics behind it, you should read up on the official documentation of
-the server package of [react-dom] at
-<https://reactjs.org/docs/react-dom-server.html>.
 
 
 We can translate the React [App] object into HTML by using the
@@ -1370,12 +1368,6 @@ works not only for the [/app] path, but for any path that you
 implement.
 
 We are now finished with the SSR setup.
-
-So far, we have only looked at the developmental part of server-side
-rendering. When we get to the point at which we want to make a
-production build and publicize our application, there are a few other
-things that we will have to consider, which we will look at in a later
-lab.
 
 
 Summary

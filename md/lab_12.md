@@ -1,5 +1,7 @@
+<img align="right" src="./logo.png">
 
-Optimizing GraphQL with Apollo Engine
+
+Lab 12: Optimizing GraphQL with Apollo Engine
 =====================================
 
 
@@ -11,6 +13,16 @@ This lab covers the following topics:
 -   Error tracking
 
 
+### Lab Solution
+
+Complete solution for this lab is available in the following directory:
+
+`cd ~/Desktop/react-graphql-course/labs/Lab12`
+
+Install following command to install all required packages:
+
+`npm install`
+
 Setting up Apollo Engine
 ========================
 
@@ -20,7 +32,7 @@ Engine account. Apollo Engine is a commercial product produced by
 **MDG**, the **Meteor** **Development Group**, the company behind
 Apollo.
 
-At the time of writing, they offer three different plans, which you can
+They offer three different plans, which you can
 find by going to <https://www.apollographql.com/plans/>. When signing
 up, you get a two-week trial of the Team plan, which is one of the paid
 plans. Afterward, you\'ll be downgraded to the free plan. You should
@@ -32,12 +44,8 @@ you can only sign up using a GitHub account. If you don\'t have one
 already, create a GitHub account at
 [https://https://github.com/join](https://github.com/join).
 
-The good thing is that you don\'t have to enter any payment information
-unless you subscribe to a paid plan. The trial phase doesn\'t ask you to
-enter credit card information or anything else.
 
 After logging in, you will see a dashboard that looks as follows:
-
 
 ![](./images/1e102301-3cf1-4cad-9bf4-90697a63e02e.png)
 
@@ -158,10 +166,6 @@ Let\'s take a closer look at this screenshot:
 -   On the page, you see the last GraphQL schema that you have
     published. Each schema you publish has a unique version, as long as
     the schema includes changes.
-
-```{=html}
-<!-- -->
-```
 -   Beneath the version number, you can see your entire GraphQL schema.
     You can inspect all operations and types. All relations between
     types and operations are directly linked to each other.
@@ -170,33 +174,8 @@ Let\'s take a closer look at this screenshot:
 -   You can search through your GraphQL schema in the top bar and filter
     the usage statistics in the panel on the right.
 
-You can also switch to the [Deprecation] tab at the top.
-This page gives you a list of fields that are deprecated. We won\'t use
-this page because we are using the latest field definitions, but it\'s
-vital if you\'re running an application for a longer time.
-
-**ProTip**
-
-As well as Apollo Engine, there are numerous tools that can give you an
-overview of your GraphQL schema. I\'m a big fan of GraphQL Voyager,
-which generates a mindmap-like graph, using which you can identify all
-operations, including the relations of GraphQL types. It requires you to
-run an introspection query, whose result is rendered. You can find more
-information at
-<https://apis.guru/graphql-voyager/>.[](https://apis.guru/graphql-voyager/)
-
-
-Having an overview of our schema is beneficial. In production, every new
-release of our application is likely to also bring changes to the
-GraphQL schema. With Apollo Engine, you can track those changes easily.
-This feature is called schema-change validation and is only included in
-the paid Team plan of Apollo Engine. It\'s worth the extra money because
-it allows you to track schema changes and also to compare how those
-fields are used. It allows us to draw conclusions about which clients
-and versions are being used at the moment.
 
 I have created an example for you in the following screenshot:
-
 
 ![](./images/5828f588-98f8-4a3b-846b-5d3393aea99e.png)
 
@@ -287,10 +266,6 @@ time taken for each post and user to be queried from the database. All
 the times from within the tree are summed up and result in a total time
 of about 90 milliseconds.
 
-It\'s obvious that you should always check all operations and their
-latencies to identify performance breakdowns. Your users should always
-have responsive access to your API. This can easily be monitored with
-Apollo Engine.
 
 Next, we\'ll see how Apollo Engine implements error tracking.
 
@@ -393,10 +368,6 @@ will see both in Apollo Engine soon.
 
 3.  Add [InfoLink] in front of [AuthLink] in the
     [ApolloLink.from] function.
-
-```{=html}
-<!-- -->
-```
 4.  On the back end, we need to edit the [apollo.js] file in the
     [ssr] folder:
 
@@ -464,13 +435,6 @@ Next, we\'ll see how to improve the performance of our GraphQL API.
 Caching with Apollo Server and the Client
 =========================================
 
-Hopefully, when deploying your first application, you\'ll soon get a
-growing user base. You\'re required to improve the performance and
-efficiency of your application. One way this can be done is through
-standard improvements, such as code refactoring. Another crucial thing
-to do is caching. Not just files such as our CSS and JavaScript files
-should be cached, but also the requests that we send.
-
 Apollo provides **Automatic Persisted Queries** (**APQ**), which is a
 technique that significantly reduces bandwidth usage and carries out
 caching through unique IDs per request. The workflow of this technique
@@ -502,14 +466,6 @@ The [cacheControl] object sets [cacheControl] properties for
 all our requests. The standard time inserted in this case is 5 seconds.
 Using cache control, you can also store public GraphQL requests inside a
 CDN to improve performance.
-
-**ProTip**
-
-Setting up a CDN for your application is a vast topic that wouldn\'t be
-possible to cover in just one lab. It requires a significant amount
-of work. If you want to use Apollo together with a CDN, read up on this
-in the official documentation:
-<https://www.apollographql.com/docs/apollo-server/v2/whats-new.html#CDN-integration>.
 
 
 The second change is to enable cache control in the GraphQL schema. Just
@@ -637,6 +593,3 @@ You should now understand all the features that Apollo Engine provides
 and how to make use of collected data. We also looked at how to set up
 [cacheControl] and Automatic Persisted Queries to improve the
 performance of your application.
-
-In the next lab, we\'ll finally deploy a production release of
-Graphbook, with the help of CircleCI and Heroku.

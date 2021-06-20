@@ -1,5 +1,7 @@
+<img align="right" src="./logo.png">
 
-Setting up GraphQL with Express.js
+
+Lab 2: Setting up GraphQL with Express.js
 ==================================
 
 
@@ -16,6 +18,19 @@ This lab covers the following points:
 -   Binding Apollo Server to a GraphQL endpoint
 -   Serving static assets with Express.js
 -   Back end debugging and logging
+
+
+### Lab Solution
+
+Complete solution for this lab is available in the following directory:
+
+`cd ~/Desktop/react-graphql-course/labs/Lab02`
+
+Install following command to install all required packages:
+
+`npm install`
+
+![](./images/vscode2.png)
 
 
 Node.js and Express.js
@@ -1230,27 +1245,7 @@ Postman to send requests comfortably.
 Debugging with Postman
 ----------------------
 
-Some time ago, [Postman] started as a Chrome app, which
-was installed through the Chrome Web Store.
-
-Since Chrome apps will be deprecated, the guys behind
-[Postman] switched to a native implementation.
-
-You can install [Postman] by downloading the appropriate
-file from the download section at,
-<https://www.getpostman.com/apps>.[](https://www.getpostman.com/apps)
-
-**ProTip**
-
-There are numerous other HTTP client tools, such as Postman, that are
-useful for debugging your application. You are free to use your tool of
-choice. Some other great clients that I personally use are Insomnia,
-SoapUI, and Stoplight, but there are many more. In this course, we use
-Postman, as it is the most popular from my point of view.
-
-
-When you have finished the installation, it should look something like
-this:
+Postman is already installed. Start application from icon on desktop, it should look something like this:
 
 
 ![](./images/ecba3e18-6f21-4b02-8449-653728133b3c.png)
@@ -1260,8 +1255,7 @@ As you can see, I have already created a collection called
 [Book] in the left-hand panel. This collection includes
 our two requests: one to request all posts and one to add a new post.
 
-As an example, the following screenshot shows you how the [Add
-Post] mutation looks in Postman:
+As an example, the following screenshot shows you how the [Add Post] mutation looks in Postman:
 
 
 ![](./images/95e96cd3-5b58-4ee4-9289-94a5dd7b4e13.png)
@@ -1282,22 +1276,7 @@ to the [raw] format.
 The URL is localhost, including port [8000] as expected.
 
 If you add a new request, you can use the [Ctrl + S] shortcut to
-save it. You need to select a collection and a name to save it. One
-major downfall of using [Postman] (at least with GraphQL
-APIs) is that we are, of course, only using [POST]. It would be
-great to have some kind of indication of what we are doing here, for
-example, a query or a mutation. We will also see how to use
-authorization in [Postman] when we have implemented it.
-
-[Postman] also has other great features, such as
-automated testing, monitoring, and mocking a fake server.
-
-In later chapters, it will become more complicated to configure Postman
-for all requests. In such cases, I like to use Apollo Client Developer
-Tools, which perfectly integrate into the front end and make use of
-Chrome DevTools. What\'s great about Apollo Client Developer Tools is
-that they use Apollo Client we configure in the front end code and
-therefore reuse the authentication we built into our front end.
+save it. You need to select a collection and a name to save it
 
 
 Summary
@@ -1316,5 +1295,3 @@ In the next lab, we will learn how to persist data in a SQL server.
 We will also implement models for our GraphQL types and cover migrations
 for our database. We need to replace our current [resolver]
 functions with queries via Sequelize.
-
-There is a lot to do here, so read on for more.

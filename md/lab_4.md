@@ -1,10 +1,10 @@
 
-Integrating React into the Back end with Apollo
+<img align="right" src="./logo.png">
+
+
+Lab 4: Integrating React into the Back end with Apollo
 ===============================================
 
-Sequelize makes it easy to access and query our database. Posts, chats,
-and messages can be saved to our database in a snap. React helps us to
-view and update our data by building a user interface.
 
 In this lab, we will introduce Apollo\'s React client to our front
 end, in order to connect it with the back end. We will query, create,
@@ -15,7 +15,19 @@ This lab will cover the following points:
 -   Installing and configuring Apollo Client
 -   Sending requests with GQL and Apollo\'s Query component
 -   Mutating data with Apollo
--   Debugging with Apollo Client Developer Tools
+
+
+### Lab Solution
+
+Complete solution for this lab is available in the following directory:
+
+`cd ~/Desktop/react-graphql-course/labs/Lab04`
+
+Install following command to install all required packages:
+
+`npm install`
+
+![](./images/vscode2.png)
 
 
 Setting up Apollo Client
@@ -43,18 +55,9 @@ npm install --save apollo-client apollo-cache-inmemory apollo-link-http apollo-l
 ```
 
 
-
 You will see how these packages work together in this section. The great
 thing about this approach is that you can customize almost all parts of
 Apollo Client, according to your requirements.
-
-**ProTip**
-
-An alternative approach is to use the [apollo-boost] package. By
-installing [apollo-boost], you install all of the preceding
-packages at once. If you use this package, however, you can\'t customize
-your Apollo stack. It is more work to do it manually, but the benefits
-are worth it.
 
 
 To get started with the manual setup of the Apollo Client, create a new
@@ -110,38 +113,6 @@ export default client;
 ```
 
 
-The preceding code uses all of the new packages, apart from
-[react-apollo]. Let\'s break down the code:
-
--   First, at the top of the file, we imported nearly all of the
-    packages that we installed.
--   We instantiated [ApolloClient]. For this to work, we passed
-    some parameters, which are the [link] and [cache]
-    properties.
--   The [link] property is filled by the [ApolloLink.from]
-    command. This function walks through an array of links and
-    initializes each of them, one by one:
-    -   The first link is the error link. It accepts a function that
-        tells Apollo what should be done if an error occurs.
-    -   The second link is the HTTP link for Apollo. You have to offer a
-        URI, under which our Apollo or GraphQL server is reachable.
-        Apollo Client sends all requests to this URI. Notably, the order
-        of execution is the same as the array that we just created.
--   The [cache] property takes an implementation for caching. One
-    implementation can be the default package, [InMemoryCache], or
-    a different cache.
-
-**ProTip**
-
-There are many more properties that our links can understand (especially
-the HTTP link). They feature a lot of different customization options,
-which we will look at later. You can also find them in the official
-documentation, at <https://www.apollographql.com/docs/react/>.
-
-
-In the preceding code we export the initialized Client using the [export
-default client] line. We are then able to use it in our React app.
-
 The basic setup to send GraphQL request using the Apollo Client is
 finished. In the next section, we will send our first GraphQL request
 through Apollo Client.
@@ -193,26 +164,9 @@ client.query({
 
 
 The preceding code is almost the same as the example from the Apollo
-documentation, but I have replaced their query with one that matches our
+documentation, but we have replaced their query with one that matches our
 back end.
 
-Here, we used the [graphql-tag] package to parse a **template
-literal**. A template literal is just a multi-line string surrounded by
-two grace accents. The [gql] command parses this literal to an
-**abstract syntax tree** (**AST**). Abstract syntax trees are the first
-step of GraphQL, they are used to validate deeply nested objects the
-schema and the query.
-
-**ProTip**
-
-If you want to know more about ASTs, the people at Contentful wrote a
-great article about what ASTs mean to GraphQL, at
-<https://www.contentful.com/blog/2018/07/04/graphql-abstract-syntax-tree-new-schema/>.
-
-
-The client sends our query after the parsing has completed. A great
-feature of [graphql-tag] is that it caches parsed queries and
-saves them for the next use.
 
 To test the preceding code, we should start the server and the front
 end. One option is to build the front end now, and then start the
@@ -851,38 +805,13 @@ immediately.
 
 In this introduction to direct cache access and refetching, we will
 focus on the new standard [Query] and [Mutation] components.
-If you, like me, prefer HoCs, there are many tutorials that cover how to
-update the UI when using HoCs.
-
-There are two different ways to update the UI after a mutation:
-
--   **Refetching the dataset**: This is easy to implement, but it
-    refetches all of the data, which is inefficient.
--   **Updating the cache according to the inserted data**: This is
-    harder to understand and implement, but it attaches the new data to
-    the cache of the Apollo Client, so no refetching is needed.
-
-We use these solutions in different scenarios. Let\'s take a look at
-some examples. Refetching makes sense if further logic is implemented on
-the server, which is hidden from the client when requesting a list of
-items, and which is not applied when inserting only one item. In these
-cases, the client cannot simulate the state of the typical response of a
-server.
-
-Updating the cache, however, makes sense when adding or updating items
-in a list, like our post feed. The client can insert the new post at the
-top of the feed.
-
-We will start by simply refetching requests, and then we\'ll go over the
-cache update implementation. The following sections (and chapters) will
-assume that you are not using the HoC method.
 
 
 
 Refetching queries
 ------------------
 
-As mentioned previously, this is the easiest method to update your user
+This is the easiest method to update your user
 interface. The only step is to set an array of queries to be refetched.
 The [Mutation] component should look as follows:
 
@@ -933,32 +862,6 @@ finished. The first parameter that it receives is the [store] of
 the Apollo Client, in which the whole cache is saved. The second
 parameter is the returned response of our GraphQL API.
 
-Updating the cache works as follows:
-
-1.  Use the [store.readQuery] function by passing a [query]
-    as a parameter. It reads the data, which has been saved for this
-    specific query inside of the cache. The [data] variable holds
-    all of the posts that we have in our feed.
-2.  Now that we have all of the posts in an array, we can add the
-    missing post. Make sure that you know whether you need to prepend or
-    append an item. In our example, we want to insert a post at the top
-    of our list, so we need to prepend it. You can use the
-    [unshift] JavaScript function to do this. We just set our
-    [addPost] as the first item of the [data.posts] array.
-
-```{=html}
-<!-- -->
-```
-3.  We need to save the changes back to the cache. The
-    [store.writeQuery].The function accepts the query which we
-    used to send the request. This query is used to update the saved
-    data in our cache. .second parameter is the data that should be
-    saved.
-4.  When the cache has been updated, our user interface reactively
-    renders the changes.
-
-In reality, you can do whatever you want in the [update] function,
-but we only use it to update the Apollo Client store.
 
 We wait for the response to arrive, and then push the new item to the
 list afterward. In the next section, we will be a bit more optimistic
@@ -969,13 +872,6 @@ request\'s response successfully arrives.
 
 Optimistic UI
 -------------
-
-Apollo provides the great feature of being able to update the UI in an
-optimistic manner. An optimistic manner means that Apollo adds the new
-data or post to the storage before the request has finished. The
-advantage is that the user can see the new result, instead of waiting
-for the response of the server. This solution makes the application feel
-faster and more responsive.
 
 This section expects the [update] function of the [Mutation]
 component to already be implemented. Otherwise, this UI feature will not
@@ -1168,9 +1064,7 @@ into the new file as static demo data, before writing the real
 
 Let\'s get started, as follows:
 
-1.  Send the GraphQL query. The best options involve Apollo Client
-    Developer Tools, if you already know how they work. Otherwise, you
-    can rely on Postman, as you did previously:
+1.  Send the GraphQL query. Use Postman, as you did previously:
 
 ```
 query {
@@ -1423,13 +1317,7 @@ lastMessage(chat, args, context) {
 
 </div>
 
-```{=html}
-<!-- -->
-```
 
-```{=html}
-<!-- -->
-```
 4.  We can render the new message with a simple [span] tag beneath
     the [h2] of the username. Copy it directly into the
     [render] method, inside of our [Chats] class:
@@ -2238,88 +2126,6 @@ update = {(store, { data: { addPost } }) => {
 This approach is the same as the [addMessage] mutation, where we
 needed to pass the chat id as a variable.
 
-Complex code like this requires some useful tools to debug it. Continue
-reading to learn more about Apollo Client Developer Tools.
-
-
-Debugging with the Apollo Client Developer Tools
-================================================
-
-
-**Apollo Client Developer Tools** is another Chrome extension, allowing
-you to send Apollo requests. While Postman is great in many ways, it
-does not integrate with our application, and does not implement any
-GraphQL-specific features. Apollo Client Developer Tools rely on the
-Apollo Client that we set up very early on in this lab.
-
-Every request, either a query or mutation, is sent through the Apollo
-Client of our application. The Developer Tools also provide features
-such as autocomplete, for writing requests. They can show us the schema
-as it is implemented in our GraphQL API. Let\'s take a look at an
-example:
-
-
-![](./images/628391e4-9cc6-425f-a6d2-2aac57321bf5.png)
-
-
-We will go over all four of the main windows offered by the extension.
-
-The [GraphiQL] window is shown in the preceding
-screenshot. The three panels in the preceding screenshot are described
-as follows:
-
--   You can enter the request that you want to send in the left-hand
-    text area. It can be a mutation or query, including the markup for
-    inputs, for example. It is the same as the [query] property in
-    Postman. You can also enter the variables at the bottom.
--   When sending the request, the response is shown in the middle panel.
--   In the panel on the right, you can find the schema against which you
-    will run the requests. You can search through the complete GraphQL
-    schema, or manually step into the tree by clicking on the root
-    types. This feature is useful when you forget what a specific field
-    or mutation is called, or which parameters it accepts.
-
-In the top bar, you will find the [Prettify] button,
-which tidies your query so that it is more readable. The [Load from
-cache] checkbox tries to retrieve any requested data
-directly from the cache, when possible. By clicking on the play button,
-you run the query. These are all tools to test our GraphQL requests
-properly.
-
-Next, there is the [Queries] window, which is a helpful
-display. All of the queries that were ever run through the client are
-listed here, including the query string and variables. If you want to,
-you can rerun the query by clicking on the button at the top:
-
-
-![](./images/49f1ea23-674d-4b0e-92ab-42934b437c06.png)
-
-
-The [Mutations] window is actually the same as the
-[Queries] window, but for mutations. The list is empty,
-as long as you have not sent any mutations.
-
-The last window is [Cache]. Here, you are able to see all
-of the data stored inside the Apollo cache:
-
-
-![](./images/aa91fd52-d42c-4db6-b2f4-0c4ce4ff8c5b.png)
-
-
-In the left-hand panel, you can search through your data. The right-hand
-panel shows you the selected object in JSON.
-
-You can also see that I have tested the API a lot, as there are multiple
-[Post] objects in the left-hand panel. In the
-[ROOT\_QUERY], there are only three. For testing purposes, I
-submitted multiple posts via a mutation, but I deleted them, to make
-sure that the screenshots were clear. Apollo did not delete the old
-posts that were deleted in the database, so they are still inside of the
-cache. You should delete this data when a user logs out of your
-application, so that unauthorized users cannot access it.
-
-That is everything that you need to know about Apollo Client Developer
-Tools.
 
 
 Summary
@@ -2330,7 +2136,7 @@ do this, we used Apollo Client to manage the cache and the state of our
 components, and to update the React and the actual DOM of the browser.
 We looked at how to send queries and mutations against our server in two
 different ways. We also covered how to implement pagination with React
-and Apollo, and how to use Apollo Client Developer Tools.
+and Apollo.
 
 The next lab will cover how to write reusable React components. Up
 to this point, we have written the code, but we haven\'t thought about

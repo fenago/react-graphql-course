@@ -1,19 +1,17 @@
+<img align="right" src="./logo.png">
 
-Preparing Your Development Environment
+
+Lab 1: Preparing Development Environment
 ======================================
 
 
 This lab covers the following topics:
 
--   Architecture and technology
 -   Building the React and GraphQL stack
 -   Installing and configuring Node.js
 -   Setting up a React development environment with webpack, Babel, and
     other requirements
--   Debugging React applications using Chrome DevTools and React
-    Developer Tools
--   Using [webpack-bundle-analyzer] to check the bundle size
-
+-   Using `webpack-bundle-analyzer` to check the bundle size
 
 
 The basic setup
@@ -22,67 +20,40 @@ The basic setup
 The basic setup to make an application work is the logical request flow,
 which looks as follows:
 
-
 ![](./images/716aeb18-2c54-42c1-a1bc-12a86a955ce5.png)
 
 
-Here\'s how the logical request flow works:
+### Lab Solution
 
-1.  The client requests our site.
-2.  The Express.js server handles these requests and serves a static
-    HTML file.
-3.  The client downloads all necessary files, according to this HTML
-    file. The files also include a bundled JavaScript file.
+Complete solution for this lab is available in the following directory:
+
+`cd ~/Desktop/react-graphql-course/labs/Lab01`
+
+Install following command to install all required packages:
+
+`npm install`
 
 
-4.  This bundled JavaScript file is our React application. After
-    executing all JavaScript code from this file, all required Ajax
-    alias GraphQL requests are made to our Apollo Server.
-5.  Express.js receives the requests and passes them to our Apollo
-    endpoint.
-6.  Apollo queries all requested data from all available systems, such
-    as our SQL server or third-party services, merges the data, and
-    sends it back as JSON.
-7.  React can render the JSON data to HTML.
+**Note:** 
 
-This workflow is the basic setup to make an application work. In some
-cases, it makes sense to offer server-side rendering for our client. The
-server would need to render and send all [XMLHttpRequests] itself
-before returning the HTML to the client. The user will save one or more
-round trips if the server sends the requests on the initial load. We
-will focus on this topic in a later lab, but that\'s the application
-architecture in a nutshell. With that in mind, let\'s get hands-on and
-set up our development environment.
+- VCode is already installed in the lab environment, you can open solution folder in vscode.
+- Use Midori browser installed in the lab environment for accessing application.
+
+![](./images/vscode1.png)
 
 
 Installing and configuring Node.js
 ==================================
 
 
-**ProTip**
-
-You can find the [Downloads] section of Node.js at the
-following link, <https://nodejs.org/en/download/>.
-
-Our project is going to be new so that we can use Node.js 10 without any
-problems. You can skip the following installation of Node.js if you are
-running version 6 or higher:
-
-1.  First, let\'s add the correct repository for our package manager by
-    running:
+Following commands will install Node.js and the build tools for native modules: 
 
 ```
-curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash –
-```
-
-
-2.  Next, install Node.js and the build tools for native modules, using
-    the following command:
-
-```
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash –
 sudo apt-get install -y nodejs build-essential
 ```
 
+<span style="color:red;">Node 12 has been installed already in the lab environment.</span>
 
 3.  Finally, let\'s open a terminal now and verify that the installation
     was successful:
@@ -91,20 +62,13 @@ sudo apt-get install -y nodejs build-essential
 node --version
 ```
 
-
 **ProTip**
 
-The installation of Node.js via the package manager will automatically
-install npm.
+The installation of Node.js via the package manager automatically installs npm.
 
-
-Great. You\'re now set up to run server-side JavaScript with Node.js and
-install Node.js modules for your projects with npm.
-
-All of the dependencies that our project relies on are available at
-[https://npmjs.com](https://npmjs.com/) and can be installed with npm or
-Yarn, if you are comfortable with these.
-
+```
+npm --version
+```
 
 Setting up React
 ================
@@ -346,42 +310,10 @@ module.exports = {
 
 The webpack configuration file is just a regular JavaScript file in
 which you can require [node\_modules] and custom JavaScript files.
-This is the same as everywhere else inside Node.js. Let\'s quickly go
-through all of the main properties of this configuration. Understanding
-these will make future custom webpack configs much easier. All of the
-important points are explained below:
-
--   [HtmlWebpackPlug]: This automatically generates an HTML file
-    that includes all of the webpack bundles. We pass our previously
-    created [index.html] as a template.
--   [CleanWebpackPlugin]: This empties all of the provided
-    directories to clean old build files. The
-    [cleanOnceBeforeBuildPatterns] property specifies an array of
-    folders which are cleaned before the build process is started.
--   The [entry] field tells webpack where the starting point of
-    our application is. This file needs to be created by us.
--   The [output] object specifies how our bundle is called and
-    where it should be saved. For us, this is
-    [dist/client/bundle.js].
--   Inside [module.rules], we match our file extensions with the
-    correct loaders. All JavaScript files (except those located in
-    [node\_modules]) are transpiled by Babel, specified by
-    [babel-loader] , so that we can use ES6 features inside our
-    code. Our CSS gets processed by [style-loader] and
-    [css-loader]. There are many more loaders for JavaScript, CSS,
-    and other file extensions available.
--   The [devServer] feature of webpack enables us to run the React
-    code directly. It includes hot reloading code in the browser without
-    rerunning a build or refreshing the browser tab.
-
-**ProTip**
-
-If you need a more detailed overview of the webpack configuration, have
-a look at the official documentation here:
-[https://github.com/webpack/docs/wiki/configuration.](https://github.com/webpack/docs/wiki/configuration)
+This is the same as everywhere else inside Node.js.
 
 
-With this in mind, let\'s move on. We are missing the
+Let\'s move on. We are missing the
 [src/client/index.js] file from our webpack configuration, so
 let\'s create it as follows:
 
@@ -764,9 +696,6 @@ with bundled CSS from webpack. It should look something like this:
 
 
 
-source: https://www.vecteezy.com/
-
-
 The output looks very good already.
 
 
@@ -1104,77 +1033,10 @@ working back end.
 You are now finished with the basic setup of React.
 
 
-Useful development tools
-========================
-
-When working with React, you will want to know why your application
-rendered in the way that it did. You need to know which properties your
-components received and how their current state looks. Since this is not
-displayed in the DOM or anywhere else in Chrome DevTools, you need a
-separate plugin.
-
-Facebook has got you covered. Visit
-<https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi>
-and install React Developer Tools. This plugin allows the inspection of
-React applications and components. When opening Chrome DevTools again,
-you will see that there is a new tab at the end of the row.
-
-
-If you are unable to see this tab, you may need to restart Chrome
-completely. You can also find React Developer Tools for Firefox.
-
-
-This plugin allows you to view, search, and edit all of the components
-of your ReactDOM.
-
-The left-hand panel looks much like the regular DOM tree (Elements) in
-Chrome DevTools, but instead of showing HTML markup, you see all of the
-components you used inside a tree. ReactDOM rendered this tree into real
-HTML, as follows:
-
-
-![](./images/cec710bf-aa5a-4ce6-a385-7ef8277e9d0f.png)
-
-
-The first component in the current version of Graphbook should be [\<App
-/\>].
-
-By clicking a component, your right-hand panel will show its properties,
-state, and context. You can try this with the [App] component,
-which is the only real React component:
-
-
-![](./images/5c4cb340-bb02-4483-b102-e7b3ee441be6.png)
-
-
-The [App] class is the first component of our application. This is
-the reason why it received no props. Children can receive properties
-from their parents; with no parent, there are no props.
-
-Now test the [App] class and play around with the state. You will
-see that changing it rerenders your ReactDOM and updates the HTML. You
-can edit the [postContent] variable, which inserts the new text
-inside the [textarea]. As you can see, all events are thrown, and
-your handler runs. Updating the state always triggers a rerender, so try
-to update the state as little as possible.
-
-
-
 Analyzing bundle size
 ---------------------
 
-People that are trying to use as little bandwidth as possible will want
-to keep their bundle size low. I recommend that you always keep an eye
-on this, especially when requiring more modules via npm. In this case,
-you can quickly end up with a huge bundle size, since npm packages tend
-to require other npm packages themselves.
-
-To protect us against this, we need a method to analyze the bundle size.
-Only the production build is worth checking. As previously mentioned,
-the development build includes React in a development release with
-source maps and so on.
-
-Thanks to webpack, there is a simple solution for analyzing our bundle.
+In webpack, there is a simple solution for analyzing our bundle.
 This solution is called [webpack-bundle-analyzer], and it does
 exactly what it sounds like.
 

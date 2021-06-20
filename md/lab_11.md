@@ -1,12 +1,10 @@
 
-Writing Tests
+<img align="right" src="./logo.png">
+
+
+Lab 11: Writing Tests
 =============
 
-So far, we\'ve written a lot of code and come across a variety of
-problems. We haven\'t implemented automated testing for our software.
-However, it\'s a common approach to make sure everything works after
-making changes to your application. Automated testing drastically
-improves the quality of your software and reduces errors in production.
 
 This lab covers the following topics:
 
@@ -15,25 +13,19 @@ This lab covers the following topics:
 -   Testing React with Enzyme and JSDOM
 
 
+
+### Lab Solution
+
+Complete solution for this lab is available in the following directory:
+
+`cd ~/Desktop/react-graphql-course/labs/Lab11`
+
+
+
 Testing with Mocha
 ==================
 
-The problem we\'re facing is that we have to ensure the quality of our
-software without increasing the amount of manual testing. It isn\'t
-possible to recheck every feature of our software when new updates are
-released. To solve this problem, we\'re going to use Mocha, which is a
-JavaScript testing framework. It gives you the opportunity to run a
-series of asynchronous tests. If all the tests pass successfully, your
-application is ready for the next release.
 
-Many developers follow the **test-driven development** (**TDD**)
-approach. Often, when you implement tests for the first time, they fail
-because the business logic that\'s being tested is missing. After
-implementing all the tests, we have to write the actual application code
-to meet the requirements of the tests. In this course, we haven\'t
-followed this approach, but it isn\'t a problem as we can implement
-tests afterward too. Typically, I tend to write tests in parallel with
-the application code.
 
 To get started, we have to install all the dependencies to test our
 application with npm:
@@ -104,14 +96,6 @@ the beginning. Inside the [babel-hook.js] file, we load
 [\@babel/register], which compiles all the files that are imported
 afterward in our test according to the preceding configuration.
 
-**ProTip**
-
-Notice that when running a production build or environment, the
-production database is also used. All changes are made to this database.
-Verify that you have configured the database credentials correctly in
-the server\'s [configuration] folder. You have only to set the
-[host], [username], [password], and [database]
-environment variables correctly.
 
 
 This gives us the option to start our back end server from within our
@@ -151,10 +135,6 @@ Let\'s take a closer look at what\'s happening here:
     ability to verify the value or the type of a variable.
 2.  We import the [request] package, which we use to send queries
     against our back end.
-
-```{=html}
-<!-- -->
-```
 3.  We import two Chai functions, [expect] and [should],
     from the [chai] package. Neither of these is included in
     Mocha, but they both improve the test\'s functionality
@@ -165,14 +145,6 @@ Let\'s take a closer look at what\'s happening here:
     function is used to structure your test and its output.
 5.  We use the [it] function, which initiates the first test.
 
-The [it] function can be understood as a feature of our
-application that we want to test inside the callback function. As the
-first parameter, you should enter a sentence, such as [\'it does this
-and that\'], that\'s easily readable. The function itself waits
-for the complete execution of the [callback] function in the
-second parameter. The result of the callback will either be that all
-assertions were successful, or that, for some reason, a test failed or
-the callback didn\'t complete in a reasonable amount of time.
 
 The [describe] function is the header of our test\'s output. Then,
 we have a new row for each [it] function we execute. Each row
@@ -185,41 +157,8 @@ was send an HTTP [GET] request to [http://localhost:8000],
 which is accepted by our back end server. The expected answer will be in
 the form of server-side rendered HTML created through React.
 
-To prove that the response holds this information, we make some
-assertions in our preceding test:
 
-1.  We use the [should] function from Chai. The great thing is
-    that it\'s chainable and represents a sentence that directly
-    explains the meaning of what we\'re doing. The
-    [should.not.exist] function chain makes sure that the given
-    value is empty. The result is true if the value is [undefined]
-    or [null], for example. The consequence is that when the
-    [err] variable is filled, the assertion fails and so our test,
-    [\'renders and serves the index page\'], fails too.
-2.  The same goes for the [should.exist] line. It makes sure that
-    the [res] variable, which is the response given by the back
-    end, is filled. Otherwise, there\'s a problem with the back end.
-3.  The [expect] function can also represent a sentence, like both
-    functions before. We expect [res.statusCode] to have a value
-    of [200]. This assertion can be written as
-    [expect(res.statusCode).to.be.equal(200)]. We can be sure that
-    everything has gone well if the HTTP status is [200].
-
-```{=html}
-<!-- -->
-```
-4.  If nothing has failed so far, we check whether the returned
-    [body], which is the third callback parameter of the
-    [request] function, is valid. For our test scenario, we only
-    need to check whether it contains an [html] tag.
-5.  We execute the [done] function. We pass the [err] object
-    as a parameter. The result of this function is much like the
-    [should.not.exist] function. If you pass a filled error object
-    to the [done] function, the test fails. The tests become more
-    readable when using the Chai syntax.
-
-If you execute [npm run test] now, you\'ll receive the following
-error:
+If you execute [npm run test] now, you\'ll receive the following error:
 
 
 ![](./images/13f8b682-82cf-4989-9677-9ccdb4b7b970.png)
@@ -871,20 +810,20 @@ it('renders the current user in the top bar', function(done) {
 ```
 
 
-Here, we are using the [AuthLink] that we used in the original
-front end code. We pass the [authToken] variable to every request
-that\'s made by the Apollo Client. In the [Apollo.from] method, we
-add it before [httpLink]. In the [Graphbook] class, we set
-[loggedIn] to [true] and the [location] to
-[/app] to render the newsfeed. Because the requests are
-asynchronous by default and the [mount] method doesn\'t wait for
+Here, we are using the `AuthLink` that we used in the original
+front end code. We pass the `authToken` variable to every request
+that\'s made by the Apollo Client. In the `Apollo.from` method, we
+add it before `httpLink`. In the `Graphbook` class, we set
+`loggedIn` to `true` and the `location` to
+`/app` to render the newsfeed. Because the requests are
+asynchronous by default and the `mount` method doesn\'t wait for
 the Apollo Client to fetch all queries, we couldn\'t directly check the
 DOM for the correct content. Instead, we wrapped the assertions and the
-[done] function in a [setTimeout] function. A timeout of
+`done` function in a `setTimeout` function. A timeout of
 2,000 milliseconds should be enough for all requests to finish and React
 to have rendered everything. If this isn\'t enough time, you can
 increase the number. When all assertions are successful, we can be sure
-that the [currentUser] query has been run and the top bar has been
+that the `currentUser` query has been run and the top bar has been
 rendered to show the logged-in user. With these two examples, you should
 now be able to run any test you want with your application\'s front end
 code.

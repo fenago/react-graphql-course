@@ -1,5 +1,7 @@
+<img align="right" src="./logo.png">
 
-Real-Time Subscriptions
+
+Lab 10: Real-Time Subscriptions
 =======================
 
 The GraphQL API we have built is very advanced, as is the front end. In
@@ -19,6 +21,13 @@ This lab covers the following topics:
 -   Implementing Apollo Subscriptions
 -   JWT authentication with Subscriptions
 
+
+
+### Lab Solution
+
+Complete solution for this lab is available in the following directory:
+
+`cd ~/Desktop/react-graphql-course/labs/Lab10`
 
 
 Apollo Subscriptions
@@ -1082,98 +1091,37 @@ You can test these new changes by viewing the chat window and sending a
 message from another user account. The new message should appear almost
 directly for you without the need to refresh the browser.
 
-In this section, we learned how to subscribe to events sent from a back
-end through Apollo Subscriptions. Currently, we use this feature to
-update the UI on the fly with the new data. Later in *Notifications with
-Apollo subscriptions* section, we\'ll see another scenario where
-subscriptions can be useful. Nevertheless, there\'s one thing left to
-do: we haven\'t authorized the user for the [messageAdded]
-subscription through a JWT, such as our GraphQL API, and still, the user
-received the new message without verifying its identity. We\'re going to
-change this in the next section.
 
 
 Authentication with Apollo Subscriptions
 ========================================
 
-In Lab 6, we implemented
-authentication through the localStorage of your browser. The back end
-generates a signed JWT that the client sends with every request inside
-the HTTP headers. In Lab 9, we extended this logic to support
-cookies to allow server-side rendering. Now that we\'ve introduced
-WebSockets, we need to take care of them separately, as we did with the
-server-side rendering and our GraphQL API.
-
-How is it possible for the user to receive new messages when they
-aren\'t authenticated on the back end for the WebSocket transport
-protocol?
-
-The best way to figure this out is to have a look at your browser\'s
-developer tools. Let\'s assume that we have one browser window where we
-log in with user A. This user chats with another user, B. Both send
-messages to each other and receive the new updates directly in their
-chat window. Another user, C, shouldn\'t be able to receive any of the
-WebSocket updates. We should play through this scenario in reality.
-
-If you use Chrome as your default browser, go to the
-[Network] tab. There, you can filter all network requests
-by type. Since the data is transported via a WebSocket, you can filter
-by the [WS] option. You should see one connection, which
-is the [subscriptions] endpoint of our back end.
-
-Try this scenario with the Developer Tools open. You should see the same
-WebSocket frames for all browsers. It should look like the following
-screenshot:
-
-
-![](./images/3e09a657-5432-4e4c-a552-af996fd63ee5.png)
-
-
-In the left panel, you can see all WebSocket connections. In our case,
-this is only the [subscriptions] connection. If you click on the
-connection, you will find all the frames that are sent over this
-connection. The first frame in the preceding list is the initial
-connection frame. The second frame is the subscription request to the
-[messageAdded] channel, which is initiated by the client. Both
-frames are marked green because the client sends them.
-
-The last two are marked in red as the server sent them. The first of the
-red-marked frames is the server\'s acknowledgement of the established
-connection. The last frame was sent by our back end to publish a new
-message to the client. While the frame might look alright at first
-glance, it represents a vital problem. The last frame was sent to all
-clients, not just those who are members of the specific chat in which
-the message was sent. Average users are not likely to notice it since
-our [updateQuery] function only updates the UI if the chat was
-found in the client store. Still, an experienced user or developer is
-able to spy on all users of our social network as it\'s readable in the
-[Network] tab.
 
 We need to take a look at the back end code that we have written and
-compare the initialization of [ApolloServer] and
-[SubscriptionServer]. We have a [context] function for
-[ApolloServer] that extracts the user from the JWT. It can then be
+compare the initialization of `ApolloServer` and
+`SubscriptionServer`. We have a `context` function for
+`ApolloServer` that extracts the user from the JWT. It can then be
 used inside the resolver functions to filter the results by the
-currently logged in user. For [SubscriptionServer], there\'s no
-such [context] function at the moment. We have to know the
+currently logged in user. For `SubscriptionServer`, there\'s no
+such `context` function at the moment. We have to know the
 currently logged in user to filter the subscription messages for the
 correct users. We can use the standard WebSockets events, such as
-[onConnect] or [onOperation], to implement the authorization
+`onConnect` or `onOperation`, to implement the authorization
 of the user.
 
-The [onOperation] function is executed for every WebSocket frame
+The `onOperation` function is executed for every WebSocket frame
 that is sent. The best approach is to implement the authorization in the
-[onConnect] event in the same way as the [context] function
-that\'s taken from [ApolloServer] so that the WebSocket connection
+`onConnect` event in the same way as the `context` function
+that\'s taken from `ApolloServer` so that the WebSocket connection
 is authenticated only once when it\'s established and not for every
 frame that\'s sent.
 
-In [index.js], from the [subscriptions] folder of the
+In `index.js`, from the `subscriptions` folder of the
 server, add the following code to the first parameter of the
-[SubscriptionServer] initialization. It accepts an
-[onConnect] parameter as a function, which is executed whenever a
-client tries to connect to the [subscriptions] endpoint. Add the
-code just before the [schema] parameter:
+`SubscriptionServer` initialization. It accepts an
+`onConnect` parameter as a function, which is executed whenever a
+client tries to connect to the `subscriptions` endpoint. Add the
+code just before the `schema` parameter:
 
 ```
 onConnect: async (params,socket) => {
@@ -1277,47 +1225,10 @@ return value should be true.
 
 [withFilter] accepts the [AsyncIterator] in its first
 parameter. The second parameter is the function that decides whether a
-user receives a subscription update. We extract the following properties
-from the function call:
-
--   The [payload] parameter is the new message that has been sent
-    in the [addMessage] mutation.
--   The [variables] field holds all GraphQL parameters that could
-    be sent with the [messageAdded] subscription, not with the
-    mutation. For our scenario, we are not sending any variables with
-    the subscription.
--   The [context] variable holds all the information that we
-    implemented in the [onConnect] hook. It includes the regular
-    [context] object with the user as a separate property.
+user receives a subscription update.
 
 The filter function is executed for every user that has subscribed to
-the [messageAdded] channel. First, we check whether the user for
-which the function is executed is the author of the new message by
-comparing the user ids. In this case, they don\'t need to get a
-subscription notification, because they already have the data.
-
-If this isn\'t the case, we query the database for the chat where the
-new message was added. To find out whether a user needs to receive the
-new message, we select only chats where the logged in user\'s Id, and
-the chat Id, is included. If a chat is found in the database, the user
-should see the new message. Otherwise, they aren\'t allowed to get the
-new message, and we return \"false\".
-
-Remember that the [withFilter] function is run for each
-connection. If there are thousands of users, we would have to run the
-database query very frequently. It\'s better to keep such filter
-functions as small and efficient as possible. For example, we could
-query the chat once to get the attached users and loop through them
-manually for all the connections. This solution would save us expensive
-database operations.
-
-This is all you need to know about authentication with subscriptions. We
-now have a working setup, which includes server-side rendering with
-cookies and real-time subscriptions with JWT authentication. The
-server-side rendering doesn\'t implement subscriptions because it
-doesn\'t make sense to offer real-time updates for the initial rendering
-of our application. Next, you will see another scenario where Apollo
-Subscriptions can be useful.
+the [messageAdded] channel.
 
 
 Notifications with Apollo Subscriptions

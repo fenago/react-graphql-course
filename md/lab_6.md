@@ -1,211 +1,25 @@
 
-Authentication with Apollo and React
+<img align="right" src="./logo.png">
+
+
+Lab 6: Authentication with Apollo and React
 ====================================
 
-We have come a long way over the past few chapters. We have now finally
-reached the point at which we are going to implement authentication for
-our React and GraphQL web applications. In this lab, you are going
-to learn some essential concepts for building an application with
-authentication using GraphQL.
 
 This lab covers the following topics:
 
--   What is a JWT?
--   Cookies versus localStorage
+
 -   Implementing authentication in Node.js and Apollo
 -   Signing up and logging in users
 -   Authenticating GraphQL queries and mutations
 -   Accessing the user from the request context
 
 
-JSON Web Tokens
-===============
+### Lab Solution
 
-**JSON Web Tokens** (**JWTs**) are still a pretty new standard for
-carrying out authentication; not everyone knows about them, and even
-fewer people use them. This section does not provide a theoretical
-excursion through the mathematical or cryptographic basics of JWTs.
+Complete solution for this lab is available in the following directory:
 
-In traditional web applications written in PHP, for example, you
-commonly have a session cookie. This cookie identifies the user session
-on the server. The session must be stored on the server to retrieve the
-initial user. The problem here is that the overhead of saving and
-querying all sessions for all users can be high. When using JWTs,
-however, there is no need for the server to preserve any kind of session
-id.
-
-Generally speaking, a JWT consists of everything you need to identify a
-user. The most common approach is to store the creation time of the
-token, the username, the user id, and maybe the role, such as an admin
-or a normal user. You should not include any personal or critical data
-for security reasons.
-
-The reason a JWT exists is not to encrypt or secure data in any way.
-Instead, to authorize yourself at a resource like a server, you send a
-signed JWT that your server can verify. It can only verify the JWT if it
-was created by a service stated as authentic by your server. In most
-cases, your server will have used its public key to sign the token. Any
-person or service that can read the communication between you and the
-server can access the token and can extract the payload without further
-ado. They are not able to edit the content though, because the token is
-signed with a signature.
-
-The token needs to be transported and stored securely in the browser of
-the client. If the token gets into the wrong hands, that person is able
-to access the affected application with your identity, initiate actions
-in your name, or read personal data. It is also hard to invalidate a
-JWT. With a session cookie, you can delete the session on the server,
-and the user will no longer be authenticated through the cookie. With a
-JWT, however, we do not have any information on the server. It can only
-validate the signature of the token and find the user in your database.
-One common approach is to have a blacklist of all the disallowed tokens.
-Alternatively, you can keep the lifetime of a JWT low by specifying the
-expiration date. This solution, however, requires the user to frequently
-repeat the login process, which makes the experience less comfortable.
-
-JWTs do not require any server-side storage. The great thing about
-server-side sessions is that you can store specific application states
-for your user and, for example, remember the last actions a user made.
-Without a server-side store, you either need to implement these features
-in [localStorage] or implement a session store, which is not
-required for using JWT authentication at all.
-
-**ProTip**
-
-JSON Web Tokens are an important topic in developer communities. There
-is some excellent documentation available related to what JWTs are, how
-they can be used, and their technological background. Visit the
-following web page to learn more and to see a demonstration of the
-generation of a JWT: [https://jwt.io/.](https://jwt.io/)
-
-
-In our example, we are going to use JWTs, since they are a modern and
-decentralized method of authentication. Still, you can choose to opt out
-of this at any point and instead use regular sessions, which can be
-quickly realized in Express.js and GraphQL.
-
-
-localStorage versus cookie
-==========================
-
-Let\'s take a look at another critical question. It is crucial to
-understand at least the basics of how authentication works and how it is
-secured. You are responsible for any faulty implementation that allows
-data breaches, so always keep this in mind. Where do we store the token
-we receive from the server?
-
-In whichever direction you send a token, you should always be sure that
-your communication is secure. For web applications like ours, be sure
-that HTTPS is enabled and used for all requests. After the user has
-successfully authenticated the use, it receives the JWT, according to
-the JWT authentication workflow. A JWT is not tied to any particular
-storage medium, so you are free to choose whichever you prefer. If we do
-not store the token when it is received, it will be only available in
-the memory. While the user is browsing our site, this is fine, but the
-moment they refresh the page, they will need to log in again because we
-haven\'t stored the token anywhere.
-
-There are two standard options: to store the JWT inside the
-[localStorage] or to store it inside a cookie. Let\'s start by
-discussing the first option. [localStorage] is the option often
-suggested in tutorials. It is fine, assuming you are writing a
-single-page web application in which the content changes dynamically,
-depending on the actions of the user and client-side routing. We do not
-follow any links and load new sites to see new content; instead, the old
-one is just replaced with the new page that you want to show.
-
-Storing the token in [localStorage] has the following
-disadvantages:
-
--   [localStorage] is not transmitted on every request. When the
-    page is loaded initially, you are not able to send the token within
-    your request, and so resources needing authentication cannot be
-    given back to you. When your application has finished loading, you
-    have to make a second request to your server, including the token to
-    access the secured content. This behavior has the consequence that
-    it is not possible to build server-rendered applications.
--   The client needs to implement the mechanics to attach the token on
-    every request to the server.
--   From the nature of [localStorage], there is no built-in expiry
-    date on the client. If at some point the token reaches its
-    expiration date, it still exists on the client inside
-    [localStorage].
--   The [localStorage] is accessed through pure JavaScript and is
-    therefore open to XSS attacks. If someone manages to integrate
-    custom JavaScript in your code or site through unsanitized inputs,
-    they are able to read the token from [localStorage].
-
-There are, however, many advantages of using [localStorage]:
-
--   As [localStorage] is not sent automatically with every
-    request, it is secure against any **Cross-Site-Request-Forgery
-    (CSRF)** attacks attempting to run actions from external sites by
-    making random requests
--   The [localStorage] is easy to read in JavaScript since it is
-    stored as a key value pair
--   It supports a bigger data size, which is great for storing an
-    application state or data
-
-The main problem with storing such critical tokens inside web storage is
-that you cannot guarantee that there is no unwanted access. Unless you
-can be sure that every single input is sanitized and you are not relying
-on any third-party tools that gets bundled into your JavaScript code,
-there is always a potential risk. Just one package you did not build
-yourself could share your users\' web storage with its creator, without
-you or the user ever noticing. Furthermore, when you are using a public
-**Content Delivery Network (CDN)** the attack base and consequently the
-risk for your application is multiplied.
-
-Now, let\'s take a look at cookies. These are great, despite their bad
-press due to the cookie compliance law initiated by the EU. Putting
-aside the more negative things that cookies can enable companies to do,
-such as tracking users, there are many good things about them. One
-significant difference compared to [localStorage] is that cookies
-are sent with every request, including the initial request for the site
-your application is hosted on.
-
-Cookies come with the following advantages:
-
--   Server-side rendering is no problem at all since cookies are sent
-    with every request
--   No further logic needs to be implemented in the front end to send
-    the JWT.
--   Cookies can be declared as [httpOnly], which means JavaScript
-    can\'t access them. It secures our token from XSS attacks
--   Cookies have a built-in expiration date, which can be set to
-    invalidate the cookie in the client browser
--   Cookies can be configured to be readable only from specific domains
-    or paths.
--   All browsers support cookies
-
-These advantages sound good so far, but let\'s consider the downsides:
-
--   Cookies are generally open to CSRF attacks, which are situations in
-    which an external website makes requests to your API. They expect
-    that you are authenticated and hope that they can execute actions on
-    your behalf. We can\'t stop the cookie from being sent with each
-    request to your domain. A common prevention tactic is to implement
-    an CSRF token. This special token is also transmitted by your server
-    and saved as a cookie. The external website cannot access the cookie
-    with JavaScript since it is stored under a different domain. Your
-    server does not read a token from the cookies that are transmitted
-    with each request, but only from an HTTP header. This behavior
-    guarantees that the token was sent by the JavaScript that was hosted
-    on your application, because only this can have access to the token.
-    Setting up the XSRF token for verification, however, introduces a
-    lot of work.
--   Accessing and parsing cookies is not intuitive, because they are
-    just stored as a big comma-separated string.
--   They can only store a small amount of data.
-
-We can see that both approaches have their advantages and disadvantages.
-
-The most common method is to use [localStorage], as this is the
-easiest method. In this course, we start by using [localStorage],
-but later switch over to cookies when using server-side rendering to
-give you experience in both. You may not need server-side rendering at
-all. If this is the case, you can skip this part and the cookie
-implementation too.
+`cd ~/Desktop/react-graphql-course/labs/Lab06`
 
 
 Authentication with GraphQL
@@ -1150,25 +964,12 @@ This tiny snippet tells the Apollo Server that the [\@auth]
 directive is usable with queries, fields, and field definitions so that
 we can use it everywhere.
 
-If you reload the page and manually set the [loggedIn] state
-variable to true via the React Developer Tools, you will see the
-following error message:
-
-
-![](./images/d15d0ac3-74e5-4492-8af9-67419ee0e1f7.png)
 
 
 As we have implemented the error component earlier, we are now correctly
 receiving an unauthenticated error for the [postsFeed] query if
 the user is not logged in. How can we use the JWT to identify the user
 and add it into the request context?
-
-**ProTip**
-
-Schema directives are a complex topic as there are many important things
-to bear in mind to do with Apollo and GraphQL. I recommend that you read
-up on directives in detail in the official Apollo documentation:
-[https://www.apollographql.com/docs/graphql-tools/schema-directives.html.](https://www.apollographql.com/docs/graphql-tools/schema-directives.html)
 
 
 In Lab 2, we set up the Apollo Server by

@@ -1,13 +1,14 @@
 
-Routing in React
+<img align="right" src="./logo.png">
+
+
+Lab 8: Routing in React
 ================
 
 Currently, we have one screen and one path that our users can visit.
 When users visit Graphbook, they can log in and see their news feed and
 chats. Another requirement for a social network is that users have their
-own profile pages. We will implement this feature in this lab.
-
-We will introduce client-side routing for our React application.
+own profile pages. We will also introduce client-side routing for our React application.
 
 This lab will cover the following topics:
 
@@ -17,49 +18,11 @@ This lab will cover the following topics:
 -   Manual navigation
 
 
-Setting up React Router
-=======================
+### Lab Solution
 
-Routing is essential to most web applications. You cannot cover all of
-the features of your application in just one page. It would be
-overloaded, and your user would find it difficult to understand. Sharing
-links to pictures, profiles, or posts is also very important for a
-social network such as Graphbook. One advantageous feature, for example,
-is being able to send links to specific profiles. This requires each
-profile to have its own URL and page. Otherwise, it will not be possible
-to share a direct link to a single item of your application. It is also
-crucial to split content into different pages, due to **search engine
-optimization** (**SEO**).
+Complete solution for this lab is available in the following directory:
 
-At the moment, we render our complete application to HTML in the
-browser, based on the authentication status. Only the server implements
-a simple routing functionality. Carrying out client-side routing can
-save a lot of work and time for the user, if the router merely swaps out
-the correct parts in React, instead of reloading the page completely
-when following a link. It is vital that the application makes use of the
-HTML5 history implementation, so that it handles the history of the
-browser. Importantly, this should also work for navigation in different
-directions. We should be able to go forward and backward with the arrow
-navigation buttons in the browser, without the need to rerender the
-application. No unnecessary page reloads should happen with this
-solution.
-
-Common routing libraries that you may know about, such as Angular,
-Ember, or Ruby on Rails, use static routing. That is also the case for
-Express.js, which we covered in Lab 2. **Static routing**
-means that you configure your routing flow and the components to render
-upfront. Your application then processes the routing table in a separate
-step, renders the required components, and presents the results to the
-user.
-
-With version 4 of React Router, which we are going to use, **dynamic
-routing** was introduced. The unique thing about it is that the routing
-takes place while the rendering of your application is running. It
-doesn\'t require the application to first process a configuration, in
-order to show the correct components. This approach fits with React\'s
-workflow well. The routing happens directly in your application, not in
-a preprocessed configuration.
-
+`cd ~/Desktop/react-graphql-course/labs/Lab08`
 
 
 Installing React Router
@@ -78,18 +41,6 @@ To install React Router, simply run [npm] again, as follows:
 npm install --save react-router-dom
 ```
 
-
-From the package name, you might assume that this is not the main
-package for React. The reason for this is that React Router is a
-multi-package library. That comes in handy when using the same tool for
-multiple platforms. The core package is called [react-router].
-
-There are two further packages. The first one is the
-[react-router-dom] package, which we installed in the preceding
-code, and the second one is the [react-router-native] package. If,
-at some point, you plan to build a React Native app, you can use the
-same routing, instead of using the browser\'s DOM for a real mobile
-app.\
 
 The first step that we will take introduces a simple router to get our
 current application working, including different paths for all of the
@@ -1036,7 +987,6 @@ page and navigate back again. Our final result looks as follows:
 
 
 ![](./images/9383ad8d-caae-44bb-a57d-89a16edbdc94.png)
-
 
 
 source: https://www.vecteezy.com/

@@ -1,5 +1,8 @@
 
-Reusable React Components
+<img align="right" src="./logo.png">
+
+
+Lab 5: Reusable React Components
 =========================
 
 
@@ -14,37 +17,26 @@ topics:
 -   The Apollo Consumer component
 
 
+### Lab Solution
+
+Complete solution for this lab is available in the following directory:
+
+`cd ~/Desktop/react-graphql-course/labs/Lab05`
+
+
 Introducing React patterns
 ==========================
 
-With any programming language, framework, or library that you use, there
-are always common tactics that you should follow. They present an
-understandable, efficient way to write applications.
-
-
-We will go over the most commonly used patterns that React offers, as
-follows:
+We will go over the most commonly used patterns that React offers, as follows:
 
 -   Controlled components
 -   Stateless functions
 -   Conditional rendering
 -   Rendering children
 
-Many (but not all) of the examples here only represent illustrations of
-what each method looks like. Some of them will not be taken over to our
-real application code, so, if you are not interested in learning the
-essential aspects of patterns, or if you already know most of them, you
-can skip the examples.
-
 
 Controlled components
 ---------------------
-
-When we wrote our post form to submit new posts or the message inputs
-inside chat in the previous chapters, we used controlled input by
-incident. To provide a better understanding, I am going to quickly
-explain the difference between controlled and uncontrolled components,
-and when to use each of them.
 
 Let\'s start with uncontrolled input.
 
@@ -127,43 +119,12 @@ DOM API. You can see this behavior when sending the [submit] event
 of our form. The value is extracted from the
 [self.textArea.current.value] field.
 
-Everything that an uncontrolled component needs is already shown here;
-there is no more to it. You can compare this approach to our current
-implementation of the post form. In our implementation, we set up the
-state, listen for change events, and save and read the value directly
-from the component state, not from the DOM element.
-
-When using uncontrolled components and working directly with DOM
-elements, the problem is that you leave the normal React workflow. You
-are no longer able to handle conditions and, therefore, trigger other
-events inside of React.
-
-Nevertheless, the DOM reference can make it easier to use third-party
-plugins that were not written for the React ecosystem. There are
-thousands of great jQuery plugins, for example. I always recommend using
-the default approach of a controlled component. For 99% of cases, this
-works without leaving the React workflow.
-
-**ProTip**
-
-If you need a deeper understanding of which approach is a better
-solution for your specific case, take a look at
-<https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/>.[](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/)
-
 
 
 
 Stateless functions
 -------------------
 
-One fundamental and efficient solution for writing well-structured and
-reusable React components is the use of stateless functions.
-
-As you might expect, stateless functions are functions, not React
-components. They are not able to store any states; only properties can
-be used to pass and render data. Property updates are directly
-rerendered inside of the stateless functions, and cannot be handled by
-the [componentWillReceiveProps] method, as in React components.
 
 We have written a lot of code where stateless functions can be used very
 easily; while doing so, we have also structured and improved the
@@ -2723,8 +2684,7 @@ Summary
 Through this lab, you have gained a lot of experience in writing a
 React application. You have applied multiple React patterns to different
 use cases, such as children passing through a pattern and conditional
-rendering. Furthermore, you now know how to document your code
-correctly.
+rendering.
 
 You also learned how to use the React Context API, in comparison with
 the Apollo Consumer feature, to retrieve the currently logged-in user in

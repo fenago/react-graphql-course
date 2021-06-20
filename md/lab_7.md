@@ -1,5 +1,6 @@
+<img align="right" src="./logo.png">
 
-Handling Image Uploads
+Lab 7: Handling Image Uploads
 ======================
 
 All social networks have one thing in common: each of them allows their
@@ -17,31 +18,17 @@ This lab will cover the following topics:
 -   Cropping images
 
 
+### Lab Solution
+
+Complete solution for this lab is available in the following directory:
+
+`cd ~/Desktop/react-graphql-course/labs/Lab07`
+
+
+
 Setting up Amazon Web Services
 ==============================
 
-First, I have to mention that Amazon (or, to be specific, **Amazon Web
-Services** (**AWS**)) is not the only provider of hosting, storage, or
-computing systems. There are many such providers, including the
-following:
-
--   Heroku
--   Digital Ocean
--   Google Cloud
--   Microsoft Azure
-
-Many specialize in specific services, or try to provide a general
-solution for all use cases.
-
-AWS, however, offers everything that you need to run a full-fledged web
-application. Their services span from databases, to object storage, to
-security services, and so much more. Furthermore, AWS is the go-to
-solution that you will find in most other books and tutorials, and many
-big companies use it in production.
-
-This course only uses AWS for serving static files, such as images, and
-for providing the production database for our application in the last
-lab of this course.
 
 Before continuing with this lab, you will be required to have an
 account for Amazon Web Services. You can create one on the official web
@@ -114,15 +101,6 @@ be helpful in more advanced scenarios. AWS offers many features, such as
 a complete access log and versioning, which you can configure in this
 menu.
 
-**ProTip**
-
-Many bigger companies have users across the globe, which requires a
-highly available application. When you reach this point, you can create
-many more S3 buckets in other regions, and you can set up the
-replication of one bucket to others living in various regions around the
-world. The correct bucket can then be distributed with AWS CloudFront
-and a router specific for each user. This approach gives every user the
-best possible experience.
 
 
 Move on with the creation of the bucket by clicking on
@@ -192,45 +170,11 @@ somewhere securely, just in case you lose the key at any time. You
 cannot retrieve access keys again after closing the window; so, if you
 lose them, you will have to delete the old key and generate a new one.
 
-**ProTip**
-
-This approach is acceptable for explaining the basics of AWS. With such
-a huge platform, there are further steps that you have to take to secure
-your application even more. For example, it is recommended to renew API
-keys every 90 days. You can read more about all of the best practices at
-<https://docs.aws.amazon.com/de_de/general/latest/gr/aws-access-keys-best-practices.html>.[](https://docs.aws.amazon.com/de_de/general/latest/gr/aws-access-keys-best-practices.html)
-
 
 As you can see in the preceding screenshot, AWS gives us two tokens.
 Both are required to gain access to our S3 bucket.
 
-Now, we can start to program the uploading mechanism.
-
-
-Uploading images to Amazon S3
-=============================
-
-Implementing file uploads and storing files is always a huge task,
-especially for image uploads in which the user may want to edit his
-files again.
-
-For our front end, the user should be able to drag and drop his image
-into a dropzone, crop the image, and then submit it when he is finished.
-The back end needs to accept file uploads in general, which is not easy
-at all. The files must be processed and then stored efficiently, so that
-all users can access them quickly.
-
-As this is a vast topic, the lab only covers the basic upload of
-images from React, using a multipart HTTP [post] request to our
-GraphQL API, and then transferring the image to our S3 bucket. When it
-comes to compressing, converting, and cropping, you should check out
-further tutorials or books on this topic, including techniques for
-implementing them in the front end and back end, since there is a lot to
-think about. For example, in many applications, it makes sense to store
-images in various resolutions, which will be shown to the users in
-different situations, in order to save bandwidth.
-
-Let\'s start by implementing the upload process on the back end.
+Now, we can start to program the uploading mechanism. Let\'s start by implementing the upload process on the back end.
 
 
 
@@ -367,30 +311,7 @@ method consists of the properties [stream], [filename],
 [mimetype], and [encoding].
 
 Then, we collect the following parameters in the [params]
-variable, in order to upload our avatar image:
-
--   The [Bucket] field holds the name of the bucket where we save
-    the image. I took the name [\'apollobook\'], but you will need
-    to enter the name that you entered during the creation of the
-    bucket. You could have specified this directly inside of the
-    [s3] object, but this approach is a bit more flexible, since
-    you can have multiple buckets for different file types, without the
-    need for multiple [s3] objects.
--   The [Key] property is the path and name under which the file
-    is saved. Notice that we store the file under a new folder, which is
-    just the user id taken from the [context] variable. In your
-    future application, you can introduce some kind of hash for every
-    file. That would be good, since the filename should not include
-    characters that are not allowed. Furthermore, the files cannot be
-    guessed programmatically when using a hash.
--   The [ACL] field sets the permission for who can access the
-    file. Since uploaded images on a social network are publicly
-    viewable by anyone on the internet, we set the property to
-    [\'public-read\'].
--   The [Body] field receives the [stream] variable, which
-    we initially got by resolving the file. The [stream] is
-    nothing more than the image itself as a stream, which we can
-    directly upload into the bucket.
+variable, in order to upload our avatar image.
 
 The [params] variable is given to the [s3.upload] function,
 which saves the file to our bucket. We directly chain the
@@ -770,29 +691,29 @@ export default class AvatarUpload extends Component {
 ```
 
 
-The [AvatarUpload] class receives an [isOpen] property from
-its parent component. We directly pass it to the [DropNCrop]
+The `AvatarUpload` class receives an `isOpen` property from
+its parent component. We directly pass it to the `DropNCrop`
 component. Whenever the parent component changes the passed property\'s
 value, the modal is either shown or not, based on the value.
 
 When a file is selected or cropped, the component state is updated with
 the new image. The response of the cropper package is saved in the
-[result] state variable.
+`result` state variable.
 
-We are using the conditional rendering pattern to show a [Change
-image] button when the [src] state variable is filled, which
-happens when a file is selected. The [changeImage] function sets
-the [src] of the [DropNCrop] component back to [null],
+We are using the conditional rendering pattern to show a `Change
+image` button when the `src` state variable is filled, which
+happens when a file is selected. The `changeImage` function sets
+the `src` of the `DropNCrop` component back to `null`,
 which lets it switch back to the file selection mode.
 
 When the user has finished editing his picture, he can hit the
-[Save] button. The [uploadAvatar] method will be
-executed. It converts the [base64] string returned from the
-cropper component to a [blob] object, using the
-[dataURItoBlob] function. We send the result with the GraphQL
-request inside of the mutation\'s [variables] parameter. When the
+`Save` button. The `uploadAvatar` method will be
+executed. It converts the `base64` string returned from the
+cropper component to a `blob` object, using the
+`dataURItoBlob` function. We send the result with the GraphQL
+request inside of the mutation\'s `variables` parameter. When the
 request has finished, the modal is hidden again by running the
-[showModal] functions from the properties.
+`showModal` functions from the properties.
 
 5.  Now, switch over to the [user.js] file in the [bar]
     folder, where all of the other application bar-related files are
