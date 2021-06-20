@@ -107,7 +107,7 @@ to rely on WebSockets, as they allow real-time communication between the
 front end and the back end. We are first going to set up the new
 transport protocol for the back end.
 
-Open the [index.js] file of the server. Import a new Node.js
+Open the `index.js` file of the server. Import a new Node.js
 interface at the top of the file:
 
 ```
@@ -181,7 +181,7 @@ service after it started listening. The service has to accept this
 parameter, of course, so keep this in mind.
 
 To add the new service into the preceding [serviceNames] object,
-edit the [index.js] services file with the following content:
+edit the `index.js` services file with the following content:
 
 ```
 import graphql from './graphql';
@@ -199,13 +199,13 @@ object, like the [graphql] service.
 
 Now, create a [subscriptions] folder next to the [graphql]
 folder. To fulfil the import of the preceding [subscriptions]
-service, insert the service\'s [index.js] file into this folder.
+service, insert the service\'s `index.js` file into this folder.
 There, we can implement the [subscriptions] service. As a
 reminder, we pass the [utils] object and also the [server]
 object from before. The [subscriptions] service must accept two
 parameters in separate function calls.
 
-If you have created the new subscriptions [index.js] file, import
+If you have created the new subscriptions `index.js` file, import
 all the dependencies at the top of the file:
 
 ```
@@ -256,7 +256,7 @@ export default (utils) => (server) => {
 As you can see, we use the ES6 arrow notation to return two functions at
 the same time. The first one accepts the [utils] object and the
 second one accepts the [server] object that we create with the
-[createServer] function inside the [index.js] file of the
+[createServer] function inside the `index.js` file of the
 server. This approach fixes the problem of passing two parameters in
 separate function calls. The schema is only created when both functions
 are called.
@@ -300,7 +300,7 @@ The second parameter our new instance accepts is the
 which the WebSockets work:
 
 -   The [server] field receives our [server] object, which
-    we pass from the [index.js] file of the server as a result of
+    we pass from the `index.js` file of the server as a result of
     the [createServer] function. [SubscriptionServer] then
     relies on the existing server.
 -   The [path] field represents the endpoint under which the
@@ -473,7 +473,7 @@ keep the UI up to date rely on WebSockets.
 
 To configure the Apollo Client correctly, follow these steps:
 
-1.  Open the [index.js] file from the [apollo] folder.
+1.  Open the `index.js` file from the [apollo] folder.
     Import the following dependencies:
 
 ```

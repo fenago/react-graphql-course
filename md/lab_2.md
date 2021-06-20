@@ -68,7 +68,7 @@ Setting up Express.js
 As always, we need a root file loaded with all the main components that
 combines them to a real application.
 
-Create an [index.js] file in the [server] folder. This file
+Create an `index.js` file in the [server] folder. This file
 is the starting point for the back end. Here\'s how we go about it:
 
 1.  First, we import [express] from [node\_modules], which
@@ -385,7 +385,7 @@ npm install --save compression cors helmet
 
 
 Now, execute the [import] statement on the new packages inside the
-server [index.js] file so that all dependencies are available
+server `index.js` file so that all dependencies are available
 within the file:
 
 <div>
@@ -410,7 +410,7 @@ Helmet is a tool that allows you to set various HTTP headers to secure
 your application.
 
 We can enable the Express.js Helmet middleware as follows in the server
-[index.js] file:
+`index.js` file:
 
 ```
 app.use(helmet());
@@ -468,7 +468,7 @@ Compression with Express.js
 
 Enabling compression for Express.js saves you and your user bandwidth,
 and this is pretty easy to do. The following code must also be added to
-the server [index.js] file:
+the server `index.js` file:
 
 ```
 app.use(compress());
@@ -508,7 +508,7 @@ your API open to cross-site requests which you should always be aware
 of.
 
 Allow **CORS (Cross-origin resource sharing)** requests with the
-following command to the [index.js] file:
+following command to the `index.js` file:
 
 ```
 app.use(cors());
@@ -623,7 +623,7 @@ const server = new ApolloServer({
 ```
 
 
-5.  This [index.js] file exports the initialized server object,
+5.  This `index.js` file exports the initialized server object,
     which handles all GraphQL requests.\
 
 ```
@@ -633,10 +633,10 @@ export default server;
 
 Now that we are exporting the Apollo Server, it needs to be imported
 somewhere else, of course. I find it convenient to have one
-[index.js] file on the services layer so that we only rely on this
+`index.js` file on the services layer so that we only rely on this
 file if a new service is added.
 
-Create an [index.js] file in the [services] folder and enter
+Create an `index.js` file in the [services] folder and enter
 the following code:
 
 ```
@@ -648,14 +648,14 @@ export default {
 ```
 
 
-The preceding code requires our [index.js] file from the
+The preceding code requires our `index.js` file from the
 [graphql] folder and re-exports all services in one big object. We
 can define further services here if we need them.
 
 To make our GraphQL server publicly accessible to our clients, we are
 going to bind the Apollo Server to the [/graphql] path.
 
-Import the services [index.js] file in the [server/index.js]
+Import the services `index.js` file in the [server/index.js]
 file as follows:
 
 ```
@@ -877,7 +877,7 @@ is not going to work. Just wrap the Helmet initialization inside this
 [if] statement:
 
 ```
-if(process.env.NODE_ENV === 'development')
+if(process.env.NODE_ENV === 'development' || true)
 ```
 
 

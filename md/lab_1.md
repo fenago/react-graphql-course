@@ -342,12 +342,8 @@ Now execute [npm run client] in your console, and watch how a new
 browser window opens. We are running [webpack-dev-server] with the
 newly created configuration file.
 
-Sure, the browser is still empty, but if you inspect the HTML with
-Chrome DevTools, you can see that we have already got a
-[bundle.js] file and our [index.html] file was taken as a
-template.
 
-We have accomplished including our empty [index.js] file with the
+We have accomplished including our empty `index.js` file with the
 bundle and can serve it to the browser. Next, we\'ll render our first
 React component inside our template [index.html] file.
 
@@ -356,11 +352,11 @@ React component inside our template [index.html] file.
 Render your first React component
 ---------------------------------
 
-Our [index.js] file is the main starting point of our front end
+Our `index.js` file is the main starting point of our front end
 code, and this is how it should stay. Do not include any business logic
 in this file. Instead, keep it as clean and slim as possible.
 
-The [index.js] file should include this code:
+The `index.js` file should include this code:
 
 ```
 import React from 'react';
@@ -379,7 +375,7 @@ write now.
 Of course, it is essential for us to cover the sample [Hello
 World] program.
 
-Create the [App.js] file next to your [index.js] file, with
+Create the [App.js] file next to your `index.js` file, with
 the following content:
 
 ```
@@ -395,9 +391,9 @@ export default class App extends Component {
 ```
 
 
-This class is exported and then imported by the [index.js] file.
+This class is exported and then imported by the `index.js` file.
 As explained before, we are now actively using [ReactDOM.render]
-in our [index.js] file.
+in our `index.js` file.
 
 The first parameter of [ReactDOM.render] is the component that we
 want to render, which is the [App] class displaying the [Hello
@@ -408,7 +404,7 @@ plain [document.getElementById] JavaScript.
 We defined our root element when we created the [index.html] file
 before. After saving the [App.js] file, webpack will try to build
 everything again. However, it shouldn\'t be able to do that. Webpack
-will encounter a problem bundling our [index.js] file because of
+will encounter a problem bundling our `index.js` file because of
 the [\<App /\>] tag syntax we are using in the
 [ReactDOM.render] method. It was not transpiled to a normal
 JavaScript function.

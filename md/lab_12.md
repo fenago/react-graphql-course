@@ -87,7 +87,7 @@ production. I highly discourage this because it involves giving away
 information about queries and mutations that are accepted by your back
 end. However, if you want to enable it, you can do this by setting the
 [introspection] field when initializing Apollo Server. It can be
-added inside the [index.js] file of the [graphql] folder:
+added inside the `index.js` file of the [graphql] folder:
 
 ```
 const server = new ApolloServer({
@@ -110,7 +110,7 @@ such as error tracking and performance analysis, relies on this key. We
 also have to insert it in our GraphQL server. If you entered a valid API
 key, all requests will be collected in Apollo Engine.
 
-Open [index.js] in the server\'s [graphql] folder and add
+Open `index.js` in the server\'s [graphql] folder and add
 the following object to the [ApolloServer] initialization:
 
 ```
@@ -301,7 +301,7 @@ In this example, we\'ll use HTTP header fields to track the client type.
 There will be two header fields: [apollo-client-name] and
 [apollo-client-version]. We\'ll use these to set custom values to
 filter requests later in the [Clients] page. Open the
-[index.js] file from the [graphql] folder. Add the following
+`index.js` file from the [graphql] folder. Add the following
 function to the [engine] property of the [ApolloServer]
 initialization:
 
@@ -340,7 +340,7 @@ that have the values from the headers. Otherwise, we return a static
 To get both of our clients -- the front end and back end -- set up, we
 have to add these fields. Perform the following steps:
 
-1.  Open the [index.js] file of the client\'s [apollo]
+1.  Open the `index.js` file of the client\'s [apollo]
     folder file.
 2.  Add a new [InfoLink] to the file to set the two new header
     fields:
@@ -450,7 +450,7 @@ is as follows:
     future requests and respond to the client\'s request.
 
 There are two server-side changes that we have to do. One is in the
-initialization of Apollo Server. Extend the graphql [index.js] by
+initialization of Apollo Server. Extend the graphql `index.js` by
 adding the following two parameters to the [ApolloServer] options:
 
 ```
@@ -528,7 +528,7 @@ npm install --save apollo-link-persisted-queries
 
 This package provides a special Apollo Client link to use persisted
 queries. Import it at the top of both the [apollo.js] file in the
-[ssr] folder and the [index.js] in the [apollo] folder
+[ssr] folder and the `index.js` in the [apollo] folder
 of the client:
 
 ```

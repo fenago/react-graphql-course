@@ -162,7 +162,7 @@ touch src/server/database/index.js
 ```
 
 
-Inside of the [index.js] database, we will establish a connection
+Inside of the `index.js` database, we will establish a connection
 to our database with Sequelize. Internally, Sequelize relies on the
 [mysql2] package, but we do not use it on our own, which is very
 convenient:
@@ -199,7 +199,7 @@ but it is not made for later deployment. The best option is to have a
 separate configuration file that is read and used according to the
 environment that the server is running in.
 
-For this, create a new [index.js] file inside a separate folder
+For this, create a new `index.js` file inside a separate folder
 (called [config]), next to the [database] folder:
 
 ```
@@ -256,7 +256,7 @@ credentials for your database whereas the [production]
 configuration uses environment variables to fill them.
 
 We can remove the configuration that we hardcoded earlier and replace
-the contents of our [index.js] database file to require our
+the contents of our `index.js` database file to require our
 [configFile], instead.
 
 This should look like the following code snippet:
@@ -332,19 +332,7 @@ big file for all models.
 Your first database model
 -------------------------
 
-We will use the Sequelize CLI to generate our first database model.
-Install it globally with the following command:
-
-```
-npm install -g sequelize-cli
-```
-
-
-This gives you the ability to run the [sequelize] command inside
-of your Terminal.
-
-The Sequelize CLI allows us to generate the model automatically. This
-can be done by running the following command:
+Sequelize CLI is already installed globally. allows us to generate the model automatically. This can be done by running the following command:
 
 ```
 sequelize model:generate --models-path src/server/models --migrations-path src/server/migrations --name Post --attributes text:text
@@ -361,12 +349,6 @@ The [\--name] parameter gives our model a name under which it can
 be used. The [\--attributes] option specifies the fields that the
 model should include.
 
-**ProTip**
-
-If you are increasingly customizing your setup, you may want to know
-about other options that the CLI offers. You can view the manual for
-every command easily, by appending [\--help] as an option:
-[sequelize model:generate \--help].
 
 
 This command creates a [post.js] model file in your [models]
@@ -400,13 +382,6 @@ model:
 -   The first parameter is the name of the database model.
 -   The second option is the field configuration for this model.
 
-**ProTip**
-
-There are many more options that Sequelize offers us to customize our
-database models. If you want to look up which options are available, you
-can find them at
-<http://docs.sequelizejs.com/manual/tutorial/models-definition.html>.
-
 
 A post object has the [id], [text], and [user]
 properties. The user will be a separate model, as seen in the GraphQL
@@ -436,20 +411,7 @@ CLI.
 Your first database migration
 -----------------------------
 
-Until now, MySQL has not known anything about our plan to save posts
-inside of it. Our database tables and columns need to be created, of
-course, and this is why the migration file was created.
-
-A migration file has multiple advantages, such as the following:
-
-1.  Migrations allow us to track database changes through our regular
-    version control system, such as Git or SVN. Every change to our
-    database structure should be covered in a migration file.
-2.  It also enables us to write updates that automatically apply
-    database changes for new versions of our application.
-
-Our first migration file creates a [Posts] table and adds all
-required columns, as follows:
+Our first migration file creates a [Posts] table and adds all required columns, as follows:
 
 ```
 'use strict';
@@ -482,27 +444,15 @@ module.exports = {
 };
 ```
 
-
-By convention, the model name is pluralized in migrations, but it is
-singular inside of model definitions. Our table names are also
-pluralized. Sequelize offers options to change this.
-
-A migration has two properties, as follows:
-
--   The [up] property states what should be done when running the
-    migration.
--   The [down] property states what is run when undoing a
-    migration.
-
-As stated previously, the [id] and [text] column are
-created, as well as two additional [datetime] columns, to save the
+The `id` and `text` column are
+created, as well as two additional `datetime` columns, to save the
 creation and update time.
 
-The [id] field has set [autoIncrement] and
-[primaryKey] to [true]. The [id] will count upward,
-from one to nearly infinite, for each post in our table. This [id]
-uniquely identifies posts for us. Passing [allowNull] with
-[false] disables the feature to insert a row with an empty field
+The `id` field has set `autoIncrement` and
+`primaryKey` to `true`. The `id` will count upward,
+from one to nearly infinite, for each post in our table. This `id`
+uniquely identifies posts for us. Passing `allowNull` with
+`false` disables the feature to insert a row with an empty field
 value.
 
 To execute this migration, we use the Sequelize CLI again, as follows:
@@ -554,12 +504,12 @@ We want to import all of our database models at once, in a central file.
 Our database connection instantiator will then use this file on the
 other side.
 
-Create an [index.js] file in the [models] folder, and fill
+Create an `index.js` file in the [models] folder, and fill
 in the following code:
 
 ```
 import Sequelize from 'sequelize';
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development' || true) {
   require('babel-plugin-require-context-hook/register')()
 }
 
@@ -585,7 +535,7 @@ export default (sequelize) => {
 
 
 This file will also be generated when running [sequelize init],
-but I have split up the setup of the database connection and this part
+but we have split up the setup of the database connection and this part
 into different files. Usually, this would happen in just one file.
 
 To summarize what happens in the preceding code, we search for all files
@@ -611,29 +561,10 @@ nodemon --exec babel-node --plugins require-context-hook --watch src/server src/
 
 When the plugin is loaded and we run the
 [require(\'babel-plugin-require-context-hook/register\')()]
-function, the [require.context] method is available for us. Make
-sure that you set the [NODE\_ENV] variable to [development];
-otherwise, this won\'t work.
+function, the [require.context] method is available for us.
 
-In production, the [require.context] function is included in the
-generated bundle of webpack.
-
-The loaded model files export a function with the following two
-parameters:
-
--   Our sequelize instance, after creating a connection to our database
--   The sequelize class itself, including the data types it offers, such
-    as integer or text
-
-Running the exported functions imports the actual Sequelize model. When
-all models are imported, we loop through them and check whether they
-have a function called [associate]. If this is the case, we
-execute the [associate] function, and, through that, we establish
-relations between multiple models. Currently, we have not set up an
-association, but that will change later in this lab.
-
-Now, we want to use our models. Go back to the [index.js] database
-file and import all models through the aggregation [index.js] file
+Now, we want to use our models. Go back to the `index.js` database
+file and import all models through the aggregation `index.js` file
 that we just created:
 
 ```
@@ -657,13 +588,13 @@ The new database object in the preceding command has [sequelize]
 and [models] as a property. Under [models], you can find the
 [Post] model, and every new model that we are going to add later.
 
-The database [index.js] file is ready, and can be used now. You
+The database `index.js` file is ready, and can be used now. You
 should import this file only once, because it can get messy when
 creating multiple instances of Sequelize. The pool functionality won\'t
 work correctly, and we will end up with more connections than the
 maximum of five that we specified earlier.
 
-We create the global database instance in the [index.js] file of
+We create the global database instance in the `index.js` file of
 the root server folder. Add the following code:
 
 ```
@@ -671,7 +602,7 @@ import db from './database';
 ```
 
 
-We require the [database] folder and the [index.js] file
+We require the [database] folder and the `index.js` file
 inside this folder. Loading the file instantiates the Sequelize object,
 including all database models.
 
@@ -809,7 +740,7 @@ Using Sequelize with Apollo
 ===========================
 
 The database object is initialized upon starting the server within the
-root [index.js] file. We pass it from this global location down to
+root `index.js` file. We pass it from this global location down to
 the spots where we rely on the database. This way, we do not import the
 database file repeatedly, but have a single instance that handles all
 database queries for us.
@@ -825,7 +756,7 @@ Global database instance
 ------------------------
 
 To pass the database down to our GraphQL resolvers, we create a new
-object in the server [index.js] file:
+object in the server `index.js` file:
 
 ```
 import db from './database';
@@ -862,7 +793,7 @@ exported from the [services] folder into a separate variable.
 Until now, the return value of the [import] statement was a simple
 object. We have to change this to match our requirements.
 
-To do this, go to the services [index.js] file and change the
+To do this, go to the services `index.js` file and change the
 contents of the file, as follows:
 
 ```
@@ -890,7 +821,7 @@ inside of a function to pass the [utils] object.
 The [graphql] import that we are doing needs to accept the
 [utils] object.
 
-Open the [index.js] file from the [graphql] folder and
+Open the `index.js` file from the [graphql] folder and
 replace everything but the [require] statements at the top with
 the following code:
 
@@ -1047,27 +978,15 @@ sequelize model:generate --models-path src/server/models --migrations-path src/s
 ```
 
 
-The migration file creates the [Users] table and adds the
-[avatar] and [username] column. A data row looks like a post
+The migration file creates the `Users` table and adds the
+`avatar` and `username` column. A data row looks like a post
 in our fake data, but it also includes an autogenerated ID and two
 timestamps, as you have seen before.
 
-The relationships of the users to their specific posts is still missing
-as we have only created the model and migration file. We still have to
-add the relationship between posts and users. This is covered in the
-next section.
 
 What every post needs, of course, is an extra field, called
-[userId]. This column acts as the foreign key to reference a
+`userId`. This column acts as the foreign key to reference a
 unique user. Then, we can join the user relating to each post.
-
-**ProTip**
-
-MySQL offers great documentation for people that are not used to foreign
-key constraints. If you are one of them, you should read up on this
-topic at
-<https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html>.
-
 
 
 
@@ -1237,7 +1156,7 @@ Post.associate = function(models) {
 
 
 The [associate] function gets evaluated inside of our aggregating
-[index.js] file, where all model files are imported.
+`index.js` file, where all model files are imported.
 
 We are using the [belongsTo] function, which tells Sequelize that
 every post belongs to exactly one user. Sequelize gives us a new

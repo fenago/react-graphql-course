@@ -37,7 +37,7 @@ if(process.env.NODE_ENV === 'production') {
 }
 app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
 
-if(process.env.NODE_ENV === 'development') {
+if(process.env.NODE_ENV === 'development' || true) {
     const devMiddleware = require('webpack-dev-middleware');
     const hotMiddleware = require('webpack-hot-middleware');
     const webpack = require('webpack');

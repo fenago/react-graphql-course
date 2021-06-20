@@ -465,7 +465,7 @@ The code is pretty much the same as that of the post header. At later
 points, you will be free to introduce real React components or extended
 markup to those two files. It is entirely open to your implementation.
 
-The main file is a new [index.js] file in the new [post]
+The main file is a new `index.js` file in the new [post]
 folder. It should look as follows:
 
 ```
@@ -1451,7 +1451,7 @@ This lab is all about reusable React components. To make use of our
 mutation, we need to have a form allowing us to edit a post. We will
 handle this within the [Post] component itself, because we want to
 edit the post in place, and do not want to open a modal or a specific
-[Edit] page. Go to your post\'s [index.js] file and
+[Edit] page. Go to your post\'s `index.js` file and
 exchange it with the new one, as follows:
 
 ```
@@ -2017,7 +2017,7 @@ skipped.
 
 4.  Continuing with our plan, we will create the application bar in a
     separate file. Create a new folder, called [bar], below the
-    [components] folder and the [index.js] file. Fill it in
+    [components] folder and the `index.js` file. Fill it in
     with the following code:
 
 ```
@@ -2335,7 +2335,7 @@ application bar, from the data of the [user] object.
 To get the user data into the [UserBar] component, we need to use
 the [UserConsumer] component, of course.
 
-Open the [index.js] file for the top bar and add the following
+Open the `index.js` file for the top bar and add the following
 code to the [render] method, next to the [SearchBar]
 component:
 
@@ -2537,9 +2537,9 @@ npm install --save prop-types
 This package includes everything that we need to set up our property
 definitions.
 
-Now, open your [Post] component\'s [index.js] file. We need
+Now, open your [Post] component\'s `index.js` file. We need
 to import the new package at the top of the [Post] component\'s
-[index.js] file:
+`index.js` file:
 
 ```
 import PropTypes from 'prop-types';
@@ -2628,7 +2628,7 @@ examples for every component. You can also use markdown to add some more
 descriptions.
 
 For our [Post] component, we need to create an [index.md]
-file, next to the [index.js] file in the [post] folder.
+file, next to the `index.js` file in the [post] folder.
 React Styleguidist proposes creating either a [Readme.md] or
 [Post.md] file, but those did not work for me. The
 [index.md] file should look as follows:

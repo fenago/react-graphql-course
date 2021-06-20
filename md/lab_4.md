@@ -69,7 +69,7 @@ touch src/client/apollo/index.js
 ```
 
 
-We will set up Apollo Client in this [index.js] file. Our first
+We will set up Apollo Client in this `index.js` file. Our first
 setup will represent the most basic configuration to get a working
 GraphQL client.
 
@@ -177,7 +177,7 @@ Then, you can start the webpack development server by executing [npm run
 client]. A new browser tab should open automatically.
 
 However, we have forgotten something: the client is set up in our new
-file, but it is not yet used anywhere. Import it in the [index.js]
+file, but it is not yet used anywhere. Import it in the `index.js`
 root file of our client React app, below the import of the [App]
 class:
 
@@ -225,7 +225,7 @@ Binding the Apollo Client to React
 We have tested Apollo Client, and have confirmed that it works. However,
 React does not yet have access to it. Since Apollo Client is going to be
 used everywhere in our application, we can set it up in our root
-[index.js] file, as follows:
+`index.js` file, as follows:
 
 ```
 import React from 'react';

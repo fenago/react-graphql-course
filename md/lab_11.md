@@ -225,7 +225,7 @@ before(function(done) {
 ```
 
 
-The idea is to load the server\'s [index.js] file inside of our
+The idea is to load the server\'s `index.js` file inside of our
 test, which starts the back end automatically. To do this, we define an
 empty variable called [app]. Then, we use [this.timeout] to
 set the timeout for all tests inside Mocha to [50000], because
@@ -240,7 +240,7 @@ configure things such as starting a back end in our scenario. To
 continue and process all the tests, we need to execute the [done]
 function to complete the callback of the [before] function. To be
 sure that the server has started, we do not just run the [done]
-function after loading the [index.js] file. We bind the
+function after loading the `index.js` file. We bind the
 [listening] event of the server using the [app.on] function.
 If the server emits the [listening] event, we can securely run the
 [done] function, and all tests can send requests to the server. We
@@ -251,11 +251,11 @@ we are doing it now makes sure the server hasn\'t yet started.
 
 The test, however, still isn\'t working. You\'ll see an error message
 that says [\'TypeError: app.on is not a function\']. Take a closer
-look at the server\'s [index.js] file. At the end of the file, we
+look at the server\'s `index.js` file. At the end of the file, we
 aren\'t exporting the server object because we only used it to start the
 back end. This means that the [app] variable in our test is empty
 and we can\'t run the [app.on] function. The solution is to export
-the [server] object at the end of the server\'s [index.js]
+the [server] object at the end of the server\'s `index.js`
 file:
 
 ```
@@ -644,7 +644,7 @@ import App from '../src/server/ssr';
 ```
 
 
-We also import the [index.js] component of the server-rendered
+We also import the `index.js` component of the server-rendered
 React code. This component will receive our client, which we\'ll
 initialize shortly. Add a new [describe] function for all front
 end tests:

@@ -522,7 +522,7 @@ Follow these steps to build the user\'s profile page:
 
 1.  Create a new folder, called [user], inside the
     [components] folder.
-2.  Create a new file, called [index.js], inside the [user]
+2.  Create a new file, called `index.js`, inside the [user]
     folder.
 3.  Import the dependencies at the top of the file, as follows:
 
@@ -942,7 +942,7 @@ website.
 There are a few things to do in order to get the button working, as
 follows:
 
-1.  Import the component into the [index.js] file of the
+1.  Import the component into the `index.js` file of the
     [bar] folder, as follows:
 
 ```

@@ -810,7 +810,7 @@ specifically for this case, with every Apollo request. On the back end,
 we have to specify which request requires authentication, read the JWT
 from the HTTP authorization header, and verify it.
 
-Open the [index.js] file from the [apollo] folder for the
+Open the `index.js` file from the [apollo] folder for the
 client-side code. Our [ApolloClient] is currently configured as
 explained in Lab 4. Before sending any
 request, we have to read the JWT from the [localStorage] and add
@@ -915,7 +915,7 @@ certain behaviors when an [UNAUTHENTICATED] error is sent to the
 client.
 
 We have to load the new [AuthDirective] class in the
-[graphql] [index.js] file, which sets up the whole Apollo
+[graphql] `index.js` file, which sets up the whole Apollo
 Server:
 
 ```
@@ -978,7 +978,7 @@ request object until now. We have to check if the JWT is inside the
 request. If this is the case, we need to verify it and query the user to
 see if the token is valid. Let\'s start by verifying the authorization
 header. Before doing so, import the new dependencies in the Graphql
-[index.js] file:
+`index.js` file:
 
 ```
 import JWT from 'jsonwebtoken';
@@ -1284,7 +1284,7 @@ all the data, which we have to prevent. To get access to the underlying
 Apollo Client, we import the [withApollo] HoC and export the
 [Logout] component wrapped inside it. When logging out, we execute
 the [client.resetStore] function and all data is deleted. To use
-our new [Logout] component, open the [index.js] file from
+our new [Logout] component, open the `index.js` file from
 the [bar] folder and import it at the top. We can render it within
 the [div] top bar, below the other inner [div] tag:
 
@@ -1360,7 +1360,7 @@ automatically. Consequently, we could remove the section in which we
 passed the [changeLoginState] to the logout button initially
 because it is no longer needed, but this not what we want to do here.
 
-Instead, go to the [index.js] file in the [apollo] folder.
+Instead, go to the `index.js` file in the [apollo] folder.
 There, we already catch and loop over all errors returned from our
 GraphQL API. What we do now is loop over all errors but check each of
 them for an [UNAUTHENTICATED] error. Then, we execute the

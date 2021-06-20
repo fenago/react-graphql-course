@@ -425,9 +425,9 @@ npm install --save apollo-upload-client
 
 
 4.  To get the [apollo-upload-client] package running, we have to
-    edit the [index.js] from the [apollo] folder where we
+    edit the `index.js` from the [apollo] folder where we
     initialize the Apollo Client and all of its links. Import the
-    [createUploadLink] function at the top of the [index.js]
+    [createUploadLink] function at the top of the `index.js`
     file, as follows:
 
 ```
