@@ -293,7 +293,7 @@ module.exports = {
   }, 
   devServer: {
     port: 3000,
-    open: true
+    open: 'midori'
   },
   plugins: [
       new CleanWebpackPlugin({
