@@ -802,14 +802,6 @@ existing GraphQL requests.
 Authenticating GraphQL requests
 -------------------------------
 
-The problem is that we are not using the authentication everywhere at
-the moment. We verify that the user is who they say they are, but we do
-not recheck this when the requests for chats or messages come in. To
-accomplish this, we have to send the JWT token, which we generated
-specifically for this case, with every Apollo request. On the back end,
-we have to specify which request requires authentication, read the JWT
-from the HTTP authorization header, and verify it.
-
 Open the `index.js` file from the [apollo] folder for the
 client-side code. Our [ApolloClient] is currently configured as
 explained in Lab 4. Before sending any

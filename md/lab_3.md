@@ -895,11 +895,6 @@ The [this] keyword is the owner of the current method, and holds
 the [db] object, as stated previously. We extract the database
 models from the [db] object that we built in the previous section.
 
-The good thing about models is that you do not need to write raw queries
-against the database. You have already told Sequelize which fields and
-tables it can use by creating a model. At this point, you are able to
-use Sequelize\'s methods to run queries against the database within your
-resolvers.
 
 We can query all posts through the Sequelize model, instead of returning
 the fake posts from before. Replace the [posts] property within
@@ -924,14 +919,6 @@ the top and the oldest at the bottom. Sequelize expects an array of
 arrays as a parameter of the order property that we pass as the first
 parameter to the [findAll] method. The results are ordered by the
 creation date.
-
-**ProTip**
-
-There are many other methods that Sequelize offers. You can query for
-just one entity, count them, find them, create them if they are not
-found, and much more. You can look up the methods that Sequelize
-provides at
-<http://docs.sequelizejs.com/manual/tutorial/models-usage.html#data-retrieval-finders>.
 
 
 As we are not using the demo [posts] array anymore, you can remove
@@ -1077,12 +1064,6 @@ reflected in the user\'s posts. Deleting a user results in deleting all
 posts of a user, and updating a user\'s ID updates the ID on all of the
 user\'s posts. We do not need to handle all of this in our application
 code, which would be inefficient.
-
-**ProTip**
-
-There is a lot more about this topic in the Sequelize documentation. If
-you want to read up on this, you can find more information at
-<http://docs.sequelizejs.com/class/lib/query-interface.js~QueryInterface.html>.[](http://docs.sequelizejs.com/class/lib/query-interface.js~QueryInterface.html)
 
 
 Rerun the migration, in order to see what changes occurred:

@@ -18,6 +18,9 @@ This lab will cover the following topics:
 -   Cropping images
 
 
+<h4><span style="color:red;">This lab is optional and requires creating account on AWS.</span></h4>
+
+
 ### Lab Solution
 
 Complete solution for this lab is available in the following directory:

@@ -7,8 +7,7 @@ Lab 2: Setting up GraphQL with Express.js
 
 This lab explains the installation process for Express.js, as well
 as the configuration of our GraphQL endpoint. We will quickly go through
-all the essential features of Express.js and the debugging tools for our
-back end.
+all the essential features of Express.js.
 
 This lab covers the following points:
 
@@ -842,38 +841,43 @@ You can test our new function when you send the following JSON as a
 ```
 {
   "operationName": null,
-  "query": "{ 
-    posts { 
-      id
-      text 
-    }
-  }", 
+  "query": "{ posts { id text } }", 
   "variables": {} 
 }
 ```
 
 
-The [operationName] field is not required to run a query, but it
+![](./images/graphql1.png)
+
+The `operationName` field is not required to run a query, but it
 is great for logging purposes.
 
-The [query] object is a JSON-like representation of the query we
-want to execute. In this example, we run the [RootQuery] posts and
-request the [id] and [text] fields of every post. We do not
-need to specify [RootQuery] because it is the highest layer of our
+The `query` object is a JSON-like representation of the query we
+want to execute. In this example, we run the `RootQuery` posts and
+request the `id` and `text` fields of every post. We do not
+need to specify `RootQuery` because it is the highest layer of our
 GraphQL API.
 
-The [variables] property can hold parameters such as user the ids
+The `variables` property can hold parameters such as user the ids
 by which we want to filter the posts, for example. If you want to use
-[variables], they need to be defined in the query by their name
+`variables`, they need to be defined in the query by their name
 too.
 
-For developers who are not used to tools like Postman, there is also the
-option to open the GraphQL endpoint in a separate browser tab. You will
-be presented with a GraphQLi instance made for sending queries easily.
+
+**Note:**
+
+Postman has special tab for `GraphQL` where we can place the query directly as shown in screenshot below:
+
+![](./images/graphql2.png)
+
+
+#### GraphQL Playground
+
+There is also the option to open the GraphQL endpoint in a separate browser tab.
 Here, you can insert the content of the [query] property and hit
 the play button. Because we set up Helmet to secure our application, we
-need to deactivate it in development. Otherwise, the GraphQLi instance
-is not going to work. Just wrap the Helmet initialization inside this
+need to deactivate it in development. Otherwise, it's
+not going to work. Just wrap the Helmet initialization inside this
 [if] statement:
 
 ```
@@ -882,11 +886,12 @@ if(process.env.NODE_ENV === 'development' || true)
 
 
 This short condition only activates Helmet when the environment is in
-development. Now you can send the request with GraphQLi or any HTTP
+development. Now you can send the request with playground or any HTTP
 client.
 
-The resulting answer of [POST] should look like the following code
-snippet:
+![](./images/graphql.png)
+
+The resulting answer of [POST] will look like the following code snippet:
 
 ```
 {
@@ -947,16 +952,7 @@ with the post\'s author information.
 Our extended query to test this looks like the following:
 
 ```
-"query":"{
-  posts {
-    id
-    text
-    user {
-      avatar
-      username
-    }
-  }
-}"
+"query":"{ posts { id text user { avatar username } } }"
 ```
 
 
@@ -1079,6 +1075,10 @@ initialization of the `posts` array from `const` to
 `let`. Otherwise, the array will be static and unchangeable.
 
 You can run this mutation via your preferred HTTP client like this:
+
+
+<span style="color:red;">Remove line breaks from query field using an online tool first. i-e; https://www.textfixer.com/tools/remove-line-breaks.php</span>
+
 
 ```
 {
