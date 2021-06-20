@@ -418,6 +418,7 @@ content:
 ```
 {
   "plugins": [
+    "require-context-hook",
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
     "@babel/plugin-proposal-function-sent",
     "@babel/plugin-proposal-export-namespace-from",

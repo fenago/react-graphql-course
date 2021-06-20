@@ -69,6 +69,8 @@ CREATE USER 'devuser'@'%' IDENTIFIED BY 'PASSWORD';
 GRANT ALL PRIVILEGES ON *.* TO 'devuser'@'%';
 
 FLUSH PRIVILEGES;
+
+ALTER USER 'devuser'@'%' IDENTIFIED WITH mysql_native_password BY 'PASSWORD';
 ```
 
 
@@ -1394,15 +1396,6 @@ field is filled.
 
 We have achieved a lot. We can serve data from our database through the
 GraphQL API by matching its schema.
-
-**ProTip**
-
-There are some ways to automate this process, through additional npm
-packages. There is a package that automates the process of creating a
-GraphQL schema from your database models for you. As always, you are
-more flexible when you do not rely on preconfigured packages. You can
-find the package at
-<https://www.npmjs.com/package/graphql-tools-sequelize>.[](https://www.npmjs.com/package/graphql-tools-sequelize)
 
 
 Mutating data with Sequelize
