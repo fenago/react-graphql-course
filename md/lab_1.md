@@ -13,6 +13,7 @@ This lab covers the following topics:
     other requirements
 -   Using `webpack-bundle-analyzer` to check the bundle size
 
+Hint:  Use VSCode for all exercises because it supports copy and paste.
 
 The basic setup
 ---------------
@@ -29,14 +30,14 @@ Complete solution for this lab is available in the following directory:
 
 `cd ~/Desktop/react-graphql-course/labs/Lab01`
 
-Run following command to install all required packages:
+Run following command to install all required packages for the solution only:
 
 `npm install`
 
 
 ### Running Solution
 
-Run following command to run application:
+Run following command to run application in the Lab01 foldder:
 
 `npm run client`
 
@@ -53,7 +54,7 @@ Installing and configuring Node.js
 ==================================
 
 
-Following commands will install Node.js and the build tools for native modules: 
+Following commands will install Node.js and the build tools for native modules (it is ok if the curl command does not work): 
 
 ```
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash –
@@ -97,7 +98,7 @@ for our project.
 This stores information about the project, such as the version number,
 name, dependencies, and much more.
 
-Just run [npm init] to create an empty [package.json] file:
+Just run [npm init] to create an empty [package.json] file from inside of the graphbook folder:
 
 ```
 npm init
@@ -129,7 +130,9 @@ add React to our project:
 ```
 npm install --save react react-dom
 ```
-
+```
+npm install --save-dev webpack webpack-cli webpack-dev-server
+```
 
 This command installs two npm packages from
 [https://npmjs.com](https://npmjs.com/) into our project folder under
@@ -327,9 +330,10 @@ Let\'s move on. We are missing the
 let\'s create it as follows:
 
 ```
+mkdir src
 mkdir src/client
 cd src/client
-touch index.js
+touch ./src/client/index.js
 ```
 
 
@@ -340,7 +344,7 @@ lab.
 To spin up our development webpack server, we add a command to
 [package.json] , which we can run using [npm].
 
-Add this line to the [scripts] object inside [package.json]:
+Add this line to the [scripts] object inside [package.json] from the graphbook directory:
 
 ```
 "client": "webpack serve --devtool inline-source-map --hot --config webpack.client.config.js"
