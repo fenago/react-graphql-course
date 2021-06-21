@@ -275,7 +275,7 @@ Enter the following:
 ```
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const buildDirectory = 'dist';
 const outputDirectory = buildDirectory + '/client';
 module.exports = {
@@ -343,7 +343,7 @@ To spin up our development webpack server, we add a command to
 Add this line to the [scripts] object inside [package.json]:
 
 ```
-"client": "webpack-dev-server --devtool inline-source-map --hot --config webpack.client.config.js"
+"client": "webpack serve --devtool inline-source-map --hot --config webpack.client.config.js"
 ```
 
 
