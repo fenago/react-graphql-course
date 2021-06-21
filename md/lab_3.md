@@ -27,11 +27,23 @@ Complete solution for this lab is available in the following directory:
 
 `cd ~/Desktop/react-graphql-course/labs/Lab03`
 
-Install following command to install all required packages:
+Run following command to install all required packages:
 
 `npm install`
 
 ![](./images/vscode2.png) 
+
+
+### Running Solution
+
+<span style="color:red;">Database needs to be setup first as mentioned in next steps before running the application.</span>
+
+
+Run following commands to run application:
+
+`npm run client:build`
+
+`npm run server`
 
 
 MySQL and phpMyAdmin
@@ -339,6 +351,8 @@ Sequelize CLI is already installed globally. allows us to generate the model aut
 ```
 sequelize model:generate --models-path src/server/models --migrations-path src/server/migrations --name Post --attributes text:text
 ```
+
+<span style="color:red;">Note: Lab solution already has migrations created. You will get an error if you are running command from solution folder. This error can be ignored.</span>
 
 
 Sequelize expects us to run the command in the folder in which we have

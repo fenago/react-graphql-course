@@ -25,11 +25,24 @@ Complete solution for this lab is available in the following directory:
 
 `cd ~/Desktop/react-graphql-course/labs/Lab02`
 
-Install following command to install all required packages:
+Run following command to install all required packages:
 
 `npm install`
 
 ![](./images/vscode2.png)
+
+
+### Running Solution
+
+Run following commands to run application:
+
+
+`npm run client:build`
+
+`npm run server`
+
+
+Open `http://localhost:8000/` in Midori browser to access application.
 
 
 Node.js and Express.js

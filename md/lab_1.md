@@ -29,9 +29,16 @@ Complete solution for this lab is available in the following directory:
 
 `cd ~/Desktop/react-graphql-course/labs/Lab01`
 
-Install following command to install all required packages:
+Run following command to install all required packages:
 
 `npm install`
+
+
+### Running Solution
+
+Run following command to run application:
+
+`npm run client`
 
 
 **Note:** 
@@ -166,9 +173,11 @@ the entry point of our application:
 
 ```
 mkdir public
+cd public
 touch index.html
 ```
 
+**Note:** You can also use vscode to create and edit files.
 
 2.  Then, save this inside [index.html]:
 
@@ -418,7 +427,6 @@ content:
 ```
 {
   "plugins": [
-    "require-context-hook",
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
     "@babel/plugin-proposal-function-sent",
     "@babel/plugin-proposal-export-namespace-from",

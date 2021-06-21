@@ -19,7 +19,7 @@ Complete solution for this lab is available in the following directory:
 
 `cd ~/Desktop/react-graphql-course/labs/Lab12`
 
-Install following command to install all required packages:
+Run following command to install all required packages:
 
 `npm install`
 
