@@ -37,7 +37,7 @@ Run following command to install all required packages for the solution only:
 
 ### Running Solution
 
-Run following command to run application in the Lab01 foldder:
+Run following command to run application in the Lab01 folder:
 
 `npm run client`
 
