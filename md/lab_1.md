@@ -134,13 +134,6 @@ npm install --save react react-dom
 npm install --save-dev webpack webpack-cli webpack-dev-server
 ```
 
-This command installs two npm packages from
-[https://npmjs.com](https://npmjs.com/) into our project folder under
-[node\_modules].
-
-Npm automatically edited our [package.json] file since we provided
-the [\--save] option and added those packages with the latest
-available version numbers.
 
 You might be wondering why we installed two packages although we only
 needed React. The [react] package provides only React-specific

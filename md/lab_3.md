@@ -92,7 +92,7 @@ ALTER USER 'devuser'@'%' IDENTIFIED WITH mysql_native_password BY 'PASSWORD';
 1.  Verify that apache server is running:
 
 ```
-aervice apache2 status
+service apache2 status
 ```
 
 We can now visit phpMyAdmin under [http://localhost:81/phpmyadmin]
