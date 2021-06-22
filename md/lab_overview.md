@@ -6,6 +6,8 @@
 
 Unearth the power of GraphQL, React, Apollo, Node, and Express to build a scalable, production ready application
 
+Screencasts: https://screencast-o-matic.com/channels/cr1rF0VozK
+
 **Key Features**
 
 - Build full stack applications with modern APIs using GraphQL and Apollo
