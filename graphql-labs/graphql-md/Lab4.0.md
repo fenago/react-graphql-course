@@ -132,3 +132,20 @@ The output for the above query should be similar to what is shown below (it may 
    }
 }
 ```
+
+You can also try this as a bonus:
+
+```
+query studentInfo($fullDetails :Boolean!){
+  
+  students {
+    id
+    firstName
+    lastName
+    password @include (if :$fullDetails)
+  }
+}
+```
+from Tara J Mulakaluri to everyone
+Query variables: {
+  "fullDetails": false
