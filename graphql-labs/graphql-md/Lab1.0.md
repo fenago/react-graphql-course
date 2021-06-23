@@ -192,7 +192,7 @@ const Query = {
 module.exports = {Query}
 ```
 ## Step 8 − Create Server.js and Configure GraphQL
-Create a server - **Server.js** - file and configure GraphQL as follows −
+Create a server - **server.js** - file and configure GraphQL as follows −
 
 ```javascript
 const bodyParser = require('body-parser');
