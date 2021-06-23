@@ -215,7 +215,15 @@ app.post('/login', (req, res) => {
 
 app.listen(port, () => console.info(`Server started on port ${port}`));
 ```
-
+Note - you may need to add this to server.js:
+in the server.js : 
+```
+app.use(cors(), bodyParser.json(), expressJwt({
+    secret: jwtSecret,
+    credentialsRequired: false,
+    algorithms: ['HS256']
+}));
+```
 ### Step 5 − Run the Application
 
 Execute the command *npm* start in the terminal. The server will be up
