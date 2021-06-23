@@ -16,6 +16,14 @@ Hint:  Use VSCode for all exercises because it supports copy and paste in the co
 
 ![](./images/vscode1.png)
 
+
+### Lab Solution
+
+Complete solution for this lab is available in the following directory:
+
+`cd ~/Desktop/react-graphql-course/graphql-labs/Lab1.0/test-app`
+
+
 Before we begin - please go to:  https://graphql.org/sqapi-graphql/
 
 <img align="right" src="./images/SWAPIGraphQLAPI.png">
@@ -46,13 +54,13 @@ sudo apt-get install -y nodejs build-essential
 
 
 ## Step 1 − Verify Node and Npm Versions
-After installing NodeJs, verify the version of node and npm using following commands on the terminal −
+Verify the version of node and npm using following commands on the terminal −
+
 ```
 node -v
 
 
 npm -v
-5.6.0
 ```
 ## Step 2 − Create a Project Folder and Open in VSCode
 The root folder of project can be named as test-app.
@@ -94,6 +102,7 @@ Install the dependencies by using the command as given below −
 ```
 npm install
 ```
+
 ## Step 4 − Create Flat File Database in Data Folder
 In this step, we use flat files to store and retrieve data. Create a folder data and add two files ***students.json and colleges.json*.**
 
@@ -217,7 +226,8 @@ app.listen(
 ## Step 9 − Run the Application and Test with GraphiQL
 Verify the folder structure of project test-app as follows −
 
-**test-app /
+```
+ test-app /
    -->package.json
    -->db.js
    -->data
@@ -225,7 +235,9 @@ Verify the folder structure of project test-app as follows −
       colleges.json
    -->resolvers.js
    -->schema.graphql
-   -->server.js**
+   -->server.js
+```
+
 Run the command npm start as given below −
 
 `npm start`
@@ -246,4 +258,5 @@ The response from the server is given below −
 }
 ```
 
-<img align="right" src="./images/graphiql.jpg">
+
+![](./images/graphiql.jpg)
