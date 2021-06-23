@@ -11,7 +11,7 @@ applications is JSON.
 
 The syntax to define a query is as follows −
 
-``` {.result .notranslate}
+```
 //syntax 1
 query query_name{ someField }
 
@@ -62,7 +62,7 @@ the Environment Setup lab.
 Add **schema.graphql** file in the project folder query-app and add the
 following code −
 
-``` {.result .notranslate}
+```
 type Query {
    greeting:String
    students:[Student]
@@ -126,7 +126,7 @@ to test the application.
 Open browser and type the URL **http://localhost:9000/graphiql**. Type
 the following query in the editor −
 
-``` {.result .notranslate}
+```
 {
    students{
       id
@@ -389,7 +389,7 @@ Once \$myname\_Variable is declared, it has to be used with a named
 query syntax. The query, myQuery takes string value and passes it on to
 sayHello as shown below −
 
-``` {.result .notranslate}
+```
 query myQuery($myname_Variable:String!) {
    sayHello(name:$myname_Variable)
 }
@@ -406,7 +406,7 @@ Variables section of the GraphiQL client.
 
 The output of the above code is as follows −
 
-``` {.result .notranslate}
+```
 {
    "data": {
       "sayHello": "Hi Mohtashim GraphQL server says Hello to you!!"

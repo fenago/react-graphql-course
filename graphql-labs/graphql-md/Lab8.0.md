@@ -100,7 +100,7 @@ be running on port number 3000 and server application on port number
 
 In the client terminal, type the following command −
 
-``` {.result .notranslate}
+```
 npx create-react-app hello-world-client
 ```
 

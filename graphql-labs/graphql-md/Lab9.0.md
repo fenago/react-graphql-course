@@ -155,7 +155,7 @@ be running on port number 3000 and server application on port number
 
 In the client terminal, type the following command −
 
-``` {.result .notranslate}
+```
 npx create-react-app hello-world-client
 ```
 
@@ -180,7 +180,7 @@ This is shown in the screenshot given below −
 To install an Apollo Client, open a new terminal and be in current
 project folder path. Type the following command −
 
-``` {.result .notranslate}
+```
 npm install apollo-boost graphql
 ```
 
@@ -189,7 +189,7 @@ Apollo Boost package. We can cross check this by typing npm view in
 apollo-boost dependencies. This will have many dependencies as shown
 below −
 
-``` {.result .notranslate}
+```
 {
    'apollo-cache': '^1.1.15',
    'apollo-cache-inmemory': '^1.2.8',
@@ -217,7 +217,7 @@ query method returns a promise.
 
 Following code snippet shows how to import Apollo Client −
 
-``` {.result .notranslate}
+```
 import {ApolloClient, HttpLink, InMemoryCache} from 'apollo-boost'
 
 const endPointUrl = 'http://localhost:9000/graphql'
@@ -255,7 +255,7 @@ removed.
 
 The directory structure is given below −
 
-``` {.result .notranslate}
+```
 hello-world-client /
    -->node_modules
    -->public
@@ -360,6 +360,5 @@ ReactDOM.render(<App/>, document.getElementById('root'));
 The react application will load students from GraphQL server, once we
 click on loadStudents button as shown below −
 
-![Browser Output React
-Application](./images/browser_output_react_application.jpg)
+![](./images/browser_output_react_application.jpg)
 

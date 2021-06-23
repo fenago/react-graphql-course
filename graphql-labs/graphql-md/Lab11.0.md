@@ -172,7 +172,7 @@ be running on port number 3000 and server application on port number
 
 In the client terminal, type the following command −
 
-``` {.result .notranslate}
+```
 npx create-react-app hello-world-client
 ```
 
@@ -201,7 +201,7 @@ Project](./images/screenshot_browser_launch_project.jpg)
 To install an Apollo Client, open a new terminal and be in current
 project folder path. Type the following command −
 
-``` {.result .notranslate}
+```
 npm install apollo-boost graphql
 ```
 
@@ -210,7 +210,7 @@ Apollo Boost package. We can cross verify this by typing npm view
 apollo-boost dependencies. This will have many dependencies as shown
 below −
 
-``` {.result .notranslate}
+```
 { 
    'apollo-cache': '^1.1.15',
    'apollo-cache-inmemory': '^1.2.8',
@@ -233,7 +233,7 @@ that are auto generated can be removed.
 
 The directory structure is given below −
 
-``` {.result .notranslate}
+```
 hello-world-client /
    -->node_modules
    -->public

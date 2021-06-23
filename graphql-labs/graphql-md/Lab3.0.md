@@ -60,7 +60,39 @@ module.exports = {Query}
 Here greeting and students are the resolvers that handle the query. students resolver function returns a list of students from the data access layer. To access resolver functions outside the module, Query object has to be exported using module.exports.
 
 ## Step 4 − Run the Application
-Create a **server.js** file and refer step 8 in the Environment Setup Lab. The next step is to execute the command npm start in the terminal. The server will be up and running on 9000 port. Here, we use GraphiQL as a client to test the application. Open browser and type the URL, http://localhost:9000/graphiql.
+
+Create a **server.js** file and add following code:
+
+```
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const express = require('express');
+const db = require('./db');
+
+const port = process.env.PORT || 9000;
+const app = express();
+
+const fs = require('fs')
+const typeDefs = fs.readFileSync('./schema.graphql',{encoding:'utf-8'})
+const resolvers = require('./resolvers')
+
+const {makeExecutableSchema} = require('graphql-tools')
+const schema = makeExecutableSchema({typeDefs, resolvers})
+
+app.use(cors(), bodyParser.json());
+
+const  {graphiqlExpress,graphqlExpress} = require('apollo-server-express')
+app.use('/graphql',graphqlExpress({schema}))
+app.use('/graphiql',graphiqlExpress({endpointURL:'/graphql'}))
+
+app.listen(
+   port, () => console.info(
+      `Server started on port ${port}`
+   )
+);
+```
+
+The next step is to execute the command npm start in the terminal. The server will be up and running on 9000 port. Here, we use GraphiQL as a client to test the application. Open browser and type the URL, http://localhost:9000/graphiql.
 
 Type the following query in the editor −
 
@@ -76,5 +108,4 @@ Type the following query in the editor −
 ```
 The query will display the output as shown below −
 
-Query Output
-Note − We can replace the students.json with a RESTful API call to retrieve student data or even a real database like MySQL or MongoDB. GraphQL becomes a thin wrapper around your original application layer to improve performance.
+![](./images/query_output.jpg)

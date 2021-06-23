@@ -65,6 +65,7 @@ Now that Express is configured, the next step is to download the following Graph
 - graphql
 - graphql-tools
 - apollo-server-express@1
+
 We shall use Apollo server v1.0 as it is a stable release. Type the following commands to install these dependencies −
 
 `npm install graphql graphql-tools apollo-server-express@1`

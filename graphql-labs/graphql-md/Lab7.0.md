@@ -10,7 +10,7 @@ to perform such validation.
 
 The syntax for using the **!** type marker is as given below −
 
-``` {.result .notranslate}
+```
 type TypeName {
    field1:String!,
    field2:String!,

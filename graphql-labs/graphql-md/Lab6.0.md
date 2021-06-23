@@ -11,7 +11,7 @@ a part of the schema.
 
 The syntax of a mutation query is given below −
 
-``` {.result .notranslate}
+```
 mutation{
    someEditOperation(dataField:"valueOfField"):returnType
 }

@@ -105,8 +105,7 @@ app.listen(
 
 ```
 
-Execute the command 
-`npm start`
+Execute the command  `npm start`
 in the terminal. The server will be up and running on 9000 port. Here, we use GraphiQL as a client to test the application.
 
 Open the browser and enter the url, http://localhost:9000/graphiql. Type the following query in the editor −
