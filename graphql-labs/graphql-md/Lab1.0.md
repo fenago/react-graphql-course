@@ -88,7 +88,8 @@ Create a package.json file which will contain all the dependencies of the GraphQ
       "cors": "^2.8.4",
       "express": "^4.16.3",
       "graphql": "^0.13.2",
-      "graphql-tools": "^3.1.1"
+      "graphql-tools": "^3.1.1",
+      "notarealdb": "^0.2.2"
    },
    
    "devDependencies": {
