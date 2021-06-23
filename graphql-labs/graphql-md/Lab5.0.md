@@ -118,8 +118,38 @@ module.exports = {Query,Student}
 
 ### Step 4 − Run the Application
 
-Create a **server.js** file. Refer step 8 in the Environment Setup
-Lab. Execute the command *npm* start in the terminal. The server
+Create a **server.js** file and add following code:
+
+```
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const express = require('express');
+const db = require('./db');
+
+const port = process.env.PORT || 9000;
+const app = express();
+
+const fs = require('fs')
+const typeDefs = fs.readFileSync('./schema.graphql',{encoding:'utf-8'})
+const resolvers = require('./resolvers')
+
+const {makeExecutableSchema} = require('graphql-tools')
+const schema = makeExecutableSchema({typeDefs, resolvers})
+
+app.use(cors(), bodyParser.json());
+
+const  {graphiqlExpress,graphqlExpress} = require('apollo-server-express')
+app.use('/graphql',graphqlExpress({schema}))
+app.use('/graphiql',graphiqlExpress({endpointURL:'/graphql'}))
+
+app.listen(
+   port, () => console.info(
+      `Server started on port ${port}`
+   )
+);
+```
+
+Execute the command *npm* start in the terminal. The server
 will be up and running on 9000 port. Here, we use GraphiQL as a client
 to test the application.
 
