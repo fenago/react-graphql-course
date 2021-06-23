@@ -1,5 +1,6 @@
+<img align="right" src="./logo.png">
 
-#### GraphQL - Query
+#### Lab 5.0: GraphQL - Query
 
 A GraphQL operation can either be a read or a write operation. A GraphQL
 query is used to read or fetch values while a mutation is used to write
@@ -54,7 +55,7 @@ Let us see how to do this illustration using the below steps −
 
 Create a folder named **query-app**. Change your directory to
 **query-app** from the terminal. Later, follow steps 3 to 5 explained in
-the Environment Setup chapter.
+the Environment Setup lab.
 
 ### Step 2 − Create a Schema
 
@@ -118,7 +119,7 @@ module.exports = {Query,Student}
 ### Step 4 − Run the Application
 
 Create a **server.js** file. Refer step 8 in the Environment Setup
-Chapter. Execute the command *npm* start in the terminal. The server
+Lab. Execute the command *npm* start in the terminal. The server
 will be up and running on 9000 port. Here, we use GraphiQL as a client
 to test the application.
 

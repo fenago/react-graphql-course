@@ -60,7 +60,7 @@ module.exports = {Query}
 Here greeting and students are the resolvers that handle the query. students resolver function returns a list of students from the data access layer. To access resolver functions outside the module, Query object has to be exported using module.exports.
 
 ## Step 4 − Run the Application
-Create a **server.js** file and refer step 8 in the Environment Setup Chapter. The next step is to execute the command npm start in the terminal. The server will be up and running on 9000 port. Here, we use GraphiQL as a client to test the application. Open browser and type the URL, http://localhost:9000/graphiql.
+Create a **server.js** file and refer step 8 in the Environment Setup Lab. The next step is to execute the command npm start in the terminal. The server will be up and running on 9000 port. Here, we use GraphiQL as a client to test the application. Open browser and type the URL, http://localhost:9000/graphiql.
 
 Type the following query in the editor −
 

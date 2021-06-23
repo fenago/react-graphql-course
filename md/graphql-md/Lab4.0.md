@@ -68,7 +68,7 @@ const Query = {
 }
 module.exports = {Query}
 ```
-Here, studentById takes in three parameters. As discussed in this chapter, the studentId can be retrieved from args; root will contain the Query object itself. To return a specific student, we need to call get method with id parameter in the students collection.
+Here, studentById takes in three parameters. As discussed in this lab, the studentId can be retrieved from args; root will contain the Query object itself. To return a specific student, we need to call get method with id parameter in the students collection.
 
 Here greeting, students, studentById are the resolvers that handle the query. students resolver function returns a list of students from the data access layer. To access resolver functions outside the module, Query object has to be exported using module.exports.
 

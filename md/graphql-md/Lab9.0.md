@@ -1,5 +1,6 @@
-GraphQL - Apollo Client
-=======================
+<img align="right" src="./logo.png">
+
+#### Lab 9.0: GraphQL - Apollo Client
 
 We have used Apollo Server to build graphql specification on server
 side. It is quick and easy to build production ready GraphQL server. Now
@@ -12,27 +13,12 @@ front-end.
 
 Apollo Client supports the following platforms −
 
-Sr.No.
 
-Platform & Framework
+**Javascript** React,Angular,Vue,Meteor,Ember
 
-1
+**WebComponents** Polymer, lit-apollo
 
-**Javascript**
-
-React,Angular,Vue,Meteor,Ember
-
-2
-
-**WebComponents**
-
-Polymer, lit-apollo
-
-3
-
-**Native Mobile**
-
-Native Android with Java, Native iOS with Swift
+**Native Mobile** Native Android with Java, Native iOS with Swift
 
 Caching is one of the major features of Apollo Client. apollo-boost is a
 convenience package which brings in a bunch of other dependencies.
@@ -52,7 +38,7 @@ We have to follow the below steps for setting up a server −
 
 Create a folder apollo-server-app. Change your directory
 to **apollo-server-app** from the terminal. Then, follow steps 3 to 5
-explained in the Environment Setup chapter.
+explained in the Environment Setup lab.
 
 ### Step 2 − Create a Schema
 
@@ -104,7 +90,7 @@ module.exports = {Query,Student}
 ### Step 4 − Run the Application
 
 Create a **server.js** file. Refer step 8 in the Environment Setup
-Chapter. Execute the command *npm start* in the terminal. The server
+Lab. Execute the command *npm start* in the terminal. The server
 will be up and running on 9000 port. Here, we will use GraphiQL as a
 client to test the application.
 
@@ -241,7 +227,7 @@ const client = new ApolloClient({
 });
 ```
 
-In the previous chapter, we discussed how to use fetch API for HTTP
+In the previous lab, we discussed how to use fetch API for HTTP
 requests. The following code shows how to use **gql** function. The
 **loadStudentsAsync** function uses graphql client to query the server.
 

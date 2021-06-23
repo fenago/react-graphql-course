@@ -1,4 +1,6 @@
-#### GraphQL - Authenticating Client
+<img align="right" src="./logo.png">
+
+#### Lab 10.0: GraphQL - Authenticating Client
 
 
 Authentication is the process or action of verifying the identity of a
@@ -40,7 +42,7 @@ Following are the steps for setting up the server −
 
 Create a folder **auth-server-app**. Change your directory
 to **auth-server-app** from the terminal. Follow steps 3 to 5 explained
-in the Environment Setup chapter.
+in the Environment Setup lab.
 
 Step 2 − Create a Schema
 ------------------------

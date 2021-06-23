@@ -17,7 +17,9 @@ Hint:  Use VSCode for all exercises because it supports copy and paste in the co
 ![](./images/vscode1.png)
 
 Before we begin - please go to:  https://graphql.org/sqapi-graphql/
+
 <img align="right" src="./images/SWAPIGraphQLAPI.png">
+
 From here, Search Root and explore the root schema.
 Add this REQUEST:
 ```
@@ -42,26 +44,12 @@ sudo apt-get install -y nodejs build-essential
 
 <span style="color:red;">Node 12 has been installed already in the lab environment.</span>
 
-Finally, let\'s open a terminal now and verify that the installation
-    was successful:
-
-```
-node --version
-```
-
-**ProTip**
-
-The installation of Node.js via the package manager automatically installs npm.
-
-```
-npm --version
-```
 
 ## Step 1 − Verify Node and Npm Versions
 After installing NodeJs, verify the version of node and npm using following commands on the terminal −
 ```
 node -v
-v8.11.3
+
 
 npm -v
 5.6.0
@@ -71,9 +59,12 @@ The root folder of project can be named as test-app.
 
 Create and open the folder using visual studio code editor by using the instructions below −
 
+```
 mkdir test-app
 cd test-app
 code.
+```
+
 ### Step 3 − Create package.json and Install the Dependencies
 Create a package.json file which will contain all the dependencies of the GraphQL server application.
 ```
@@ -254,4 +245,5 @@ The response from the server is given below −
    }
 }
 ```
+
 <img align="right" src="./images/graphiql.jpg">

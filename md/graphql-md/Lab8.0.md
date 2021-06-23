@@ -1,8 +1,9 @@
+<img align="right" src="./logo.png">
 
-#### GraphQL - React Integration
+#### Lab 8.0: GraphQL - React Integration
 
 
-React is a Javascript library for building user interfaces. This chapter
+React is a Javascript library for building user interfaces. This lab
 explains how one can integrate GraphQL with a React application.
 
 Illustration
@@ -21,7 +22,7 @@ For setting up the Server, follow the below steps −
 
 Create a folder **react-server-app**. Change your directory
 to **react-server-app** from the terminal. Follow steps 3 to 5 explained
-in the Environment Setup chapter.
+in the Environment Setup lab.
 
 ### Step 2 − Create a Schema
 
@@ -61,7 +62,7 @@ exported using module.exports.
 
 ### Step 4 − Run the Application
 
-Create a server.js file. Refer step 8 in the Environment Setup Chapter.
+Create a server.js file. Refer step 8 in the Environment Setup Lab.
 Execute the command *npm start* in the terminal. The server will be up
 and running on 9000 port. Here, we use GraphiQL as a client to test the
 application.

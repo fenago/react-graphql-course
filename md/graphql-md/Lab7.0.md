@@ -1,5 +1,6 @@
+<img align="right" src="./logo.png">
 
-### GraphQL - Validation
+#### Lab 7.0: GraphQL - Validation
 
 
 While adding or modifying data, it is important to validate the user
@@ -34,7 +35,7 @@ email, firstname and password fields.
 
 Create a folder named **validation-app**. Change the directory
 to validation-app from the terminal. Follow steps 3 to 5 explained in
-the Environment Setup chapter.
+the Environment Setup lab.
 
 ### Step 2 − Create a Schema
 
@@ -100,7 +101,7 @@ that it can be accessed through args.input.
 
 ### Step 4 − Run the Application
 
-Create a server.js file. Refer step 8 in the Environment Setup Chapter.
+Create a server.js file. Refer step 8 in the Environment Setup Lab.
 Execute the command *npm start* in the terminal. The server will be up
 and running on 9000 port. Here, we will use GraphiQL as a client to test
 the application.

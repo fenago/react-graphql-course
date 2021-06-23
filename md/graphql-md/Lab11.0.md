@@ -1,5 +1,6 @@
-GraphQL - Caching
-=================
+<img align="right" src="./logo.png">
+
+#### Lab 11.0: GraphQL - Caching
 
 
 Caching is the process of storing data in a temporary storage area
@@ -33,35 +34,20 @@ const client = new ApolloClient({
 The InMemoryCache constructor takes an optional config object with
 properties to customize your cache.
 
-Sr.No.
 
-Parameter & Description
 
-1
+#### Parameter & Description
 
-**addTypename**
-
-A boolean to determine whether to add \_\_typename to the document
+**addTypename** A boolean to determine whether to add \_\_typename to the document
 (default: true)
 
-2
-
-**dataIdFromObject**
-
-A function that takes a data object and returns a unique identifier to
+**dataIdFromObject** A function that takes a data object and returns a unique identifier to
 be used when normalizing the data in the store
 
-3
+**fragmentMatcher** By default, the InMemoryCache uses a heuristic fragment matcher
 
-**fragmentMatcher**
 
-By default, the InMemoryCache uses a heuristic fragment matcher
-
-4
-
-**cacheRedirects**
-
-A map of functions to redirect a query to another entry in the cache
+**cacheRedirects** A map of functions to redirect a query to another entry in the cache
 before a request takes place.
 
 Illustration
@@ -88,7 +74,7 @@ Following are the steps for setting up the server −
 
 Create a folder **cache-server-app**. Change your directory
 to **cache-server-app** from the terminal. Follow steps 3 to 5 explained
-in the Environment Setup chapter.
+in the Environment Setup lab.
 
 ### Step 2 − Create a Schema
 
@@ -132,7 +118,7 @@ module.exports = {Query}
 
 ### Step 4 − Run the Application
 
-Create a server.js file. Refer step 8 in the Environment Setup Chapter.
+Create a server.js file. Refer step 8 in the Environment Setup Lab.
 Execute the command *npm start* in the terminal. The server will be up
 and running on 9000 port. Here, we will use GraphiQL as a client to test
 the application.

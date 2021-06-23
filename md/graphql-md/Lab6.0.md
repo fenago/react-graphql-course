@@ -1,8 +1,9 @@
+<img align="right" src="./logo.png">
 
-#### GraphQL - Mutation
+#### Lab 6.0: GraphQL - Mutation
 
 
-In this chapter, we will learn mutation queries in GraphQL.
+In this lab, we will learn mutation queries in GraphQL.
 
 Mutation queries modify data in the data store and returns a value. It
 can be used to insert, update, or delete data. Mutations are defined as
@@ -26,7 +27,7 @@ a mutation query.
 
 Create a project folder by the name mutation-app. Change your directory
 to mutation-app from the terminal. Follow steps 3 to 5 explained in the
-Environment Setup chapter.
+Environment Setup lab.
 
 ### Step 2 − Create a schema.graphql File
 
@@ -76,7 +77,7 @@ a newly created student object.
 ### Step 4 − Run the Application
 
 Create a **server.js** file. Refer to step 8 in the Environment Setup
-Chapter. Execute the command npm start in the terminal. The server will
+Lab. Execute the command npm start in the terminal. The server will
 be up and running on 9000 port. Here, we use GraphiQL as a client to
 test the application.
 
