@@ -29,7 +29,7 @@ in the Environment Setup lab.
 Add **schema.graphql** file in the project
 folder **react-server-app** and add the following code −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 type Query
 {
    greeting: String
@@ -46,7 +46,7 @@ string. The parameter to the sayHello() function is not null.
 Create a file **resolvers.js** in the project folder and add the
 following code −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 const Query =
 {
    greeting: () => 'Hello GraphQL From Fenago !!' ,
@@ -70,7 +70,7 @@ application.
 Open browser and type the URL **http://localhost:9000/graphiql**. Type
 the following query in the editor −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    greeting,
    sayHello(name:"Mohtashim")
@@ -79,7 +79,7 @@ the following query in the editor −
 
 The response from the server is given below −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    "data": {
       "greeting": "Hello GraphQL From Fenago !!",
@@ -128,7 +128,7 @@ and another to load sayHello messages.
 Following is the loadGreeting function which sends GraphQL query for
 greeting.
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 async function loadGreeting() {
    const response = await fetch('http://localhost:9000/graphql', {
       method:'POST',
@@ -147,7 +147,7 @@ async function loadGreeting() {
 Following is the **loadSayhello** function which sends GraphQL query
 for sayHello −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 async function  loadSayhello(name) {
    const response = await fetch('http://localhost:9000/graphql', {
       method:'POST',
@@ -159,7 +159,7 @@ async function  loadSayhello(name) {
 
 The complete **App.js** file is shown below −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';

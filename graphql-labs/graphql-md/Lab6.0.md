@@ -34,7 +34,7 @@ Environment Setup lab.
 Add **schema.graphql** file in the project folder mutation-app and add
 the following code −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 type Query {
    greeting:String
 }
@@ -52,7 +52,7 @@ unique identifier (ID) which is generated after creating a student.
 Create a file resolvers.js in the project folder and add the following
 code −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 const db = require('./db')
 const Mutation = {
    createStudent:(root,args,context,info) => {
@@ -85,7 +85,7 @@ Next step is to open browser and type the
 URL **http://localhost:9000/graphiql**. Type the following query in the
 editor −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 //college Id should be matched with data from colleges.json for easy retrieval
 
 mutation {
@@ -97,7 +97,7 @@ The above query will create a student object in student.json file. The
 query will return a unique identifier. The response of the query is as
 shown below −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    "data": {
       "createStudent": "SkQtxYBUm"
@@ -111,7 +111,7 @@ from data folder to verify the id.
 
 To use studentById query, edit the **schema.graphql** as given below −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 type Query {
    studentById(id:ID!):Student
 }
@@ -126,7 +126,7 @@ type Student {
 
 Edit the **resolver.js** file as given below −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 const db = require('./db')
 const Query = {
    studentById:(root,args,context,info) => {
@@ -148,7 +148,7 @@ module.exports = {Query,Mutation}
 Given below is the query to get student by unique id returned from the
 mutation query −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
     studentById(id:"SkQtxYBUm") {
     id
@@ -160,7 +160,7 @@ mutation query −
 
 The response from the server is as follows −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    "data": {
       "studentById": {
@@ -188,7 +188,7 @@ type of **schema.graphql**.
 Let us learn how to access the college details through student details.
 Add college type in the schema file.
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 type Mutation {
    addStudent_returns_object(collegeId:ID,firstName:String,lastName:String):Student
 
@@ -215,7 +215,7 @@ type Student {
 Update a file **resolvers.js** in the project folder and add the
 following code −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 const Mutation = {
    createStudent:(root,args,context,info) => {
 
@@ -253,7 +253,7 @@ module.exports = {Query,Student,Mutation}
 Next, we shall start the server and request query in GraphiQL with the
 following code −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 mutation {
    addStudent_returns_object(collegeId:"col-101",firstName:"Susan",lastName:"George") {
       id
@@ -271,7 +271,7 @@ along with college object. This saves round trips to the server.
 
 The response is as given below −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    "data": {
       "addStudent_returns_object": {

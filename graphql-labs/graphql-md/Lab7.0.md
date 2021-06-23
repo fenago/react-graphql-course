@@ -42,7 +42,7 @@ the Environment Setup lab.
 Add **schema.graphql** file in the project folder **validation-app** and
 add the following code −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 type Query {
    greeting:String
 }
@@ -67,7 +67,7 @@ parameter of type SignUpInput.
 Create a file **resolvers.js** in the project folder and add the
 following code −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 const Query = {
    greeting:() => "Hello"
 }
@@ -110,7 +110,7 @@ Open the browser and enter the
 URL **http://localhost:9000/graphiql**. Type the following query in the
 editor −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 mutation doSignUp($input:SignUpInput) {
    signUp(input:$input)
 }
@@ -123,7 +123,7 @@ query and call it doSignUp, the \$input is a query variable.
 The following query variable must be entered in query variables tab of
 graphiql −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    "input":{
       "email": "abc@abc",
@@ -136,7 +136,7 @@ graphiql −
 The errors array contains the details of validation errors as shown
 below −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    "data": {
       "signUp": null
@@ -161,7 +161,7 @@ below −
 
 We have to enter a proper input for each field as given below −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    "input":{
       "email": "abc@abc.com",
@@ -173,7 +173,7 @@ We have to enter a proper input for each field as given below −
 
 The response is as follows −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    "data": {
       "signUp": "success"
@@ -183,7 +183,7 @@ The response is as follows −
 
 Here, in the below query, we are not assigning any password.
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    "input":{
       "email": "abc@abc.com",
@@ -195,7 +195,7 @@ Here, in the below query, we are not assigning any password.
 If a required field is not provided, then qraphql server will display
 the following error −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    "errors": [
       {

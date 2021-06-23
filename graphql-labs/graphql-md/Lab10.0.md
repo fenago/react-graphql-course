@@ -50,7 +50,7 @@ Step 2 − Create a Schema
 Add **schema.graphql** file in the project
 folder **auth-server-app** and add the following code −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 type Query
 {
    greetingWithAuth:String
@@ -66,7 +66,7 @@ The resolver will verify if an authenticated user object is available in
 the context object of GraphQL. It will raise an exception if an
 authenticated user is not available.
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 const db = require('./db')
 
 const Query = {
@@ -117,7 +117,7 @@ authenticate requests −
     This token is sent as a part of response to the user. This is done
     by the jwt.sign function.
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 const expressJwt = require('express-jwt');
 const jwt = require('jsonwebtoken');
 
@@ -145,7 +145,7 @@ will invoke the expressJWT middleware. This middleware will decode the
 JSON Web Token. The user id stored in the token will be retrieved and
 stored as a property user in the request object.
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 //decodes the JWT and stores in request object
 app.use(expressJwt({
    secret: jwtSecret,
@@ -156,7 +156,7 @@ app.use(expressJwt({
 To make available the user property within GraphQL context, this
 property is assigned to the **context** object as shown below −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 //Make req.user available to GraphQL context
 app.use('/graphql', graphqlExpress((req) => ({
    schema,
@@ -167,7 +167,7 @@ app.use('/graphql', graphqlExpress((req) => ({
 Create **server.js** in current folder path. The complete server.js file
 is as follows −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
@@ -225,7 +225,7 @@ application.
 Open browser and type the URL **http://localhost:9000/graphiql**. Type
 the following query in the editor −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    greetingWithAuth
 }
@@ -233,7 +233,7 @@ the following query in the editor −
 
 In the below response, we got an error as we are not authenticated user.
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    "data": {
       "greetingWithAuth": null
@@ -276,7 +276,7 @@ To access **greeting**, we need to first access the URL
 
 The response will contain the token generated from the server.
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 $.ajax({
    url:"http://localhost:9000/login",
    contentType:"application/json",
@@ -297,7 +297,7 @@ After a successful login, we can access *greetingWithAuth* schema as
 given below. There should be an Authorizationheader for all the
 subsequent requests with bearer token.
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 { 
    url: "http://localhost:9000/graphql",
    contentType: "application/json",
@@ -309,7 +309,7 @@ subsequent requests with bearer token.
 
 The following is the code for index.html −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 <!DOCTYPE html>
 <html>
    <head>

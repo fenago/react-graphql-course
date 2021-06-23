@@ -45,7 +45,7 @@ explained in the Environment Setup lab.
 Add **schema.graphql** file in the project
 folder **apollo-server-app** and add the following code −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 type Query
 {
    students:[Student]
@@ -71,7 +71,7 @@ type College {
 Create a file **resolvers.js** in the project folder and add the
 following code −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 const db = require('./db')
 
 const Query = {
@@ -97,7 +97,7 @@ client to test the application.
 Open browser and type the URL **http://localhost:9000/graphiql**. Type
 the following query in the editor.
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    students{
       id
@@ -111,7 +111,7 @@ the following query in the editor.
 
 The response for the query is as given below −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    "data": {
       "students": [
@@ -231,7 +231,7 @@ In the previous lab, we discussed how to use fetch API for HTTP
 requests. The following code shows how to use **gql** function. The
 **loadStudentsAsync** function uses graphql client to query the server.
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 async function loadStudentsAsync() {
    const query = gql`
    {
@@ -267,7 +267,7 @@ hello-world-client /
 
 Following is the **index.js** in react application −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 

@@ -21,7 +21,7 @@ applications without use of other library like Redux.
 
 The sample code to use InMemoryCache with ApolloClient is given below −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 import {ApolloClient, HttpLink, InMemoryCache} from 'apollo-boost'
 const cache = new InMemoryCache();
 
@@ -81,7 +81,7 @@ in the Environment Setup lab.
 Add **schema.graphql** file in the project folder **cache-server-app**
 and add the following code −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 type Query {
    students:[Student]
    getTime:String
@@ -100,7 +100,7 @@ type Student {
 Create a file resolvers.js in the project folder, and add the following
 code −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 const db = require('./db')
 
 const Query = {
@@ -126,7 +126,7 @@ the application.
 Open browser and enter the URL **http://localhost:9000/graphiql**. Type
 the following query in the editor −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    getTime
    students {
@@ -138,7 +138,7 @@ the following query in the editor −
 
 The sample response shows the students names and the server time.
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    "data": {
       "getTime": "22:18:42",
@@ -250,7 +250,7 @@ the App Component, we are using a HashRouter.
 
 Following is the **index.js** in react application −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {HashRouter, Route, Link} from 'react-router-dom'
@@ -302,7 +302,7 @@ Add a function **loadWithApolloclient** which queries for students and
 time from server. This function will enable caching. Here we use a gql
 function to parse the query.
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 async loadWithApolloclient() {
    const query = gql`{
       getTime
@@ -322,7 +322,7 @@ makes it easier to make web requests and handle responses than with the
 older XMLHttpRequest. Following method shows loading data directly using
 fetch api −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 async  loadStudents_noCache() {
       const response = await fetch('http://localhost:9000/graphql', {
       method:'POST',
@@ -345,7 +345,7 @@ In the constructor of StudentsComponent, call the
 **loadWithApolloClient** method. The complete **Student.js** file is
 below −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 import React, {Component} from 'react';
 import { Link} from 'react-router-dom'
 
@@ -447,7 +447,7 @@ If you change the load method to **loadStudents\_noCache** in the
 constructor of StudentComponent, the output will not cache the data.
 This shows the difference between caching and non-caching.
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 this.loadStudents_noCache().then(data => {
    this.setState({
       students:data.students,

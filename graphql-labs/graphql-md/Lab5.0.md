@@ -21,7 +21,7 @@ query query_name{ someField }
 
 Following is an example of a query −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 //query with name myQuery
 query myQuery{
    greeting
@@ -87,7 +87,7 @@ with the data source.
 Create a file **resolvers.js** in the project folder and add the
 following code −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 const db = require('./db')
 const Query = {
    //resolver function for greeting
@@ -137,7 +137,7 @@ the following query in the editor −
 
 The response for the query is given below −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    "data": {
       "students": [
@@ -162,7 +162,7 @@ The response for the query is given below −
 
 Create a **server.js** and add the following code −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
@@ -201,7 +201,7 @@ application.
 Open the browser and type the URL **http://localhost:9000/graphiql**.
 Type the following query in the editor −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    students{
       id
@@ -212,7 +212,7 @@ Type the following query in the editor −
 
 The response for the query is given below −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    "data": {
       "students": [
@@ -244,7 +244,7 @@ college details. We will work with the same project folder.
 The schema file already has the *student* field. Let us add a field
 college and define its type.
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 type College {
    id:ID!
    name:String
@@ -267,7 +267,7 @@ We need to add a college resolver function as below. The college
 resolver function will be executed for each student object returned. The
 root parameter of resolver in this case will contain *student*.
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 const Student = {
    fullName:(root,args,context,info) => {
       return root.firstName+":"+root.lastName
@@ -291,7 +291,7 @@ command -npm start. Launch the browser and enter the URL
 
 Enter the following query in the GraphiQL window −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    students{
       id
@@ -308,7 +308,7 @@ Enter the following query in the GraphiQL window −
 
 The response for the query is as given below −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    "data": {
       "students": [
@@ -366,7 +366,7 @@ Let us create a simple application to understand the query variable.
 Add a *sayHello* field which takes a string parameter and returns a
 string. The name values will be dynamic in client application.
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 type Query {
    sayHello(name:String!):String
 }
@@ -376,7 +376,7 @@ type Query {
 
 Add a *sayHello* resolver which takes parameter as below −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 sayHello:(root,args,context,info) => `Hi ${args.name} GraphQL server says Hello to you!!`
 ```
 
@@ -398,7 +398,7 @@ query myQuery($myname_Variable:String!) {
 Set the value for \$myname\_Variable as a JSON object in the Query
 Variables section of the GraphiQL client.
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    "myname_Variable": "Mohtashim"
 }
@@ -424,7 +424,7 @@ type**.
 
 ### Step 1 − Edit schema.graphql File
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 enum ColorType {
    RED
    BLUE
@@ -445,7 +445,7 @@ The resolver function *setFavouriteColor* takes *root* and *args*. The
 enum value passed to function at runtime can be accessed through args
 parameter.
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 setFavouriteColor:(root,args) => {
    return  "Your Fav Color is :"+args.color;
 }
@@ -457,7 +457,7 @@ The query is named **query\_to\_setColor** which takes a variable of the
 name color\_variable of ColorType. This variable is passed on to method
 setFavouriteColor.
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 query query_to_setColor($color_variable:ColorType) {
    setFavouriteColor(color:$color_variable)
 }
@@ -465,7 +465,7 @@ query query_to_setColor($color_variable:ColorType) {
 
 In the query variable section of GraphiQL, type the following code −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    "color_variable":"RED"
 }
@@ -473,7 +473,7 @@ In the query variable section of GraphiQL, type the following code −
 
 The response is shown below −
 
-``` {.prettyprint .notranslate .prettyprinted style=""}
+```
 {
    "data": {
       "setFavouriteColor": "Your Fav Color is: RED"

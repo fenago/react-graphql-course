@@ -24,7 +24,7 @@ Complete solution for this lab is available in the following directory:
 `cd ~/Desktop/react-graphql-course/graphql-labs/Lab1.0/test-app`
 
 
-Before we begin - please go to:  https://graphql.org/sqapi-graphql/
+Before we begin - please go to:  https://graphql.org/swapi-graphql/
 
 <img align="right" src="./images/SWAPIGraphQLAPI.png">
 
