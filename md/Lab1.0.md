@@ -17,7 +17,7 @@ Hint:  Use VSCode for all exercises because it supports copy and paste in the co
 ![](./images/vscode1.png)
 
 Before we begin - please go to:  https://graphql.org/sqapi-graphql/
-<img align="right" src="./images/C:\Users\Owner\Downloads\SWAPIGraphQLAPI.png">
+<img align="right" src="./images/SWAPIGraphQLAPI.png">
 From here, Search Root and explore the root schema.
 Add this REQUEST:
 ```
