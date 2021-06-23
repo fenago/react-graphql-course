@@ -16,6 +16,18 @@ Hint:  Use VSCode for all exercises because it supports copy and paste in the co
 
 ![](./images/vscode1.png)
 
+Before we begin - please go to:  https://graphql.org/sqapi-graphql/
+<img align="right" src="./images/C:\Users\Owner\Downloads\SWAPIGraphQLAPI.png">
+From here, Search Root and explore the root schema.
+Add this REQUEST:
+```
+{
+person(personID: 4) {
+name
+birthYear
+}
+}
+```
 
 Installing and configuring Node.js
 ==================================
@@ -30,7 +42,7 @@ sudo apt-get install -y nodejs build-essential
 
 <span style="color:red;">Node 12 has been installed already in the lab environment.</span>
 
-3.  Finally, let\'s open a terminal now and verify that the installation
+Finally, let\'s open a terminal now and verify that the installation
     was successful:
 
 ```
