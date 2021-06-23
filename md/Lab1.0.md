@@ -242,4 +242,4 @@ The response from the server is given below −
    }
 }
 ```
-<img align="right" src="./graphiql.png">
+<img align="right" src="./images/graphiql.jpg">
