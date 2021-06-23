@@ -70,7 +70,6 @@ Create and open the folder using visual studio code editor by using the instruct
 ```
 mkdir test-app
 cd test-app
-code.
 ```
 
 ### Step 3 − Create package.json and Install the Dependencies
@@ -245,7 +244,7 @@ The server is running in 9000 port, so we can test the application using GraphiQ
 
 ```javascript
 {
-   Test 
+   test 
 }
 ```
 The response from the server is given below −

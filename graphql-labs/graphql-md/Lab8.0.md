@@ -49,7 +49,7 @@ following code −
 ``` {.prettyprint .notranslate .prettyprinted style=""}
 const Query =
 {
-   greeting: () => 'Hello GraphQL  From Fenago !!' ,
+   greeting: () => 'Hello GraphQL From Fenago !!' ,
    sayHello:(root,args,context,info) =>  `Hi ${args.name} GraphQL server says Hello to you!!`
 }
 module.exports = {Query}
@@ -82,7 +82,7 @@ The response from the server is given below −
 ``` {.prettyprint .notranslate .prettyprinted style=""}
 {
    "data": {
-      "greeting": "Hello GraphQL  From Fenago !!",
+      "greeting": "Hello GraphQL From Fenago !!",
       "sayHello": "Hi Mohtashim GraphQL server says Hello to you!!"
    }
 }

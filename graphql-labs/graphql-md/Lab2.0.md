@@ -104,7 +104,7 @@ The first step in creating a resolver is to add some code to process the request
 // Adding resolver
 const  resolverObject = {
    Query : {
-      greeting: () => 'Hello GraphQL  From TutorialsPoint !!'
+      greeting: () => 'Hello GraphQL From Ernesto.Net !!'
    }
 }
 ```
@@ -143,7 +143,7 @@ type Query  {
 }`
 const  resolverObject = {
    Query : {
-      greeting: () => 'Hello GraphQL  From Ernesto.Net !!'
+      greeting: () => 'Hello GraphQL From Ernesto.Net !!'
    }
 }
 const {makeExecutableSchema} = require('graphql-tools')

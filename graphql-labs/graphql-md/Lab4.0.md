@@ -54,7 +54,7 @@ const db = require('./db')
 const Query = {
    //resolver function for greeting
    greeting:() => {
-      return "hello from  TutorialsPoint !!!"
+      return "hello from Fenago !!!"
    },
    
    //resolver function for students returns list
