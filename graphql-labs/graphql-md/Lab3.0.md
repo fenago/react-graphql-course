@@ -92,6 +92,22 @@ app.listen(
 );
 ```
 
+## Solution Structure 
+Copy package.json, db.js and the data directory from `Lab1.0` folder. Verify the folder structure of project as follows:
+
+```
+└── schema-app
+    ├── data
+    │   ├── colleges.json
+    │   └── students.json
+    ├── db.js
+    ├── package.json
+    ├── resolvers.js
+    ├── schema.graphql
+    └── server.js
+```
+
+
 The next step is to execute the command npm start in the terminal. The server will be up and running on 9000 port. Here, we use GraphiQL as a client to test the application. Open browser and type the URL, http://localhost:9000/graphiql.
 
 Type the following query in the editor −

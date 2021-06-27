@@ -145,7 +145,8 @@ query studentInfo($fullDetails :Boolean!){
     password @include (if :$fullDetails)
   }
 }
-```
-from Tara J Mulakaluri to everyone
+
 Query variables: {
   "fullDetails": false
+}
+```
