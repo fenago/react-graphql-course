@@ -159,6 +159,8 @@ below −
 }
 ```
 
+![](./images/signup.png)
+
 We have to enter a proper input for each field as given below −
 
 ```
