@@ -1,0 +1,28 @@
+[
+    {
+       "id": "S1001",
+       "firstName":"Ernesto",
+       "lastName":"Lee",
+       "email": "ernesto@ernesto.net",
+       "password": "pass123",
+       "collegeId": "col-102"
+    },
+    
+    {
+       "id": "S1002",
+       "email": "khalil.lyones@vt.edu",
+       "firstName":"Khalil",
+       "lastName":"Lyons",
+       "password": "pass123",
+       "collegeId": "col-101"
+    },
+    
+    {
+       "id": "S1003",
+       "email": "jordan.lee@barry.edu",
+       "firstName":"Jordan",
+       "lastName":"Lee",
+       "password": "pass123",
+       "collegeId": "col-101"
+    }
+ ]

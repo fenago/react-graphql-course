@@ -3,12 +3,6 @@
 #### Lab 11.0: GraphQL - Caching
 
 
-Caching is the process of storing data in a temporary storage area
-called **cache**. When you return to a page you've recently visited, the
-browser can get those files from the cache rather than the original
-server. This saves your time, and network from the burden of additional
-traffic.
-
 Client applications interacting with GraphQL are responsible for caching
 data at their end. One possible pattern for this is reserving a field,
 like id, to be a globally unique identifier.
