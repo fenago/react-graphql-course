@@ -18,6 +18,7 @@ const schema = makeExecutableSchema({typeDefs, resolvers})
 
 app.use(cors(), bodyParser.json(), expressJwt({
    secret: jwtSecret,
+   algorithms: ['HS256'],
    credentialsRequired: false
 }));
 
@@ -44,10 +45,7 @@ app.post('/login', (req, res) => {
 });
 
 app.listen(port, () => console.info(`Server started on port ${port}`));
-```
-Note - you may need to add this to server.js:
-in the server.js : 
-```
+
 app.use(cors(), bodyParser.json(), expressJwt({
     secret: jwtSecret,
     credentialsRequired: false,
