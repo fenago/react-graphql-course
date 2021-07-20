@@ -42,7 +42,7 @@ Following are the steps for setting up the server −
 
 Create a folder **auth-server-app**. Change your directory
 to **auth-server-app** from the terminal. Follow steps 3 to 5 explained
-in the Environment Setup lab.
+in the `Lab 1.0`.
 
 Step 2 − Create a Schema
 ------------------------

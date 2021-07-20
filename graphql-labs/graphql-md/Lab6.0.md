@@ -27,7 +27,7 @@ a mutation query.
 
 Create a project folder by the name mutation-app. Change your directory
 to mutation-app from the terminal. Follow steps 3 to 5 explained in the
-Environment Setup lab.
+`Lab 1.0`.
 
 ### Step 2 − Create a schema.graphql File
 
@@ -76,8 +76,8 @@ a newly created student object.
 
 ### Step 4 − Run the Application
 
-Create a **server.js** file. Refer to step 8 in the Environment Setup
-Lab. Execute the command npm start in the terminal. The server will
+Create a **server.js** file. Refer to step 8 in the `Lab 1.0`. 
+Execute the command npm start in the terminal. The server will
 be up and running on 9000 port. Here, we use GraphiQL as a client to
 test the application.
 

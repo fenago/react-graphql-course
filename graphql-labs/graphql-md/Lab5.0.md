@@ -55,7 +55,7 @@ Let us see how to do this illustration using the below steps −
 
 Create a folder named **query-app**. Change your directory to
 **query-app** from the terminal. Later, follow steps 3 to 5 explained in
-the Environment Setup lab.
+the `Lab 1.0`.
 
 ### Step 2 − Create a Schema
 

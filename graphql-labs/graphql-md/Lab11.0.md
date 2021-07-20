@@ -68,7 +68,7 @@ Following are the steps for setting up the server −
 
 Create a folder **cache-server-app**. Change your directory
 to **cache-server-app** from the terminal. Follow steps 3 to 5 explained
-in the Environment Setup lab.
+in the `Lab 1.0`.
 
 ### Step 2 − Create a Schema
 
@@ -112,7 +112,7 @@ module.exports = {Query}
 
 ### Step 4 − Run the Application
 
-Create a server.js file. Refer step 8 in the Environment Setup Lab.
+Create a server.js file. Refer step 8 in the `Lab 1.0`.
 Execute the command *npm start* in the terminal. The server will be up
 and running on 9000 port. Here, we will use GraphiQL as a client to test
 the application.

@@ -9,8 +9,7 @@ explains how one can integrate GraphQL with a React application.
 Illustration
 ------------
 
-The quickest way to set up a react project is by using the *Create React
-App* tool. In the subsequent sections, we will learn how to set up both
+The quickest way to set up a react project is by using the *Create React App* tool. In the subsequent sections, we will learn how to set up both
 the Server and the Client.
 
 Setting up the Server
@@ -22,7 +21,7 @@ For setting up the Server, follow the below steps −
 
 Create a folder **react-server-app**. Change your directory
 to **react-server-app** from the terminal. Follow steps 3 to 5 explained
-in the Environment Setup lab.
+in the `Lab 1.0`.
 
 ### Step 2 − Create a Schema
 
@@ -62,7 +61,7 @@ exported using module.exports.
 
 ### Step 4 − Run the Application
 
-Create a server.js file. Refer step 8 in the Environment Setup Lab.
+Create a server.js file. Refer step 8 in the `Lab 1.0`.
 Execute the command *npm start* in the terminal. The server will be up
 and running on 9000 port. Here, we use GraphiQL as a client to test the
 application.
