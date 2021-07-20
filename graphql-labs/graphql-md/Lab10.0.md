@@ -37,6 +37,16 @@ Create a folder **auth-server-app**. Change your directory
 to **auth-server-app** from the terminal. Follow steps 3 to 5 explained
 in the `Lab 1.0`.
 
+**Note:** Add following packages in `package.json`
+
+```
+"express-jwt": "^6.0.0",
+"jsonwebtoken": "^8.5.1"
+```
+
+![](./images/jwt.png)
+
+
 Step 2 − Create a Schema
 ------------------------
 

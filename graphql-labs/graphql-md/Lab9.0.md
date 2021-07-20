@@ -29,15 +29,6 @@ Create a folder apollo-server-app. Change your directory
 to **apollo-server-app** from the terminal. Then, follow steps 3 to 5
 explained in the `Lab 1.0`.
 
-**Note:** Add following packages in `package.json`
-
-```
-"express-jwt": "^6.0.0",
-"jsonwebtoken": "^8.5.1"
-```
-
-![](./images/jwt.png)
-
 ### Step 2 − Create a Schema
 
 Add **schema.graphql** file in the project
