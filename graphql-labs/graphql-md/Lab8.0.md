@@ -73,7 +73,7 @@ the following query in the editor −
 ```
 {
    greeting,
-   sayHello(name:"Mohtashim")
+   sayHello(name:"Ernesto")
 }
 ```
 
@@ -83,7 +83,7 @@ The response from the server is given below −
 {
    "data": {
       "greeting": "Hello GraphQL From Fenago !!",
-      "sayHello": "Hi Mohtashim GraphQL server says Hello to you!!"
+      "sayHello": "Hi Ernesto GraphQL server says Hello to you!!"
    }
 }
 ```

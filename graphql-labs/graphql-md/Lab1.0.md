@@ -114,14 +114,14 @@ Following is the **colleges.json** file −
    {
       "id": "col-101",
       "name": "AMU",
-      "location": "Uttar Pradesh",
+      "location": "New York",
       "rating":5.0
    },
    
    {
       "id": "col-102",
       "name": "CUSAT",
-      "location": "Kerala",
+      "location": "Miami",
       "rating":4.5
    }
 ]

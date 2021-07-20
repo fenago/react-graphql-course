@@ -145,15 +145,15 @@ The sample response shows the students names and the server time.
       "students": [
          {
             "id": "S1001",
-            "firstName": "Mohtashim"
+            "firstName": "Ernesto"
          },
          {
             "id": "S1002",
-            "firstName": "Kannan"
+            "firstName": "Khalil"
          },
          {
             "id": "S1003",
-            "firstName": "Kiran"
+            "firstName": "Jordan"
          }
       ]
    }

@@ -173,17 +173,17 @@ The response for the query is given below −
       "students": [
          {
             "id": "S1001",
-            "fullName": "Mohtashim:Mohammad"
+            "fullName": "Ernesto:Lee"
          },
          
          {
             "id": "S1002",
-            "fullName": "Kannan:Sudhakaran"
+            "fullName": "Khalil:Lyons"
          },
          
          {
             "id": "S1003",
-            "fullName": "Kiran:Panigrahi"
+            "fullName": "Jordan:Lee"
          }
       ]
    }
@@ -248,15 +248,15 @@ The response for the query is given below −
       "students": [
          {
             "id": "S1001",
-            "fullName": "Mohtashim:Mohammad"
+            "fullName": "Ernesto:Lee"
          },
          {
             "id": "S1002",
-            "fullName": "Kannan:Sudhakaran"
+            "fullName": "Khalil:Lyons"
          },
          {
             "id": "S1003",
-            "fullName": "Kiran:Panigrahi"
+            "fullName": "Jordan:Lee"
          }
       ]
    }
@@ -344,33 +344,33 @@ The response for the query is as given below −
       "students": [
          {
             "id": "S1001",
-            "firstName": "Mohtashim",
+            "firstName": "Ernesto",
             "college": {
                "id": "col-102",
                "name": "CUSAT",
-               "location": "Kerala",
+               "location": "Miami",
                "rating": 4.5
             }
          },
          
          {
             "id": "S1002",
-            "firstName": "Kannan",
+            "firstName": "Khalil",
             "college": {
                "id": "col-101",
                "name": "AMU",
-               "location": "Uttar Pradesh",
+               "location": "New York",
                "rating": 5
             }
          },
          
          {
             "id": "S1003",
-            "firstName": "Kiran",
+            "firstName": "Jordan",
             "college": {
                "id": "col-101",
                "name": "AMU",
-               "location": "Uttar Pradesh",
+               "location": "New York",
                "rating": 5
             }
          }
@@ -430,7 +430,7 @@ Variables section of the GraphiQL client.
 
 ```
 {
-   "myname_Variable": "Mohtashim"
+   "myname_Variable": "Ernesto"
 }
 ```
 
@@ -439,7 +439,7 @@ The output of the above code is as follows −
 ```
 {
    "data": {
-      "sayHello": "Hi Mohtashim GraphQL server says Hello to you!!"
+      "sayHello": "Hi Ernesto GraphQL server says Hello to you!!"
    }
 }
 ```

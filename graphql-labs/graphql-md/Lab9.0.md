@@ -117,7 +117,7 @@ The response for the query is as given below −
       "students": [
          {
             "id": "S1001",
-            "firstName": "Mohtashim",
+            "firstName": "Ernesto",
             "college": {
                "name": "CUSAT"
             }
@@ -125,7 +125,7 @@ The response for the query is as given below −
          
          {
             "id": "S1002",
-            "firstName": "Kannan",
+            "firstName": "Khalil",
             "college": {
                "name": "AMU"
             }
@@ -133,7 +133,7 @@ The response for the query is as given below −
          
          {
             "id": "S1003",
-            "firstName": "Kiran",
+            "firstName": "Jordan",
             "college": {
                "name": "AMU"
             }
