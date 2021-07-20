@@ -146,7 +146,7 @@ query studentInfo($fullDetails :Boolean!){
   }
 }
 
-Query variables: {
+query variables {
   "fullDetails": false
 }
 ```
