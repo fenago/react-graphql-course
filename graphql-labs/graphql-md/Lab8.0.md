@@ -115,6 +115,15 @@ Type npm start to launch the project. This will run a development server
 at port 3000 and will automatically open the browser and load the index
 page.
 
+```
+cd hello-world-client
+
+npm start
+```
+
+**Note:**  Use Midori browser installed in the lab environment for accessing application.
+
+
 This is shown in the screenshot given below −
 
 ![Creating React Project](./images/creating_react_project.jpg)
@@ -241,6 +250,12 @@ class App extends Component {
 
 export default App;
 ```
+
+
+**Note:** Run following command if you get file watch related errors:
+
+`echo fs.inotify.max_user_watches=1524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p`
+
 
 Once both the applications are running, click on the greet button. Next,
 enter a name in the textbox and click on sayHello button. The output
