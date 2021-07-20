@@ -387,7 +387,7 @@ The following is the code for index.html −
          <header>
             <h2>*Login first to  access greeting </h2>
          </header>
-         <input type = "text" value = "mohtashim.mohammad@fenago.org" placeholder = "enter email" id = "txtEmail"/>
+         <input type = "text" value = "micheal@fenago.org" placeholder = "enter email" id = "txtEmail"/>
          <br/>
          
          <input type = "password" value = "pass123" placeholder = "enter password" id = "txtPwd"/>
