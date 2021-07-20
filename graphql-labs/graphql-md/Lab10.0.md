@@ -387,7 +387,7 @@ The following is the code for index.html −
          <header>
             <h2>*Login first to  access greeting </h2>
          </header>
-         <input type = "text" value = "micheal@fenago.org" placeholder = "enter email" id = "txtEmail"/>
+         <input type = "text" value = "ernesto@ernesto.net" placeholder = "enter email" id = "txtEmail"/>
          <br/>
          
          <input type = "password" value = "pass123" placeholder = "enter password" id = "txtPwd"/>
@@ -400,3 +400,21 @@ The following is the code for index.html −
 </html>
 ```
 
+
+
+#### Running Client Application
+
+Open `index.html` in file explorer and open in Midori browser as shown below:
+
+![](./images/jquery1.png)
+
+
+![](./images/jquery2.png)
+
+
+Use following email and password to authenticate:
+
+Username: `ernesto@ernesto.net`
+Password: `pass123`
+
+**Note:** You can use any email and password from `student.json` to authenticate.
