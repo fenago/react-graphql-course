@@ -11,17 +11,6 @@ applications. The client is designed to help developer quickly build a
 UI that fetches data with GraphQL and can be used with any JavaScript
 front-end.
 
-Apollo Client supports the following platforms −
-
-
-**Javascript** React,Angular,Vue,Meteor,Ember
-
-**WebComponents** Polymer, lit-apollo
-
-**Native Mobile** Native Android with Java, Native iOS with Swift
-
-Caching is one of the major features of Apollo Client. apollo-boost is a
-convenience package which brings in a bunch of other dependencies.
 
 Illustration
 ------------
@@ -39,6 +28,15 @@ We have to follow the below steps for setting up a server −
 Create a folder apollo-server-app. Change your directory
 to **apollo-server-app** from the terminal. Then, follow steps 3 to 5
 explained in the `Lab 1.0`.
+
+**Note:** Add following packages in `package.json`
+
+```
+"express-jwt": "^6.0.0",
+"jsonwebtoken": "^8.5.1"
+```
+
+![](./images/jwt.png)
 
 ### Step 2 − Create a Schema
 

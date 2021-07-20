@@ -19,13 +19,6 @@ The express-jwt module is a middleware that lets you authenticate HTTP
 requests using JWT tokens. JSON Web Token (JWT) is a long string that
 identifies the logged in user.
 
-Once the user logs in successfully, the server generates a JWT token.
-This token distinctly identifies a log. In other words, the token is a
-representation of user\'s identity. So next time, when the client comes
-to the server, it has to present this token to get the required
-resources. The client can be either a mobile application or a web
-application.
-
 ![Express JWT Module](./images/express_jwt_module.jpg)
 
 Illustration
