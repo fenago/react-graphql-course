@@ -399,7 +399,11 @@ string. The name values will be dynamic in client application.
 ```
 type Query {
    sayHello(name:String!):String
+   greeting:String
+   students:[Student]
+   studentById(id:ID!):Student
 }
+
 ```
 
 ### Step 2 − Edit resolver.js File
