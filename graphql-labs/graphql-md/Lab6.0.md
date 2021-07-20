@@ -134,7 +134,7 @@ type Student {
 }
 ```
 
-Edit the **resolver.js** file as given below −
+Edit the **resolvers.js** file as given below −
 
 ```
 const db = require('./db')
