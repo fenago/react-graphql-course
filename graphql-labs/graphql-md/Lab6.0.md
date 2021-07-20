@@ -85,9 +85,9 @@ Next step is to open browser and type the
 URL **http://localhost:9000/graphiql**. Type the following query in the
 editor −
 
-```
-//college Id should be matched with data from colleges.json for easy retrieval
+**Note:** collegeId should be matched with data from colleges.json for easy retrieval.
 
+```
 mutation {
    createStudent(collegeId:"col-2",firstName:"Tim",lastName:"George")
 }
@@ -105,6 +105,12 @@ shown below −
 }
 ```
 
+
+![](./images/student.png)
+
+<span style="color:red;">Save the above studentId, we will need to use in the next step.</span>
+
+
 To verify if the student object is created, we can use
 the studentById query. You can also open the students.json file
 from data folder to verify the id.
@@ -114,6 +120,10 @@ To use studentById query, edit the **schema.graphql** as given below −
 ```
 type Query {
    studentById(id:ID!):Student
+}
+
+type Mutation {
+   createStudent(collegeId:ID,firstName:String,lastName:String):String
 }
 
 type Student {
@@ -145,12 +155,15 @@ const Mutation = {
 module.exports = {Query,Mutation}
 ```
 
+<span style="color:red;">Make sure that node application is restarted after making above changes.</span>
+
+
 Given below is the query to get student by unique id returned from the
 mutation query −
 
 ```
 {
-    studentById(id:"SkQtxYBUm") {
+    studentById(id:"Update-ID") {
     id
     firstName
     lastName
@@ -189,6 +202,10 @@ Let us learn how to access the college details through student details.
 Add college type in the schema file.
 
 ```
+type Query {
+   greeting:String
+}
+
 type Mutation {
    addStudent_returns_object(collegeId:ID,firstName:String,lastName:String):Student
 
@@ -216,6 +233,11 @@ Update a file **resolvers.js** in the project folder and add the
 following code −
 
 ```
+const db = require('./db')
+const Query = {
+   greeting:() => "hello"
+}
+
 const Mutation = {
    createStudent:(root,args,context,info) => {
 
