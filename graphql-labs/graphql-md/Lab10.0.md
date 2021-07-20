@@ -415,6 +415,7 @@ Open `index.html` in file explorer and open in Midori browser as shown below:
 Use following email and password to authenticate:
 
 Username: `ernesto@ernesto.net`
+
 Password: `pass123`
 
 **Note:** You can use any email and password from `student.json` to authenticate.
