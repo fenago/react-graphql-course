@@ -146,6 +146,10 @@ In the client terminal, type the following command −
 
 ```
 npx create-react-app hello-world-client
+cd hello-world-client
+npm install -g serve
+npm run-script build  (you may need to rebuild if you change anything)
+serve -s build
 ```
 
 This will install everything needed for a typical react application. The
