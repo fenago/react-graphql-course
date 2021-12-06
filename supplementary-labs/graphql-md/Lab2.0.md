@@ -46,7 +46,7 @@ const bodyParser = require('body-parser')
    
    //register middleware
    app.use(bodyParser.json() , cors())
-   app.listen(port, () =>  console.log(`server is up and running at ${port}`)
+   app.listen(port, () =>  console.log(`server is up and running at ${port}`))
 ```
 To verify if the Express server is up and running, execute the following code in the terminal window −
 
