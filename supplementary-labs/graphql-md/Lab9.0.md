@@ -156,13 +156,22 @@ project in VSCode.
 ### Step 2 − Start hello-world-client
 
 Change the current folder path in the terminal to
-**hello-world-client**. Type npm start to launch the project. This will
-run a development server at port 3000 and will automatically open the
-browser and load the index page.
+**hello-world-client**. Type following to launch the project. This will
+run a development server at port 3000. Open Midori browser and load the index page.
+
+```
+cd hello-world-client
+
+npm install -g serve
+
+npm run-script build
+
+serve -s build
+```
 
 This is shown in the screenshot given below −
 
-![Creating Ract Project.jpg](./images/creating_react_project.jpg)
+![](./images/creating_react_project.jpg)
 
 ### Step 3 − Install Apollo Client Libraries
 

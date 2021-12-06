@@ -112,13 +112,16 @@ in VSCode.
 
 Change the current folder path in the terminal to hello-world-client.
 Type npm start to launch the project. This will run a development server
-at port 3000 and will automatically open the browser and load the index
-page.
+at port 3000. Open Midori browser and load the index page.
 
 ```
 cd hello-world-client
 
-npm start
+npm install -g serve
+
+npm run-script build
+
+serve -s build
 ```
 
 **Note:**  Use Midori browser installed in the lab environment for accessing application.

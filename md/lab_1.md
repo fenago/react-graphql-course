@@ -57,7 +57,7 @@ Installing and configuring Node.js
 Following commands will install Node.js and the build tools for native modules (it is ok if the curl command does not work): 
 
 ```
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash –
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt-get install -y nodejs build-essential
 ```
 
@@ -109,9 +109,6 @@ Npm will ask some questions, such as asking for the package name, which
 is, in fact, the project name. Enter [Graphbook] to insert the
 name of your application in the generated [package.json] file.
 
-I prefer to start with version number 0.0.1 since the default version
-number npm offered with 1.0.0 represents the first stable release for
-me. However, it is your choice which version you use here.
 
 You can skip all other questions using the *Enter* key to save the
 default values of npm. Most of them are not relevant because they just
@@ -129,8 +126,7 @@ add React to our project:
 
 ```
 npm install --save react react-dom
-```
-```
+
 npm install --save-dev webpack webpack-cli webpack-dev-server
 ```
 
@@ -214,6 +210,8 @@ our JavaScript code, we need to install webpack and all of its
 dependencies as follows:
 
 ```
+cd ~/graphbook
+
 npm install --save-dev @babel/core babel-eslint babel-loader @babel/preset-env @babel/preset-react clean-webpack-plugin css-loader eslint file-loader html-webpack-plugin style-loader url-loader webpack webpack-cli webpack-dev-server @babel/plugin-proposal-decorators @babel/plugin-proposal-function-sent @babel/plugin-proposal-export-namespace-from @babel/plugin-proposal-numeric-separator @babel/plugin-proposal-throw-expressions @babel/plugin-proposal-class-properties
 ```
 
@@ -271,44 +269,40 @@ Enter the following:
 ```
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const buildDirectory = 'dist';
-const outputDirectory = buildDirectory + '/client';
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const outputDirectory = 'dist';
 module.exports = {
-  mode: 'development',
-  entry: './src/client/index.js',
-  output: {
-    path: path.join(__dirname, outputDirectory),
-    filename: 'bundle.js'
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        }
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-      }
+    mode: 'development',
+    entry: './src/client/index.js',
+    output: {
+        path: path.join(__dirname, outputDirectory),
+        filename: 'bundle.js'
+    },
+    module: {
+        rules: [
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+              loader: 'babel-loader'
+            }
+          },
+          {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader']
+          }
+       ]
+    }, 
+    devServer: {
+        port: 3000,
+        open: 'midori'
+    },
+    plugins: [
+        new CleanWebpackPlugin([outputDirectory]),
+        new HtmlWebpackPlugin({
+          template: './public/index.html'
+        })
     ]
-  }, 
-  devServer: {
-    port: 3000,
-    open: 'midori'
-  },
-  plugins: [
-      new CleanWebpackPlugin({
-        cleanOnceBeforeBuildPatterns: [path.join(__dirname, 
-        buildDirectory)]
-      }),
-      new HtmlWebpackPlugin({
-        template: './public/index.html'
-      })
-  ]
 };
 ```
 
@@ -325,7 +319,6 @@ let\'s create it as follows:
 ```
 mkdir src
 mkdir src/client
-cd src/client
 touch ./src/client/index.js
 ```
 
@@ -349,6 +342,11 @@ browser window opens. We are running [webpack-dev-server] with the
 newly created configuration file.
 
 
+```
+cd ~/graphbook
+
+npm run client
+```
 We have accomplished including our empty `index.js` file with the
 bundle and can serve it to the browser. Next, we\'ll render our first
 React component inside our template [index.html] file.
