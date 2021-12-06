@@ -21,11 +21,10 @@ https://graphql.org/swapi-graphql/
 
 Please add the following Query:
 
-`
+
+```json
 query AllFilms {
-
   allFilms {
-
     films {
 
       id
@@ -33,8 +32,6 @@ query AllFilms {
       episodeID
       title
       releaseDate
-      
-
       characterConnection(first: 10) {
 
         characters {
@@ -44,7 +41,7 @@ query AllFilms {
           birthYear
           eyeColor
           hairColor
-          
+
 
           homeworld {
 
@@ -55,7 +52,8 @@ query AllFilms {
     }
   }
 }
-`
+```
+
 
 As you can see, it looks a bit Swift-y or JSON-y. Feel free to experiment with the GraphQL playground for SWAPI. Add or remove things in the query, run it, and check out the results.
 
