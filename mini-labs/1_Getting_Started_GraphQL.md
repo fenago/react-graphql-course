@@ -6,7 +6,7 @@ To create a new project and install GraphQL.js in your current directory:
 
 ```
 npm init
-npm install graphql --save
+npm install graphql@15.5.0 --save
 ```
 
 Writing Code
