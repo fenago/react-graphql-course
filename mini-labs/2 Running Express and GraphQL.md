@@ -1,6 +1,6 @@
   
 # Lab 2:  Running Express + GraphQL
-​
+
 The simplest way to run a GraphQL API server is to use Express, a popular web application framework for Node.js. You will need to install two additional dependencies:
 **Do this:**
 `npm install express express-graphql graphql --save`
