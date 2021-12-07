@@ -1,4 +1,4 @@
-﻿Lab 1:  Getting Started
+﻿### Lab 1:  Getting Started
 
 To create a new project and install GraphQL.js in your current directory:
 
@@ -15,7 +15,7 @@ To handle GraphQL queries, we need a schema that defines the Query type, and we 
 
 **Do this:**
 
-```
+```javascript
 var { graphql, buildSchema } = require('graphql');
 
 // Construct a schema, using GraphQL schema language

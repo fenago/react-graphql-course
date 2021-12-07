@@ -1,4 +1,4 @@
-﻿Lab 9:  Constructing Types
+﻿### Lab 9:  Constructing Types
 
 For many apps, you can define a fixed schema when the application starts, and define it using GraphQL schema language. In some cases, it's useful to construct a schema programmatically. You can do this using the GraphQLSchema constructor.
 
@@ -8,7 +8,7 @@ For example, let's say we are building a simple API that lets you fetch user dat
 
 **Do this:**
 
-```
+```javascript
 var express = require('express');
 var { graphqlHTTP } = require('express-graphql');
 var { buildSchema } = require('graphql');
@@ -56,7 +56,7 @@ We can implement this same API without using GraphQL schema language:
 
 **Do this:**
 
-```
+```javascript
 var express = require('express');
 var { graphqlHTTP } = require('express-graphql');
 var graphql = require('graphql');

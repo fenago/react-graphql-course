@@ -1,4 +1,4 @@
-﻿Lab 7:  Mutations and Input Types
+﻿### Lab 7:  Mutations and Input Types
 
 If you have an API endpoint that alters data, like inserting data into a database or altering data already in a database, you should make this endpoint a Mutation rather than a Query. This is as simple as making the API endpoint part of the top-level Mutation type instead of the top-level Query type.
 
@@ -73,7 +73,8 @@ Naming input types with Input on the end is a useful convention, because you wil
 Here's some runnable code that implements this schema, keeping the data in memory:
 
 **Do this:**
-```
+
+```javascript
 var express = require('express');
 var { graphqlHTTP } = require('express-graphql');
 var { buildSchema } = require('graphql');

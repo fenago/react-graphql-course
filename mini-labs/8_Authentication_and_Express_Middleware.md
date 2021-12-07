@@ -1,4 +1,4 @@
-﻿Lab 8:  Authentication and Express Middleware
+﻿### Lab 8:  Authentication and Express Middleware
 
 To use middleware with a GraphQL resolver, just use the middleware like you would with a normal Express app. The request object is then available as the second argument in any resolver.
 
@@ -6,7 +6,7 @@ For example, let's say we wanted our server to log the IP address of every reque
 
 **Do this:**
 
-```
+```javascript
 var express = require('express');
 var { graphqlHTTP } = require('express-graphql');
 var { buildSchema } = require('graphql');

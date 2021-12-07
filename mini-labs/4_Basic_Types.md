@@ -1,4 +1,4 @@
-﻿Lab 4:  Basic Types
+﻿### Lab 4:  Basic Types
 
 The GraphQL schema language supports the scalar types of String, Int, Float, Boolean, and ID, so you can use these directly in the schema you pass to buildSchema.
 
@@ -10,7 +10,7 @@ Each of these types maps straightforwardly to JavaScript, so you can just return
 
 **Do this:**
 
-```
+```javascript
 var express = require('express');
 var { graphqlHTTP } = require('express-graphql');
 var { buildSchema } = require('graphql');

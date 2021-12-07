@@ -1,4 +1,4 @@
-﻿Lab 3:  GraphQL Clients
+﻿### Lab 3:  GraphQL Clients
 
 With express-graphql, you can just send an HTTP POST request to the endpoint you mounted your GraphQL server on, passing the GraphQL query as the query field in a JSON payload.
 

@@ -1,4 +1,4 @@
-﻿Lab 5:  Passing Arguments
+﻿### Lab 5:  Passing Arguments
 
 Just like a REST API, it's common to pass arguments to an endpoint in a GraphQL API. By defining the arguments in the schema language, typechecking happens automatically. Each argument must be named and have a type. For example, in the Basic Types documentation we had an endpoint called rollThreeDice:
 
@@ -62,7 +62,7 @@ The entire code for a server that hosts this rollDice API is:
 
 **Do this:**
 
-```
+```javascript
 var express = require('express');
 var { graphqlHTTP } = require('express-graphql');
 var { buildSchema } = require('graphql');
