@@ -1,6 +1,6 @@
 ﻿### Lab 1:  Getting Started
 
-**Lab Solution** Solution is present in `Lab1` directory.
+**Lab Solution** Solution is present in `Lab1` directory. Run `npm install` before running solution.
 
 To create a new project and install GraphQL.js in your current directory:
 

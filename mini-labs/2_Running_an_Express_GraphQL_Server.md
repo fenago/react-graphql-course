@@ -1,6 +1,6 @@
 ﻿### Lab 2:  Running Express + GraphQL
 
-**Lab Solution** Solution is present in `Lab2` directory.
+**Lab Solution** Solution is present in `Lab2` directory. Run `npm install` before running solution.
 
 The simplest way to run a GraphQL API server is to use Express, a popular web application framework for Node.js. You will need to install two additional dependencies:
 
@@ -51,7 +51,7 @@ You can run this GraphQL server with:
 
 `node server.js`
 
-Since we configured graphqlHTTP with graphiql: true, you can use the GraphiQL tool to manually issue GraphQL queries. If you navigate in a web browser to http://localhost:4000/graphql, you should see an interface that lets you enter queries. It should look like:
+Since we configured graphqlHTTP with graphiql: true, you can use the GraphiQL tool to manually issue GraphQL queries. If you navigate in a **Midori** web browser to http://localhost:4000/graphql, you should see an interface that lets you enter queries. It should look like:
 
 ![](./images/901b54ad-82f6-45ae-9e63-ca4891502784.001.png)
 

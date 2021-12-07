@@ -4,7 +4,7 @@ For many apps, you can define a fixed schema when the application starts, and de
 
 When you are using the GraphQLSchema constructor to create a schema, instead of defining Query and Mutation types solely using schema language, you create them as separate object types.
 
-**Lab Solution** Solution is present in `Lab9` directory.
+**Lab Solution** Solution is present in `Lab9` directory. Run `npm install` before running solution.
 
 For example, let's say we are building a simple API that lets you fetch user data for a few hardcoded users based on an id. Using buildSchema we could write a server with:
 
@@ -82,7 +82,7 @@ console.log('Running a GraphQL API server at localhost:4000/graphql');
 
 We can implement this same API without using GraphQL schema language:
 
-**Lab Solution** Solution is present in `Lab9-2` directory.
+**Lab Solution** Solution is present in `Lab9-2` directory. Run `npm install` before running solution.
 
 **Do this:**
 

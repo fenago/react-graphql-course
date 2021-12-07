@@ -1,6 +1,6 @@
 ﻿### Lab 6:  Object Types
 
-**Lab Solution** Solution is present in `Lab6` directory.
+**Lab Solution** Solution is present in `Lab6` directory. Run `npm install` before running solution.
 
 In GraphQL schema language, the way you define a new object type is the same way we have been defining the Query type in our examples. Each object can have fields that return a particular type, and methods that take arguments. For example, in the Passing Arguments documentation, we had a method to roll some random dice:
 

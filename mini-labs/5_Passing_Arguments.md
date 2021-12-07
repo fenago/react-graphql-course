@@ -1,6 +1,6 @@
 ﻿### Lab 5:  Passing Arguments
 
-**Lab Solution** Solution is present in `Lab5` directory.
+**Lab Solution** Solution is present in `Lab5` directory. Run `npm install` before running solution.
 
 Just like a REST API, it's common to pass arguments to an endpoint in a GraphQL API. By defining the arguments in the schema language, typechecking happens automatically. Each argument must be named and have a type. For example, in the Basic Types documentation we had an endpoint called rollThreeDice:
 
@@ -117,6 +117,11 @@ When you're passing arguments in code, it's generally better to avoid constructi
 For example, some JavaScript code that calls our server above is:
 
 **Do this: (Use Firefox)** 
+
+1. Right Click inside Firefox and Select `Inspect Element`:
+![](./images/tools.png)
+
+2. Copy and paste following snippet in the firefox console:
 
 ```
 var dice = 3;

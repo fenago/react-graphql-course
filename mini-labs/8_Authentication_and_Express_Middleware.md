@@ -1,6 +1,6 @@
 ﻿### Lab 8:  Authentication and Express Middleware
 
-**Lab Solution** Solution is present in `Lab8` directory.
+**Lab Solution** Solution is present in `Lab8` directory. Run `npm install` before running solution.
 
 To use middleware with a GraphQL resolver, just use the middleware like you would with a normal Express app. The request object is then available as the second argument in any resolver.
 

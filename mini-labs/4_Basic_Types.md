@@ -1,6 +1,6 @@
 ﻿### Lab 4:  Basic Types
 
-**Lab Solution** Solution is present in `Lab4` directory.
+**Lab Solution** Solution is present in `Lab4` directory. Run `npm install` before running solution.
 
 The GraphQL schema language supports the scalar types of String, Int, Float, Boolean, and ID, so you can use these directly in the schema you pass to buildSchema.
 

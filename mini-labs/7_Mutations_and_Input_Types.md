@@ -1,6 +1,6 @@
 ﻿### Lab 7:  Mutations and Input Types
 
-**Lab Solution** Solution is present in `Lab7` directory.
+**Lab Solution** Solution is present in `Lab7` directory. Run `npm install` before running solution.
 
 If you have an API endpoint that alters data, like inserting data into a database or altering data already in a database, you should make this endpoint a Mutation rather than a Query. This is as simple as making the API endpoint part of the top-level Mutation type instead of the top-level Query type.
 
@@ -171,6 +171,11 @@ mutation {
 You can use variables to simplify mutation client logic just like you can with queries. For example, some JavaScript code that calls the server to execute this mutation is:
 
 **Do this:**
+
+1. Right Click inside Firefox and Select `Inspect Element`:
+![](./images/tools.png)
+
+2. Copy and paste following snippet in the firefox console:
 
 ```
 var author = 'andy';
