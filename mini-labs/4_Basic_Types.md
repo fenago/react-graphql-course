@@ -1,5 +1,7 @@
 ﻿### Lab 4:  Basic Types
 
+**Lab Solution** Solution is present in `Lab4` directory.
+
 The GraphQL schema language supports the scalar types of String, Int, Float, Boolean, and ID, so you can use these directly in the schema you pass to buildSchema.
 
 By default, every type is nullable - it's legitimate to return null as any of the scalar types. Use an exclamation point to indicate a type cannot be nullable, so String! is a non-nullable string.
@@ -49,5 +51,26 @@ console.log('Running a GraphQL API server at localhost:4000/graphql');
 ```
 
 If you run this code with node server.js and browse to http://localhost:4000/graphql you can try out these APIs.
+
+Run following queries:
+
+`query { quoteOfTheDay }`
+
+`query { rollThreeDice }`
+
+`query { random }`
+
+
+```
+query { 
+  	quoteOfTheDay 
+  	rollThreeDice
+		random
+}
+```
+
+![](./images/3.png)
+
+**Note** Run above queries multiple times and verify that random output is returned everytime.
 
 These examples show you how to call APIs that return different types. To send different types of data into an API, you will also need to learn about passing arguments to a GraphQL API.

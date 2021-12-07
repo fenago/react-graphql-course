@@ -4,6 +4,8 @@ For many apps, you can define a fixed schema when the application starts, and de
 
 When you are using the GraphQLSchema constructor to create a schema, instead of defining Query and Mutation types solely using schema language, you create them as separate object types.
 
+**Lab Solution** Solution is present in `Lab9` directory.
+
 For example, let's say we are building a simple API that lets you fetch user data for a few hardcoded users based on an id. Using buildSchema we could write a server with:
 
 **Do this:**
@@ -52,7 +54,35 @@ app.listen(4000);
 console.log('Running a GraphQL API server at localhost:4000/graphql');
 ```
 
+**Run Query**
+
+```
+{
+  user(id: "a") {
+    id
+    name
+  }
+}
+```
+
+![](./images/10.png)
+
+
+```
+{
+  user(id: "invalid") {
+    id
+    name
+  }
+}
+```
+
+![](./images/11.png)
+
+
 We can implement this same API without using GraphQL schema language:
+
+**Lab Solution** Solution is present in `Lab9-2` directory.
 
 **Do this:**
 
@@ -109,6 +139,8 @@ app.use('/graphql', graphqlHTTP({
 app.listen(4000);
 console.log('Running a GraphQL API server at localhost:4000/graphql');
 ```
+
+**Note:** Run queries we ran earlier, you should get same response.
 
 When we use this method of creating the API, the root level resolvers are implemented on the Query and Mutation types rather than on a root object.
 

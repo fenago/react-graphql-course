@@ -1,5 +1,7 @@
 ﻿### Lab 6:  Object Types
 
+**Lab Solution** Solution is present in `Lab6` directory.
+
 In GraphQL schema language, the way you define a new object type is the same way we have been defining the Query type in our examples. Each object can have fields that return a particular type, and methods that take arguments. For example, in the Passing Arguments documentation, we had a method to roll some random dice:
 
 **Do this:**
@@ -145,6 +147,8 @@ When you issue a GraphQL query against an API that returns object types, you can
 ```
 
 If you run this code with node server.js and browse to http://localhost:4000/graphql you can try out these APIs with GraphiQL.
+
+![](./images/6.png)
 
 This way of defining object types often provides advantages over a traditional REST API. Instead of doing one API request to get basic information about an object, and then multiple subsequent API requests to find out more information about that object, you can get all of that information in one API request. That saves bandwidth, makes your app run faster, and simplifies your client-side logic.
 

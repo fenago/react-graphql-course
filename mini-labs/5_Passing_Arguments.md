@@ -1,5 +1,7 @@
 ﻿### Lab 5:  Passing Arguments
 
+**Lab Solution** Solution is present in `Lab5` directory.
+
 Just like a REST API, it's common to pass arguments to an endpoint in a GraphQL API. By defining the arguments in the schema language, typechecking happens automatically. Each argument must be named and have a type. For example, in the Basic Types documentation we had an endpoint called rollThreeDice:
 
 **Do this:**
@@ -10,7 +12,7 @@ type Query {
 }
 ```
 
-Instead of hardcoding “three”, we might want a more general function that rolls numDice dice, each of which have numSides sides. We can add arguments to the GraphQL schema language like this:
+Instead of hardcoding "three", we might want a more general function that rolls numDice dice, each of which have numSides sides. We can add arguments to the GraphQL schema language like this:
 
 **Do this:**
 
@@ -22,7 +24,7 @@ type Query {
 
 The exclamation point in Int! indicates that numDice can't be null, which means we can skip a bit of validation logic to make our server code simpler. We can let numSides be null and assume that by default a die has 6 sides.
 
-So far, our resolver functions took no arguments. When a resolver takes arguments, they are passed as one “args” object, as the first argument to the function. So rollDice could be implemented as:
+So far, our resolver functions took no arguments. When a resolver takes arguments, they are passed as one "args" object, as the first argument to the function. So rollDice could be implemented as:
 
 **Do this:**
 
@@ -108,11 +110,13 @@ When you call this API, you have to pass each argument by name. So for the serve
 
 If you run this code with node server.js and browse to http://localhost:4000/graphql you can try out this API.
 
+![](./images/4.png)
+
 When you're passing arguments in code, it's generally better to avoid constructing the whole query string yourself. Instead, you can use $ syntax to define variables in your query, and pass the variables as a separate map.
 
 For example, some JavaScript code that calls our server above is:
 
-**Do this:**
+**Do this: (Use Firefox)** 
 
 ```
 var dice = 3;
@@ -135,6 +139,8 @@ fetch('/graphql', {
   .then(data => console.log('data returned:', data));
 
 ```
+
+![](./images/5.png)
 
 Using $dice and $sides as variables in GraphQL means we don't have to worry about escaping on the client side.
 

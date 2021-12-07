@@ -1,8 +1,10 @@
 ﻿### Lab 7:  Mutations and Input Types
 
+**Lab Solution** Solution is present in `Lab7` directory.
+
 If you have an API endpoint that alters data, like inserting data into a database or altering data already in a database, you should make this endpoint a Mutation rather than a Query. This is as simple as making the API endpoint part of the top-level Mutation type instead of the top-level Query type.
 
-Let's say we have a “message of the day” server, where anyone can update the message of the day, and anyone can read the current one. The GraphQL schema for this is simply:
+Let's say we have a "message of the day" server, where anyone can update the message of the day, and anyone can read the current one. The GraphQL schema for this is simply:
 
 **Do this:**
 
@@ -36,7 +38,7 @@ var root = {
 };
 ```
 
-You don't need anything more than this to implement mutations. But in many cases, you will find a number of different mutations that all accept the same input parameters. A common example is that creating an object in a database and updating an object in a database often take the same parameters. To make your schema simpler, you can use “input types” for this, by using the input keyword instead of the type keyword.
+You don't need anything more than this to implement mutations. But in many cases, you will find a number of different mutations that all accept the same input parameters. A common example is that creating an object in a database and updating an object in a database often take the same parameters. To make your schema simpler, you can use "input types" for this, by using the input keyword instead of the type keyword.
 
 For example, instead of a single message of the day, let's say we have many messages, indexed in a database by the id field, and each message has both a content string and an author string. We want a mutation API both for creating a new message and for updating an old message. We could use the schema:
 
@@ -164,6 +166,8 @@ mutation {
 }
 ```
 
+![](./images/7.png)
+
 You can use variables to simplify mutation client logic just like you can with queries. For example, some JavaScript code that calls the server to execute this mutation is:
 
 **Do this:**
@@ -196,6 +200,8 @@ fetch('/graphql', {
   .then(r => r.json())
   .then(data => console.log('data returned:', data));
 ```
+
+![](./images/8.png)
 
 One particular type of mutation is operations that change users, like signing up a new user. While you can implement this using GraphQL mutations, you can reuse many existing libraries if you learn about GraphQL with authentication and Express middleware.
 

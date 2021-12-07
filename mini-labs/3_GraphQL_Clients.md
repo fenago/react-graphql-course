@@ -1,5 +1,7 @@
 ﻿### Lab 3:  GraphQL Clients
 
+**Lab Solution** Solution is present in `Lab3` directory.
+
 With express-graphql, you can just send an HTTP POST request to the endpoint you mounted your GraphQL server on, passing the GraphQL query as the query field in a JSON payload.
 
 For example, let's say we mounted a GraphQL server on http://localhost:4000/graphql as in the example code for running an Express GraphQL server, and we want to send the GraphQL query { hello }. We can do this from the command line with curl. If you paste this into a terminal:
@@ -19,11 +21,13 @@ You should see the output returned as JSON:
 
 `{"data":{"hello":"Hello world!"}}`
 
+![](./images/1.png)
+
 If you prefer to use a graphical user interface to send a test query, you can use clients such as GraphiQL and Insomnia.
 
 It's also simple to send GraphQL from the browser. Open up http://localhost:4000/graphql, open a developer console, and paste in:
 
-**Do this:**
+**Do this: (Use FireFox Developer Console)**
 
 ```
 fetch('/graphql', {
@@ -44,44 +48,6 @@ You should see the data returned, logged in the console:
 
 data returned: Object `{ hello: "Hello world!" }`
 
-In this example, the query was just a hardcoded string. As your application becomes more complex, and you add GraphQL endpoints that take arguments as described in Passing Arguments, you will want to construct GraphQL queries using variables in client code. You can do this by including a keyword prefixed with a dollar sign in the query, and passing an extra variables field on the payload.
+![](./images/2.png)
 
-For example, let's say you're running the example server from Passing Arguments that has a schema of
-
-**Do this:**
-
-```
-type Query {
-  rollDice(numDice: Int!, numSides: Int): [Int]
-}
-```
-
-You could access this from JavaScript with the code:
-
-**Do this:**
-
-```
-var dice = 3;
-var sides = 6;
-var query = `query RollDice($dice: Int!, $sides: Int) {
-  rollDice(numDice: $dice, numSides: $sides)
-}`;
-
-fetch('/graphql', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-  },
-  body: JSON.stringify({
-    query,
-    variables: { dice, sides },
-  })
-})
-  .then(r => r.json())
-  .then(data => console.log('data returned:', data));
-```
-
-Using this syntax for variables is a good idea because it automatically prevents bugs due to escaping, and it makes it easier to monitor your server.
-
-In general, it will take a bit more time to set up a GraphQL client like Relay, but it's worth it to get more features as your application grows. You might want to start out just using HTTP requests as the underlying transport layer and switching to a more complex client as your application gets more complex.
+In this example, the query was just a hardcoded string. As your application becomes more complex, and you add GraphQL endpoints that take arguments as described in **Lab 5** (Passing Arguments), you will want to construct GraphQL queries using variables in client code. You can do this by including a keyword prefixed with a dollar sign in the query, and passing an extra variables field on the payload.

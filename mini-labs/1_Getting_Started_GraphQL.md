@@ -1,17 +1,20 @@
 ﻿### Lab 1:  Getting Started
 
+**Lab Solution** Solution is present in `Lab1` directory.
+
 To create a new project and install GraphQL.js in your current directory:
 
 **Do this:**
 
 ```
 npm init
+
 npm install graphql@15.5.0 --save
 ```
 
 Writing Code
 
-To handle GraphQL queries, we need a schema that defines the Query type, and we need an API root with a function called a “resolver” for each API endpoint. For an API that just returns “Hello world!”, we can put this code in a file named server.js:
+To handle GraphQL queries, we need a schema that defines the Query type, and we need an API root with a function called a "resolver" for each API endpoint. For an API that just returns "Hello world!", we can put this code in a file named server.js:
 
 **Do this:**
 

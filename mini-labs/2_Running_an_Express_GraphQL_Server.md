@@ -1,12 +1,18 @@
 ﻿### Lab 2:  Running Express + GraphQL
 
+**Lab Solution** Solution is present in `Lab2` directory.
+
 The simplest way to run a GraphQL API server is to use Express, a popular web application framework for Node.js. You will need to install two additional dependencies:
 
 **Do this:**
 
-`npm install express express-graphql graphql --save`
+```
+npm init
 
-Let's modify our “hello world” example so that it's an API server rather than a script that runs a single query. We can use the 'express' module to run a webserver, and instead of executing a query directly with the graphql function, we can use the express-graphql library to mount a GraphQL API server on the “/graphql” HTTP endpoint:
+npm install express@4.17.1 express-graphql@0.12.0 graphql@15.5.0 --save
+```
+
+Let's modify our "hello world" example so that it's an API server rather than a script that runs a single query. We can use the 'express' module to run a webserver, and instead of executing a query directly with the graphql function, we can use the express-graphql library to mount a GraphQL API server on the "/graphql" HTTP endpoint:
 
 **Do this:**
 
@@ -49,4 +55,4 @@ Since we configured graphqlHTTP with graphiql: true, you can use the GraphiQL to
 
 ![](./images/901b54ad-82f6-45ae-9e63-ca4891502784.001.png)
 
-This screen shot shows the GraphQL query { hello } being issued and giving a result of `{ data: { hello: 'Hello world!' } }`. GraphiQL is a great tool for debugging and inspecting a server, so we recommend running it whenever your application is in development mode.
+This screen shot shows the GraphQL `query { hello }` being issued and giving a result of `{ data: { hello: 'Hello world!' } }`. GraphiQL is a great tool for debugging and inspecting a server, so we recommend running it whenever your application is in development mode.
