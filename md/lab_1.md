@@ -125,9 +125,9 @@ The first and most crucial dependency for this course is React. Use npm to
 add React to our project:
 
 ```
-npm install --save react react-dom
+npm install --save react@16.6.3 react-dom@16.6.3
 
-npm install --save-dev webpack webpack-cli webpack-dev-server
+npm install --save-dev webpack@4.26.1 webpack-cli@3.1.2 webpack-dev-server@3.1.10
 ```
 
 
@@ -212,7 +212,7 @@ dependencies as follows:
 ```
 cd ~/graphbook
 
-npm install --save-dev @babel/core babel-eslint babel-loader @babel/preset-env @babel/preset-react clean-webpack-plugin css-loader eslint file-loader html-webpack-plugin style-loader url-loader webpack webpack-cli webpack-dev-server @babel/plugin-proposal-decorators @babel/plugin-proposal-function-sent @babel/plugin-proposal-export-namespace-from @babel/plugin-proposal-numeric-separator @babel/plugin-proposal-throw-expressions @babel/plugin-proposal-class-properties
+npm install --save-dev @babel/core@7.1.6 babel-eslint@10.0.1 babel-loader@8.0.4 @babel/preset-env@7.1.6 @babel/preset-react@7.0.0 clean-webpack-plugin@1.0.0 css-loader@1.0.1 eslint@5.3.0 file-loader@2.0.0 html-webpack-plugin@3.2.0 style-loader@0.23.1 url-loader@1.1.2 webpack@4.26.1 webpack-cli@3.1.2 webpack-dev-server@3.1.10 @babel/plugin-proposal-decorators@7.1.6 @babel/plugin-proposal-function-sent@7.1.0 @babel/plugin-proposal-export-namespace-from@7.0.0 @babel/plugin-proposal-numeric-separator@7.0.0 @babel/plugin-proposal-throw-expressions@7.0.0 @babel/plugin-proposal-class-properties@7.1.0
 ```
 
 
@@ -229,7 +229,7 @@ installs the [eslint] configuration created by the people at
 Airbnb, including all peer dependencies. Execute it straight away:
 
 ```
-npx install-peerdeps --dev eslint-config-airbnb
+npx install-peerdeps --dev eslint-config-airbnb@17.1.0
 ```
 
 
@@ -333,7 +333,7 @@ To spin up our development webpack server, we add a command to
 Add this line to the [scripts] object inside [package.json] from the graphbook directory:
 
 ```
-"client": "webpack serve --devtool inline-source-map --hot --config webpack.client.config.js"
+"client": "webpack-dev-server --devtool inline-source-map --hot --config webpack.client.config.js"
 ```
 
 
@@ -347,6 +347,9 @@ cd ~/graphbook
 
 npm run client
 ```
+
+![](./images/2.png)
+
 We have accomplished including our empty `index.js` file with the
 bundle and can serve it to the browser. Next, we\'ll render our first
 React component inside our template [index.html] file.
@@ -355,6 +358,10 @@ React component inside our template [index.html] file.
 
 Render your first React component
 ---------------------------------
+
+First, copy **uploads** folder from `~/Desktop/react-graphql-course/labs` and paste in `~/graphbook` folder.
+
+![](./images/5.png)
 
 Our `index.js` file is the main starting point of our front end
 code, and this is how it should stay. Do not include any business logic
@@ -370,6 +377,7 @@ import App from './App';
 ReactDOM.render(<App/>, document.getElementById('root'));
 ```
 
+![](./images/3.png)
 
 The release of *ECMAScript 2015* introduced the [import] feature.
 We use it to require our [npm] packages, [react] and
@@ -393,7 +401,6 @@ export default class App extends Component {
   }
 }
 ```
-
 
 This class is exported and then imported by the `index.js` file.
 As explained before, we are now actively using [ReactDOM.render]
@@ -433,14 +440,16 @@ content:
 }
 ```
 
+<span style="color:red;">Important!</span>
 
-**ProTip**
-
-You may have to restart the server because the [.babelrc] file is
+You have to stop and start the server again because the [.babelrc] file is
 not reloaded when changes happen to the file. After a few moments, you
 should see the standard [Hello World!] message in your
 browser.
 
+**Output**
+
+![](./images/4.png)
 
 Here, we told Babel to use [\@babel/preset-env] and
 [\@babel/preset-react], installed together with webpack. These
@@ -542,23 +551,60 @@ state = {
 ```
 
 
-The older way of implementing this---without using the ES6 feature---was
-to create a constructor:
-
-```
-constructor(props) {
-  super(props);
-
-  this.state = {
-    posts: posts
-  };
-}
-```
-
-
 Upon initialization of the [App] class, the posts will be inserted
 into its state and rendered. It is vital that you run [super]
 before having access to [this].
+
+After doing the changes, your `App.js` file should like this:
+
+```
+import React, { Component } from 'react';
+
+const posts = [{
+  id: 2,
+  text: 'Lorem ipsum',
+  user: {
+    avatar: '/uploads/avatar1.png',
+    username: 'Test User'
+  }
+},
+{
+  id: 1,
+  text: 'Lorem ipsum',
+  user: {
+    avatar: '/uploads/avatar2.png',
+    username: 'Test User 2'
+  }
+}];
+
+export default class App extends Component {
+  state = {
+    posts: posts
+  }
+
+  render() {
+    const { posts } = this.state;
+
+    return (
+      <div className="container">
+        <div className="feed">
+          {posts.map((post, i) => 
+            <div key={post.id} className="post">
+              <div className="header">
+                <img src={post.user.avatar} />
+                <h2>{post.user.username}</h2>
+              </div>
+              <p className="content">
+                {post.text}
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+    )
+  }
+}
+```
 
 The preceding method is much cleaner, and I recommend this for
 readability purposes. When saving, you should be able to see rendered
@@ -566,10 +612,6 @@ posts. They should look like this:
 
 
 ![](./images/6cd845df-6be3-4c01-8d67-778ee1cfa3e7.png)
-
-
-
-source: https://www.vecteezy.com/
 
 
 The images I am using here are freely available. You can use any other
@@ -584,22 +626,6 @@ CSS with webpack
 
 The posts from the preceding picture have not been designed yet. I have
 already added CSS classes to the HTML our component returns.
-
-Instead of using CSS to make our posts look better, another method is to
-use CSS-in-JS using packages such as styled-components, which is a React
-package. Other alternatives include Glamorous and Radium, for example.
-There are numerous reasons why we do not switch to such a workflow and
-stay with good old CSS. With those other tools, you are not able to use
-SASS, SCSS, or LESS effectively. Personally, I need to work with other
-people, such as screen and graphics designers, who can provide and use
-CSS, but do not program styled-components. There is always a prototype
-or existing CSS that can be used, so why should I spend time translating
-this to styled-components CSS when I could just continue with standard
-CSS?
-
-There is no right or wrong option here; you are free to implement the
-styling in any way you like. However, in this course, we keep using good
-old CSS.
 
 What we\'ve already done in our [webpack.client.config.js] file is
 to specify a CSS rule, as you can see in the following code snippet:
@@ -616,7 +642,7 @@ The [style-loader] injects your bundled CSS right into the DOM.
 The [css-loader] will resolve all [import] or [url]
 occurrences in your CSS code.
 
-Create a [style.css] file in [/assets/css] and fill in the
+Create a [style.css] file in [./assets/css] and fill in the
 following:
 
 ```
@@ -694,8 +720,6 @@ with bundled CSS from webpack. It should look something like this:
 
 ![](./images/1b56b7b0-5276-41c9-abd5-5be1824046af.png)
 
-
-
 The output looks very good already.
 
 
@@ -720,14 +744,14 @@ Add this above the [div] with the [feed] class:
 </div>
 ```
 
+![](./images/6.png)
 
 You can use forms in React without any problems. React can intercept the
 submit event of requests by giving the form an [onSubmit]
 property, which will be a function to handle the logic behind the form.
 
 We are passing the [postContent] variable to the [value]
-property of [textarea] to have what\'s called a **controlled
-component**.
+property of [textarea] to have what\'s called a **controlled component**.
 
 Create an empty string variable at the [state] property
 initializer, as follows:
@@ -904,7 +928,7 @@ overriding multiple headers and server-side rendering.
 Install it with the following command:
 
 ```
-npm install --save react-helmet
+npm install --save react-helmet@5.2.0
 ```
 
 
@@ -939,6 +963,8 @@ to [Graphbook - Feed]. This behavior happens because we already
 defined a title inside [index.html]. When React finishes
 rendering, the new document head is applied.
 
+**Note:** After doing all the changes, your `App.js` file should like this: 
+`~/Desktop/react-graphql-course/labs/Lab01/src/client/App.js`
 
 
 Production build with webpack
@@ -955,8 +981,9 @@ into two separate files. Those can be used directly in the browser. To
 bundle CSS files, we will rely on another webpack plugin, called
 [MiniCss]:
 
+
 ```
-npm install --save-dev mini-css-extract-plugin
+npm install --save-dev mini-css-extract-plugin@0.4.5
 ```
 
 
@@ -1016,6 +1043,9 @@ new MiniCssExtractPlugin({
 
 5.  Remove the entire [devServer] property.
 
+
+**Note:** After doing the changes, your `webpack.client.build.config.js` file should like this: `~/Desktop/react-graphql-course/labs/Lab01/webpack.client.build.config.js`
+
 When running the new configuration, it won\'t spawn a server or browser
 window; it only creates a production JavaScript and CSS bundle, and
 requires them in our [index.html] file. According to our
@@ -1024,11 +1054,17 @@ to be saved to the [dist/client] folder.
 
 You can run this command by executing `npm run client:build`.
 
+![](./images/7.png)
+
 Look in the [dist/client] folder, and you will see three files.
-You can open the [index.html] in your browser. Sadly, the images
+You can open the [index.html] in `Midori` browser. The images
 are broken because the image URLs are not right anymore. We accept this
 for the moment because it will be automatically fixed when we have a
 working back end.
+
+![](./images/8.png)
+
+![](./images/9.png)
 
 You are now finished with the basic setup of React.
 
@@ -1043,16 +1079,18 @@ exactly what it sounds like.
 Install this with the following:
 
 ```
-npm install --save-dev webpack-bundle-analyzer
+npm install --save-dev webpack-bundle-analyzer@3.0.3
 ```
 
 
 You then need to add two commands to the [scripts] object in the
 [package.json]:
 
--   [\"stats\": \"webpack \--profile \--json \--config
-    webpack.client.build.config.js \> stats.json\"]
--   [\"analyze\": \"webpack-bundle-analyzer stats.json\"]
+- "stats": "webpack --profile --json --config webpack.client.build.config.js > stats.json"
+
+- "analyze": "webpack-bundle-analyzer stats.json"
+
+![](./images/10.png)
 
 The first command creates a production build as well as a
 [stats.json] file in the root folder. This file holds the

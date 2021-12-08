@@ -49,6 +49,13 @@ Run following commands to run application:
 MySQL and phpMyAdmin
 ---------------------
 
+**Start MySQL and phpMyAdmin:**
+
+```
+service mysql start
+
+service apache2 start
+```
 
 MySQL is already installed and running. Execute the following steps to get MySQL running:
 
@@ -151,7 +158,7 @@ Install Sequelize in your project via [npm]. We will also install
 a second package, called [mysql2]:
 
 ```
-npm install --save sequelize mysql2
+npm install --save sequelize@4.42.0 mysql2@1.6.4
 ```
 
 
@@ -562,7 +569,7 @@ to load the [require.context] function at the top. This package
 must be installed with [npm], with the following command:
 
 ```
-npm install --save-dev babel-plugin-require-context-hook
+npm install --save-dev babel-plugin-require-context-hook@1.0.0
 ```
 
 

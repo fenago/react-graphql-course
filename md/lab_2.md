@@ -54,7 +54,7 @@ Installing Express.js is pretty easy. We can use npm in the same way as
 in the first lab:
 
 ```
-npm install --save express
+npm install --save express@4.16.4
 ```
 
 
@@ -164,7 +164,7 @@ As you can see, we are using a command called [nodemon]. We need
 to install it first:
 
 ```
-npm install --save nodemon
+npm install --save nodemon@1.18.7
 ```
 
 
@@ -179,7 +179,7 @@ For example, to get the above command working follow the steps below:
     [import] statement:
 
 ```
-npm install --save-dev @babel/node
+npm install --save-dev @babel/node@7.0.0
 ```
 
 
@@ -392,7 +392,7 @@ middleware: [express.static]. Throughout this course, we continue to
 install further middleware:
 
 ```
-npm install --save compression cors helmet
+npm install --save compression@1.7.3 cors@2.8.5 helmet@3.15.0
 ```
 
 
@@ -558,7 +558,7 @@ First things first; we need to install the Apollo and GraphQL
 dependencies:
 
 ```
-npm install --save apollo-server-express graphql graphql-tools
+npm install --save apollo-server-express@2.2.5 graphql@14.0.2 graphql-tools@4.0.3
 ```
 
 
@@ -1159,7 +1159,7 @@ Configure [winston] by following the steps below:
 1.  Install [winston] with npm:
 
 ```
-npm install --save winston
+npm install --save winston@3.1.0
 ```
 
 
