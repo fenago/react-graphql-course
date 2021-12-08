@@ -48,7 +48,7 @@ Open `http://localhost:8000/` in Midori browser to access application.
 Node.js and Express.js
 ======================
 
-
+**Note:** You can use project created in Lab 1.
 
 Installing Express.js is pretty easy. We can use npm in the same way as
 in the first lab:
@@ -91,7 +91,6 @@ is the starting point for the back end. Here\'s how we go about it:
 import express from 'express';
 ```
 
-
 2.  We initialize the server with the [express] command. The
     result is stored in the [app] variable. Everything our back
     end does is executed through this object.
@@ -99,7 +98,6 @@ import express from 'express';
 ```
 const app = express();
 ```
-
 
 3.  Then, we specify the routes that accept requests. For this
     straightforward introduction, we accept all HTTP [GET]
@@ -112,24 +110,9 @@ app.get('*', (req, res) => res.send('Hello World!'));
 app.listen(8000, () => console.log('Listening on port 8000!'));
 ```
 
-
 To match all paths, you use an asterisk, which generally stands for
 [any] in the programming environment, as we have done it in the
 preceding [app.get] line.
-
-The first parameter for all [app.METHOD] functions are the path to
-match. From here, you can provide an unlimited list of callback
-functions, which are executed one by one. We are going to look at this
-feature later in the *Routing with Express.js* section.
-
-A callback always receives the client request as the first parameter and
-the response as the second parameter, which the server is going to send.
-Our first callback is going to use the [send] response method.
-
-The [send] function sends merely the HTTP response. It sets the
-HTTP body as specified. So, in our case, the body shows [Hello
-World!], and the [send] function takes care of all necessary
-standard HTTP headers, such as [Content-Length].
 
 The last step to make our server publicly available is to tell
 Express.js on which port it should listen for requests. In our code, we
@@ -138,8 +121,17 @@ can replace [8000] with any port or URL you want to listen on. The
 callback is executed when the HTTP server binding has finished, and
 requests can be accepted on this port.
 
-This is the easiest setup we can have for Express.js.
+**Note:** After doing the changes, your `index.js` file should like this:
 
+```
+import express from 'express';
+const app = express();
+
+app.get('*', (req, res) => res.send('Hello World!'));
+app.listen(8000, () => console.log('Listening on port 8000!'));
+```
+
+This is the easiest setup we can have for Express.js.
 
 
 Running Express.js in development
@@ -151,14 +143,9 @@ To launch our server, we have to add a new script to our
 We will add the following line to the [scripts] property of the
 [package.json] file:
 
-<div>
-
 ```
 "server": "nodemon --exec babel-node --watch src/server src/server/index.js"
 ```
-
-
-</div>
 
 As you can see, we are using a command called [nodemon]. We need
 to install it first:
@@ -195,14 +182,13 @@ back end.
 npm run server
 ```
 
+![](./images/21.png)
 
 When you now go to your browser and enter [http://localhost:8000],
 you will see the text [Hello World!] from our Express.js
 callback function.
 
-Lab 3 covers how Express.js routing works in
-detail.
-
+![](./images/22.png)
 
 Routing in Express.js
 =====================
@@ -218,14 +204,13 @@ have multiple handler functions. These handler functions are executed
 one by one in the order they were specified in the code. A path can be a
 simple string, but also a complex regular expression or pattern.
 
-When using multiple handler functions---either provided as an array or
+When using multiple handler functions --- either provided as an array or
 multiple parameters---be sure to pass [next] to every callback
 function. When you call [next], you hand over the execution from
 one callback function to the next function in the row. Those functions
 can also be middleware. We\'ll cover this in the next section.
 
-Here is a simple example. Replace this with the current [app.get]
-line:
+Here is a simple example. Replace this with the current [app.get] line:
 
 ```
 app.get('/', function (req, res, next) {
@@ -237,6 +222,7 @@ app.get('/', function (req, res, next) {
 });
 ```
 
+![](./images/23.png)
 
 When you look at the server logs in the terminal, you will see both
 [first function] and [second function] printed. If you
@@ -244,12 +230,6 @@ remove the execution of [next] and try to reload the browser tab,
 the request will time out. This problem occurs because neither
 [res.send] nor [res.end], or any alternative is called. The
 second handler function is never executed when [next] is not run.
-
-As previously discussed, the [Hello World!] message is
-nice but not the best we can get. In development, it is completely okay
-for us to run two separate servers: one for the front end and one for
-the back end.
-
 
 
 Serving our production build
@@ -259,11 +239,28 @@ We can serve our production build of the front end through Express.js.
 This approach is not great for development purposes but is useful for
 testing the build process and seeing how our live application will act.
 
+**Build Client Application**
+
+Firstly, open `webpack.client.build.config.js` and `webpack.client.config.js`. And replace line `const outputDirectory = 'dist';` with following snippet:
+
+```
+const buildDirectory = 'dist';
+const outputDirectory = buildDirectory + '/client';
+```
+
+Run following command to build react application:
+
+`npm run client:build`
+
+**Express Server**
+
 Again, replace the previous routing example with the following:
 
 ```
+import express from 'express';
 import path from 'path';
 
+const app = express();
 const root = path.join(__dirname, '../../');
 
 app.use('/', express.static(path.join(root, 'dist/client')));
@@ -271,16 +268,9 @@ app.use('/uploads', express.static(path.join(root, 'uploads')));
 app.get('/', (req, res) => {
   res.sendFile(path.join(root, '/dist/client/index.html'));
 });
+
+app.listen(8000, () => console.log('Listening on port 8000!'));
 ```
-
-
-The [path] module offers many functionalities for working with the
-directory structures.
-
-We use the global [\_\_dirname] variable to get our project\'s
-root directory. The variable holds the path of the current file. Using
-[path.join] with [../../] and [\_\_dirname] gives us
-the real root of our project.
 
 Express.js provides the [use] function which runs a series of
 commands when a given path matches. When executing this function without
@@ -310,82 +300,13 @@ will receive an error message that these files were not found.
 Furthermore, when running `npm run client`, the [dist]
 folder is deleted, so you have to rerun the build process.
 
-Refreshing the browser now presents you with the *post* feed and form
-from Lab 1.
+Refreshing the browser now presents you with the *post* feed and form from Lab 1.
 
-The next section focuses on the great functionality of middleware
-functions in Express.js.
+![](./images/24.png)
 
 
 Using Express.js middleware
 ===========================
-
-Express.js provides great ways to write efficient back ends without
-duplicating code.
-
-Every middleware function receives a request, a response, and
-[next]. It needs to run [next] to pass control further to
-the next handler function. Otherwise, you will receive a timeout.
-Middleware allows us to pre- or post-process the request or response
-object, execute custom code, and much more. We previously covered a
-simple example of handling requests in Express.js.
-
-Express.js can have multiple routes for the same path and HTTP method.
-The middleware can decide which function should be executed.
-
-The following code is an easy example showing what can generally be
-accomplished with Express.js:
-
-1.  The root path [\'/\'] is used to catch any request.
-
-```
-app.get('/', function (req, res, next) {
-```
-
-
-2.  We randomly generate a number with [Math.random] between 1
-    and 10.
-
-```
-var random = Math.random() * (10 -1) + 1;
-```
-
-
-3.  If the number is higher than [5], we run the
-    [next(\'route\')] function to skip to the next [app.get]
-    with the same path.
-
-```
-if (random > 5) next('route')
-```
-
-
-This route will log us [\'second\'].
-
-4.  If the number is lower than [0.5], we execute the [next]
-    function without any parameters and go to the next handler function.
-    This handler will log us [\'first\'].
-
-```
-  else next()
-}, function (req, res, next) {
-  res.send('first');
-})
-
-app.get('/', function (req, res, next) {
-  res.send('second');
-})
-```
-
-
-You do not need to copy this code as it is just an explanatory example.
-This functionality can come in handy when covering special treatments
-such as admin users and error handling.
-
-
-
-Installing important middleware
--------------------------------
 
 For our application, we have already used one built-in Express.js
 middleware: [express.static]. Throughout this course, we continue to
@@ -400,7 +321,6 @@ Now, execute the [import] statement on the new packages inside the
 server `index.js` file so that all dependencies are available
 within the file:
 
-<div>
 
 ```
 import helmet from 'helmet';
@@ -409,10 +329,7 @@ import compress from 'compression';
 ```
 
 
-</div>
-
 Let\'s see what these packages do and how we can use them.
-
 
 
 Express Helmet
@@ -443,26 +360,10 @@ We are doing multiple things here at once. We add some
 [X-Powered-By] HTTP header and some other useful things just by
 using the [helmet()] function in the first line.
 
-**ProTip**
-
-You can look up the default parameters, as well as other functionalities
-of Helmet, at, <https://github.com/helmetjs/helmet>. Always be conscious
-when implementing security features and do your best to verify your
-attack protection methods.
-
-
 Furthermore, to ensure that no one can inject malicious code, we are
 using the [Content-Security-Policy] HTTP header or, in short, CSP.
 This header prevents attackers from loading resources from external
 URLs.
-
-As you can see, we also specify the [imgSrc] field, which tells
-our client that only images from these URLs should be loaded, including
-**Amazon Web Services** (**AWS**). We will see how to upload images to
-it in Lab 7, of this course.
-
-Read more about CSP and how it can make your platform more secure at,
-<https://helmetjs.github.io/docs/csp/>.[](https://helmetjs.github.io/docs/csp/)
 
 The last enhancement is to set the [Referrer] HTTP header only
 when making requests on the same host. When going from domain A to
@@ -472,8 +373,6 @@ requests being exposed to the internet.
 
 It is important to initialize Helmet very high in your Express router so
 that all responses are affected.
-
-
 
 Compression with Express.js
 ---------------------------
@@ -491,33 +390,9 @@ This middleware compresses all responses going through it. Remember to
 add it very high in your routing order so that all requests are
 affected.
 
-**ProTip**
-
-Whenever you have middleware like this, or multiple routes matching the
-same path, you need to check the initialization order. The first
-matching route is executed unless you run the [next] command. All
-routes that are defined afterward will not be executed.
-
-
-
 
 CORS in Express.js
 ------------------
-
-We want our GraphQL API to be accessible from any website, app, or
-system. A good idea might be to build an app or offer the API to other
-companies or developers so that they can use it. When using APIs via
-Ajax, the main problem is that the API needs to send the correct
-[Access-Control-Allow-Origin] header.
-
-For example, if you build the API, publicize it under
-[https://api.example.com], and try to access it from
-[https://example.com] without setting the correct header, it
-won\'t work. The API would need to set at least [example.com]
-inside the [Access-Control-Allow-Origin] header to allow this
-domain to access its resources. It seems a bit tedious, but it makes
-your API open to cross-site requests which you should always be aware
-of.
 
 Allow **CORS (Cross-origin resource sharing)** requests with the
 following command to the `index.js` file:
@@ -534,16 +409,6 @@ anywhere to use your API, at least in the first instance. You can always
 secure your API by offering API keys or by only allowing access to
 logged-in users. Enabling CORS only allows the requesting site to
 receive the response.
-
-Furthermore, the command also implements the [OPTIONS] route for
-the whole application.
-
-The [OPTIONS] method or request is made every time we use
-[Cross-origin resource sharing]. This action is what\'s called a
-**preflight request**, which ensures that the responding server trusts
-you. If the server does not respond correctly to the [OPTIONS]
-preflight, the actual method, such as [POST], will not be made by
-the browser at all.
 
 Our application is now ready to serve all routes appropriately and
 respond with the right headers.
@@ -583,8 +448,7 @@ mkdir src/server/services/graphql
 Our GraphQL service must handle multiple things for initialization.
 Let\'s go through all of them one by one:
 
-1.  We require the [apollo-server-express] and
-    [graphql-tools] packages.
+1.  We require the [apollo-server-express] and [graphql-tools] packages.
 
 ```
 import { ApolloServer } from 'apollo-server-express';
@@ -612,7 +476,7 @@ import Schema from './schema';
     [makeExecutableSchema] function throws an error when you
     define a query or mutation that is not in the schema. The resulting
     schema is executable by our GraphQL server resolving the data or
-    running the mutations we request.\
+    running the mutations we request.
 
 ```
 const executableSchema = makeExecutableSchema({
@@ -625,7 +489,7 @@ const executableSchema = makeExecutableSchema({
 4.  We pass this as a [schema] parameter to the Apollo Server. The
     [context] property contains the [request] object of
     Express.js. In our resolver functions, we can access the request if
-    we need to.\
+    we need to.
 
 ```
 const server = new ApolloServer({
@@ -636,7 +500,7 @@ const server = new ApolloServer({
 
 
 5.  This `index.js` file exports the initialized server object,
-    which handles all GraphQL requests.\
+    which handles all GraphQL requests.
 
 ```
 export default server;
