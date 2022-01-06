@@ -988,9 +988,6 @@ page and navigate back again. Our final result looks as follows:
 ![](./images/9383ad8d-caae-44bb-a57d-89a16edbdc94.png)
 
 
-source: https://www.vecteezy.com/
-
-
 We have a big profile header for the user and their posts at the bottom
 of the window. At the top, you can see the top bar with the currently
 logged in user.
@@ -1000,15 +997,6 @@ logged in user.
 Remembering the redirect location
 ---------------------------------
 
-When a visitor comes to your page, they have probably followed a link
-that was posted elsewhere. This link is likely to be a direct address
-for a user, a post, or anything else that you offer direct access to.
-For those that are not logged in, we configured the application to
-redirect that person to the login or signup forms. This behavior makes
-sense. However, once that person has either logged in or signed up with
-a new account, they are then navigated to the news feed. A better way of
-doing this would be to remember the initial destination that the person
-wanted to visit. To do this, we will make a few changes to the router.
 Open the [router.js] file. With all of the routing components
 provided by React Router, we always get access to the properties inside
 of them. We will make use of this and save the last location that we

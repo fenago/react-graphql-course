@@ -286,11 +286,11 @@ The following are a few changes that we made:
 -   The second change was to remove the [constructor], the
     [componentWillMount], and the [componentWillUnmount]
     methods. We did this because the authentication that we built uses
-    the [localStorage]. It is fine for client-side authentication.
+    the `localStorage`. It is fine for client-side authentication.
     Neither Node.js nor the server support such storage, in general.
     That is the reason why we remove the authentication when moving our
     application to server-side rendering. We are going to replace the
-    [localStorage] implementation with cookies in a later step.
+    `localStorage` implementation with cookies in a later step.
     For the moment, the user stays logged out of the server.
 -   The last change involves passing the two new properties,
     [context] and [location], to the [Router] in the
@@ -804,7 +804,7 @@ Authentication with SSR
 
 You should have noticed that we have removed most of the authentication
 logic from the server-side React code. The reason is that the
-[localStorage] cannot be transmitted to the server on the initial
+`localStorage` cannot be transmitted to the server on the initial
 loading of a page, which is the only case where SSR can be used at all.
 This leads to the problem that we cannot render the correct route,
 because we cannot verify whether a user is logged in. The authentication
@@ -1008,13 +1008,13 @@ expirationDate.setDate(
     could be dangerous.
 
 Now, we should clean up our code. Since we are using cookies, we can
-remove the [localStorage] authentication flow in the front end
+remove the `localStorage` authentication flow in the front end
 code. Open the [App.js] of the [client] folder. Remove the
 [componentWillMount] method, as we are reading from the
-[localStorage] there.
+`localStorage` there.
 
 The cookies are automatically sent with any request, and they do not
-need a separate binding, like the [localStorage]. That also means
+need a separate binding, like the `localStorage`. That also means
 that we need a special [logout] mutation that removes the cookie
 from the browser. JavaScript is not able to access or remove the cookie,
 because we specified it as [httpOnly]. Only the server can delete
@@ -1133,7 +1133,7 @@ The resolver function is minimal. It removes the cookie by setting the
 expiration date to the current time. This removes the cookie on the
 client when the browser receives the response, because it is expired
 then. This behavior is an advantage, in comparison to the
-[localStorage].
+`localStorage`.
 
 We have completed everything to make the authorization work with SSR. It
 is a very complex task, since authorization, server-side rendering, and

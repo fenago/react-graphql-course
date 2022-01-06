@@ -51,7 +51,7 @@ Installing Apollo Client
 We use [npm] to install our client dependencies, as follows:
 
 ```
-npm install --save apollo-client apollo-cache-inmemory apollo-link-http apollo-link-error apollo-link react-apollo
+npm install --save apollo-client@2.4.8 apollo-cache-inmemory@1.3.12 apollo-link-http@1.5.9 apollo-link-error@1.1.5 apollo-link@1.2.6 react-apollo@2.3.3
 ```
 
 
@@ -126,7 +126,7 @@ the code again. The easiest way to do this is to use the
 1.  First, install this package with [npm], as follows:
 
 ```
-npm install --save graphql-tag
+npm install --save graphql-tag@2.10.0
 ```
 
 
@@ -1247,10 +1247,6 @@ The current code generates the following screenshot:
 ![](./images/eef13d1e-a606-460c-8010-637a8245d648.png)
 
 
-
-source: https://www.vecteezy.com/
-
-
 On the right-hand side, you can see the chats panel that we have just
 implemented. Every chat is listed there as a separate row.
 
@@ -1325,10 +1321,6 @@ message inside of the chat. This looks like the following screenshot:
 
 
 ![](./images/69f34890-a20c-4915-82eb-ef46500a8e00.png)
-
-
-
-source: https://www.vecteezy.com/
 
 
 Since everything is displayed correctly from our test data, we can
@@ -1926,7 +1918,7 @@ new React package with npm, which provides us with an infinite scroll
 implementation:
 
 ```
-npm install react-infinite-scroller --save
+npm install react-infinite-scroller@1.2.4 --save
 ```
 
 

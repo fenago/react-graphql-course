@@ -137,7 +137,7 @@ the login function inside the mutation object. Before doing this, we
 have to install and import two new packages:
 
 ```
-npm install --save jsonwebtoken bcrypt
+npm install --save jsonwebtoken@8.4.0 bcrypt@3.0.6
 ```
 
 
@@ -205,19 +205,9 @@ The preceding code goes through the following steps:
     in which the JWT is going to expire.
 5.  In the end, we return an object containing our JWT.
 
-**ProTip**
-
-Something that you might need to rethink is how much detail you give in
-an error message. For example, we might not want to distinguish between
-an incorrect password and a non-existent user. It gives possible
-attackers or data collectors the opportunity to know which email address
-is in use.
-
 
 The [login] function is not working yet, because we are missing
-[JWT\_SECRET], which is used to sign the JWT. In production, we
-use the environment variables to pass the JWT secret key into our back
-end code so that we use this approach in development too.
+[JWT\_SECRET], which is used to sign the JWT.
 
 For Linux or Mac, you can use the following command directly in the
 Terminal:
@@ -297,8 +287,8 @@ application:
 -   The second scenario is that an email and password are sent through
     the login form. The response needs to be interpreted, and if the
     result is correct, we need to save the JWT inside the
-    [localStorage] of the browser for now.
--   When changing the [localStorage], we also need to rerender our
+    `localStorage` of the browser for now.
+-   When changing the `localStorage`, we also need to rerender our
     React application to show the logged-in state.
 -   Furthermore, the user should be able to log out again.
 -   We must also handle if the JWT expires and the user is unable to
@@ -366,7 +356,7 @@ component. We now give the [loading] and [error] states to
 those children, in case we want to show an error or loading message. The
 [update] function is a bit different than before. We don\'t write
 the return value in the Apollo cache, but we do need to store the JWT
-inside the [localStorage]. The syntax is pretty simple. You can
+inside the `localStorage`. The syntax is pretty simple. You can
 directly use [localStorage.get] and [localStorage.set] to
 interact with the web storage.
 
@@ -461,7 +451,7 @@ state = {
 
 
 When loading our page, this variable needs to be set to [true] if
-we have a token in our [localStorage]. We handle this inside the
+we have a token in our `localStorage`. We handle this inside the
 [componentWillMount] function provided by React:
 
 ```
@@ -477,7 +467,7 @@ componentWillMount() {
 Then, in the [render] method, we can use conditional rendering to
 show the login form when the [loggedIn] state variable is set to
 [false], which means that there is no JWT inside our
-[localStorage]:
+`localStorage`:
 
 ```
 {this.state.loggedIn ?
@@ -805,7 +795,7 @@ Authenticating GraphQL requests
 Open the `index.js` file from the [apollo] folder for the
 client-side code. Our [ApolloClient] is currently configured as
 explained in Lab 4. Before sending any
-request, we have to read the JWT from the [localStorage] and add
+request, we have to read the JWT from the `localStorage` and add
 it as an HTTP authorization header. Inside the [link] property, we
 have specified the links for our [ApolloClient] processes. Before
 the configuration of the HTTP link, we insert a third preprocessing hook
@@ -832,7 +822,7 @@ Here, we have called the new link [AuthLink], because it allows us
 to authenticate the client on the server. You can copy the
 [AuthLink] approach to other situations in which you need to
 customize the header of your Apollo requests. Here, we just read the JWT
-from the [localStorage] and, if it is found, we construct the
+from the `localStorage` and, if it is found, we construct the
 header using the spread operator and adding our token to the
 Authorization field as a Bearer token. It is everything that needs to be
 done on the client-side.
@@ -1261,7 +1251,7 @@ export default withApollo(Logout);
 
 As you can see from the preceding code, the logout button triggers the
 component\'s logout method when it is clicked. Inside the [logout]
-method, we remove the JWT from [localStorage] and execute the
+method, we remove the JWT from `localStorage` and execute the
 [changeLoginState] function that we receive from the parent
 component. Be aware that we do not send a request to our server to log
 out, but instead we remove the token from the client. That is because
@@ -1402,7 +1392,7 @@ didn\'t have any authentication. We can now tell who is logged in every
 time a user accesses our application. This allows us to secure the
 GraphQL API and insert new posts or messages in the name of the correct
 user. In this lab, we discussed the fundamental aspects of JSON Web
-Tokens, [localStorage], and cookies. We also looked at how the
+Tokens, `localStorage`, and cookies. We also looked at how the
 verification of hashed passwords or signed tokens works. This lab
 then covered how to implement JWTs inside React and how to trigger the
 correct events to log in and log out.

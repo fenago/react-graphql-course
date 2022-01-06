@@ -401,18 +401,6 @@ following command to the `index.js` file:
 app.use(cors());
 ```
 
-
-This command handles all of the problems we usually have with
-cross-origin requests at once. It merely sets a wildcard with [\*]
-inside of [Access-Control-Allow-Origin], allowing anyone from
-anywhere to use your API, at least in the first instance. You can always
-secure your API by offering API keys or by only allowing access to
-logged-in users. Enabling CORS only allows the requesting site to
-receive the response.
-
-Our application is now ready to serve all routes appropriately and
-respond with the right headers.
-
 We can move on now and finally set up a GraphQL server.
 
 
@@ -423,18 +411,8 @@ First things first; we need to install the Apollo and GraphQL
 dependencies:
 
 ```
-npm install --save apollo-server-express@2.2.5 graphql@14.0.2 graphql-tools@4.0.3
+npm install --save apollo-server-express@2.3.3 graphql@14.0.2 graphql-tools@4.0.3
 ```
-
-
-Apollo offers an Express.js-specific package that integrates itself into
-the web server. There is also a standalone version without Express.js.
-Apollo allows you to use the available Express.js middleware. In some
-scenarios, you may need to offer non-GraphQL routes to proprietary
-clients who do not implement GraphQL or are not able to understand JSON
-responses. There are still reasons to offer some fallbacks to GraphQL.
-In those cases, you can rely on Express.js, since you are already using
-it.
 
 Create a separate folder for services. A service can be GraphQL or other
 routes:
@@ -568,9 +546,7 @@ Since the Apollo Server is kind of special, when binding it to
 Express.js, we need to run the `applyMiddleware` function provided
 by the initialized Apollo Server and avoid using the `app.use`
 function of Express.js. Apollo automatically binds itself to the
-`/graphql` path because it is the default option. You could also
-include a `path` parameter if you want it to respond from a custom
-route.
+`/graphql` path because it is the default option.
 
 Two things are missing now: the schema and the resolvers. The schema is
 next on our to-do list.

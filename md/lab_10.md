@@ -575,7 +575,7 @@ the server has gone down.
 
 Furthermore, we use the [connectionParams] field to specify the
 JWT as an authorization token. We define this property as a function so
-that the JWT is read from [localStorage] whenever the user logs
+that the JWT is read from `localStorage` whenever the user logs
 in. It\'s sent when the WebSocket is created.
 
 We initialize [SubscriptionClient] to the [subClient]

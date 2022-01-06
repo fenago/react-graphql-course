@@ -615,7 +615,7 @@ server or client because we just want to render our application to any
 HTML, so how it looks isn\'t important. The second parameter is an
 options object. We specify a [url] field, which is the host URL,
 under which we render the React code. Otherwise, we might get an error
-when accessing [localStorage]. After initialization, we extract
+when accessing `localStorage`. After initialization, we extract
 the [window] object and define two global variables that are
 required to mount a React component to our fake DOM. These two
 properties behave like the [document] and [window] objects

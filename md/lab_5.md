@@ -1038,10 +1038,6 @@ feature should look:
 ![](./images/11421ade-25ef-4fb4-8e44-e053b8ff3e6c.png)
 
 
-
-source: https://www.vecteezy.com/
-
-
 We will now start with the first task of setting up [FontAwesome]
 for our project.
 
@@ -1827,12 +1823,7 @@ search component, because it is really complex.
 
 The following screenshot shows a preview of what we are going to build:
 
-
 ![](./images/d0a70da3-e2da-4803-ae9e-40865fb5c316.png)
-
-
-
-source: https://www.vecteezy.com/
 
 
 It looks pretty basic, but what we are doing here is binding the
@@ -2197,10 +2188,6 @@ Both of the approaches will result in the following output:
 ![](./images/ce894c9a-7bf9-416c-9d1c-5492f3bf7552.png)
 
 
-
-source: https://www.vecteezy.com/
-
-
 The best option is to show you the two alternatives right away, so that
 you can identify your preferred method.
 
@@ -2430,7 +2417,7 @@ these instructions to get a working copy of it:
 1.  Install React Styleguidist using [npm], as follows:
 
 ```
-npm install --save-dev react-styleguidist
+npm install --save-dev react-styleguidist@8.0.6
 ```
 
 
@@ -2502,21 +2489,6 @@ change that next.
 React PropTypes
 ---------------
 
-An essential feature of React is passing the properties to the child
-components. These can be anything from basic strings to numbers, but
-also complete components. We have already seen all of the scenarios in
-our application.
-
-Developers that are new to your code base need to read through all of
-the components and identify which properties they can accept.
-
-React offers a way to describe properties from within each component.
-Documenting the properties of your components makes it easier for other
-developers to understand your React components.
-
-We will take a look at how to do this with an example in our
-[Post] component.
-
 There are two React features that we did have covered yet, as follows:
 
 -   If your components have optional parameters, it can make sense to
@@ -2530,7 +2502,7 @@ There are two React features that we did have covered yet, as follows:
 A new package is required to define the property types, as follows:
 
 ```
-npm install --save prop-types
+npm install --save prop-types@15.6.2
 ```
 
 
@@ -2615,13 +2587,6 @@ listed as a second shape. If you need this feature, you can, of course,
 implement it yourself, and send a [pull] request on the official
 GitHub repo, or switch to another tool.
 
-**ProTip**
-
-React offers way more prop types and functions that you can use to
-document all of the components and their properties. To learn a bit more
-about this, visit the official documentation at
-<https://reactjs.org/docs/typechecking-with-proptypes.html>.[](https://reactjs.org/docs/typechecking-with-proptypes.html)
-
 
 One last great feature of React Styleguidist is that you can enter
 examples for every component. You can also use markdown to add some more
@@ -2657,10 +2622,6 @@ generates the following output:
 
 
 ![](./images/bed11e9d-b58f-4a1e-908c-5ae1118cbc41.png)
-
-
-
-source: https://www.vecteezy.com/
 
 
 Now, you can see why it was useful to use the CSS style. Not only can
