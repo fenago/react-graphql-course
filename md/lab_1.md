@@ -50,21 +50,10 @@ Run following command to run application in the Lab01 folder:
 ![](./images/vscode1.png)
 
 
-Installing and configuring Node.js
-==================================
+Node.js
+=======
 
-
-Following commands will install Node.js and the build tools for native modules (it is ok if the curl command does not work): 
-
-```
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-sudo apt-get install -y nodejs build-essential
-```
-
-<span style="color:red;">Node 12 has been installed already in the lab environment.</span>
-
-3.  Finally, let\'s open a terminal now and verify that the installation
-    was successful:
+Let\'s open a terminal and verify that node is installed:
 
 ```
 node --version
@@ -130,29 +119,6 @@ npm install --save react@16.6.3 react-dom@16.6.3
 npm install --save-dev webpack@4.26.1 webpack-cli@3.1.2 webpack-dev-server@3.1.10
 ```
 
-
-You might be wondering why we installed two packages although we only
-needed React. The [react] package provides only React-specific
-methods. All React hooks, such as [componentDidMount],
-[componentWillReceivesProps], and even React\'s component class,
-come from this package. You need this package to write React
-applications at all.
-
-In most cases, you won\'t even notice that you have used
-[react-dom]. This package offers all functions to connect the
-actual DOM of the browser with your React application. Usually, you use
-[ReactDOM.render] to render your application at a specific point
-in your HTML and only once in your code. We will cover the rendering of
-React in a later lab.
-
-There is also a function called [ReactDOM.findDOMNode], which
-gives you direct access to a [DOMNode], but I hardly discourage
-using this since any changes on [DOMNodes] are not available in
-React itself. I personally have never needed to use this function, so
-try to avoid it if possible.
-
-
-
 Preparing and configuring webpack
 ---------------------------------
 
@@ -198,13 +164,8 @@ So, how do we get React up and running with this [index.html]
 file?
 
 To accomplish this, we need to use a web application bundler. It
-prepares and bundles all our application assets. All of the required
-JavaScript files and [node\_modules] are bundled and minified;
-SASS and SCSS preprocessors are transpiled to CSS as well as being
-merged and minified.
-
-To name a few application bundler packages, there are webpack, Parcel,
-and Gulp. For our use case, we will use webpack. It is the most common
+prepares and bundles all our application assets.
+For our use case, we will use webpack. It is the most common
 module bundler, which has a large community surrounding it. To bundle
 our JavaScript code, we need to install webpack and all of its
 dependencies as follows:
@@ -215,16 +176,9 @@ cd ~/graphbook
 npm install --save-dev @babel/core@7.1.6 babel-eslint@10.0.1 babel-loader@8.0.4 @babel/preset-env@7.1.6 @babel/preset-react@7.0.0 clean-webpack-plugin@1.0.0 css-loader@1.0.1 eslint@5.3.0 file-loader@2.0.0 html-webpack-plugin@3.2.0 style-loader@0.23.1 url-loader@1.1.2 webpack@4.26.1 webpack-cli@3.1.2 webpack-dev-server@3.1.10 @babel/plugin-proposal-decorators@7.1.6 @babel/plugin-proposal-function-sent@7.1.0 @babel/plugin-proposal-export-namespace-from@7.0.0 @babel/plugin-proposal-numeric-separator@7.0.0 @babel/plugin-proposal-throw-expressions@7.0.0 @babel/plugin-proposal-class-properties@7.1.0
 ```
 
-
-This command adds all of the development tools to
-[devDependencies] in the [package.json] file that are needed
-to allow the bundling of our application. They are only installed in a
-development environment and are skipped in production.
-
 As you can see in the preceding code, we also installed eslint, which
 goes through our code on the fly and checks it for errors. We need an
-[eslint] configuration file, which, again, we install from
-[https://npmjs.com](https://npmjs.com/). The following handy shortcut
+[eslint] configuration file. The following handy shortcut
 installs the [eslint] configuration created by the people at
 Airbnb, including all peer dependencies. Execute it straight away:
 
@@ -249,20 +203,12 @@ use the [airbnb] configuration:
 }
 ```
 
-
 In short, this [.eslinrc] file loads the [airbnb] config; we
 define the environments where our code is going to run, and we turn off
 one default rule.
 
-The [react/jsx-filename-extension] rule throws a warning when
-using JSX syntax inside a file not ending in [.jsx]. Our files
-will end with [.js], so we enable this rule.
-
-If you aren\'t already aware, setting up webpack can be a bit of a
-hassle, There are many options that can interfere with each other and
-lead to problems when bundling your application. Let\'s create a
-[webpack.client.config.js] file in the root folder of your
-project.
+Let\'s create a [webpack.client.config.js] file in the root folder of your
+project to setup webpack.
 
 Enter the following:
 
@@ -379,14 +325,6 @@ ReactDOM.render(<App/>, document.getElementById('root'));
 
 ![](./images/3.png)
 
-The release of *ECMAScript 2015* introduced the [import] feature.
-We use it to require our [npm] packages, [react] and
-[react-dom] , and our first custom React component, which we must
-write now.
-
-Of course, it is essential for us to cover the sample [Hello
-World] program.
-
 Create the [App.js] file next to your `index.js` file, with
 the following content:
 
@@ -406,25 +344,7 @@ This class is exported and then imported by the `index.js` file.
 As explained before, we are now actively using [ReactDOM.render]
 in our `index.js` file.
 
-The first parameter of [ReactDOM.render] is the component that we
-want to render, which is the [App] class displaying the [Hello
-World!] message. The second parameter is the browser\'s
-[DOMNode], where it should render. We receive [DOMNode] with
-plain [document.getElementById] JavaScript.
-
-We defined our root element when we created the [index.html] file
-before. After saving the [App.js] file, webpack will try to build
-everything again. However, it shouldn\'t be able to do that. Webpack
-will encounter a problem bundling our `index.js` file because of
-the [\<App /\>] tag syntax we are using in the
-[ReactDOM.render] method. It was not transpiled to a normal
-JavaScript function.
-
-We configured webpack to load Babel for our JS file but did not tell
-Babel what to transpile and what not to transpile.
-
-Let\'s create a [.babelrc] file in the root folder with this
-content:
+Let\'s create a [.babelrc] file in the root folder with this content:
 
 ```
 {
@@ -450,14 +370,6 @@ browser.
 **Output**
 
 ![](./images/4.png)
-
-Here, we told Babel to use [\@babel/preset-env] and
-[\@babel/preset-react], installed together with webpack. These
-presets allow Babel to transform specific syntax such as JSX, which we
-use to create normal JavaScript that all browsers can understand and
-that webpack is able to bundle. Furthermore, we are using some Babel
-plugins we installed too, because they transform specific syntax not
-covered by the presets.
 
 
 
@@ -526,14 +438,8 @@ return (
 
 We iterate over the [posts] array with the [map] function,
 which again executes the inner callback function, passing each array
-item as a parameter one by one. The second parameter is just called
-[i] and represents the index of the array element we are
-processing. Everything returned from the [map] function is then
+item as a parameter one by one. Everything returned from the [map] function is then
 rendered by React.
-
-We merely return HTML by putting each post\'s data in ES6 curly braces.
-The curly braces tell React to interpret and evaluate the code inside
-them as JavaScript.
 
 As you can see in the preceding code, we are extracting the posts we
 want to render from the component\'s state with a destructuring
@@ -612,12 +518,6 @@ posts. They should look like this:
 
 
 ![](./images/6cd845df-6be3-4c01-8d67-778ee1cfa3e7.png)
-
-
-The images I am using here are freely available. You can use any other
-material that you have got, as long as the path matches the string from
-the [posts] array. You can find those images in the official
-GitHub repository of this course.
 
 
 
@@ -790,37 +690,6 @@ handlePostContentChange = (event) => {
 }
 ```
 
-
-Maybe you are used to writing this a little differently, like this:
-
-```
-handlePostContentChange(event) {
-  this.setState({postContent: event.target.value})
-}
-```
-
-
-Both variants differ a lot. Try it out for yourself.
-
-When using the second variant, executing the function will lead to an
-error. The scope inside the function will be wrong, and you won\'t have
-access to the class via [this].
-
-In this case, you would need to write a constructor for your class and
-manually bind the scope to your function as follows:
-
-```
-this.handlePostContentChange = this.handlePostContentChange.bind(this);
-```
-
-
-You easily end up with five more additional lines of code when writing
-the constructor to bind the scope correctly.
-
-The first variant uses the ES6 arrow function, which takes care of the
-right scope for you. I recommend this variant since it is very clean and
-you save time understanding and writing code.
-
 Look at your browser again. The form is there, but it is not pretty, so
 add this CSS:
 
@@ -866,47 +735,17 @@ handleSubmit = (event) => {
 }
 ```
 
-
-The preceding code looks more complicated than it is, but I am going to
-explain it quickly.
-
 We need to run [event.preventDefault] to stop our browser from
-actually trying to submit the form and reload the page. Most people
-coming from jQuery or other JavaScript frameworks will know this.
+actually trying to submit the form and reload the page.
 
 Next, we save our new post in the [newPost] variable that we want
-to add to our feed.
-
-We are faking some data here to simulate a real-world application. For
-our test case, the new post id is the number of posts in our state
-variable plus one. React wants us to give every child in the ReactDOM a
-unique id. By counting the number of posts, we simulate the behavior of
-a real back end giving us unique ids for our posts.
-
-The text for our new post comes from the [postContent] variable
-from the component state.\
-Furthermore, we do not yet have a user system by now, that our GraphQL
-server can use to give us the newest posts, including the matching users
-with their avatars. We simulate this by having a static user object for
-all the new posts we create.
+to add to our feed. The text for our new post comes from the [postContent] variable
+from the component state.
 
 Finally, we update the component state again. This is where it gets a
 bit complicated. We are not passing an object as if we are doing it
 inside the [handlePostContentChange] function; we are passing an
 [update] function.
-
-This approach gives us the current state reliably. Generally, I
-recommend using a function instead of using just an object. It
-automatically protects you against problems of race condition, where
-multiple functions manipulate the state. Always have in mind that the
-[setState] function is asynchronous.
-
-The return value of the function is the state object we would normally
-have used directly. Thanks to the ES6 spread operator, we can prepend
-the [newPost] variable before the old posts, which will render the
-latest post at the top of our list. The [textarea] is cleared by
-passing an empty string into [setState] for the
-[postContent] field.
 
 Now go ahead and play with your working React form. Do not forget that
 all posts you create do not persist since they are only held in the
@@ -918,12 +757,7 @@ refreshing deletes your posts.
 Controlling document heads with React Helmet
 --------------------------------------------
 
-When developing a web application, it is crucial that you can control
-your document heads. You might want to change the title or description,
-based on the content you are presenting.
-
-React Helmet is a great package that offers this on the fly, including
-overriding multiple headers and server-side rendering.
+React Helmet is a great package that offers you to control document heads, including overriding multiple headers and server-side rendering.
 
 Install it with the following command:
 
@@ -1056,7 +890,7 @@ You can run this command by executing `npm run client:build`.
 
 ![](./images/7.png)
 
-Look in the [dist/client] folder, and you will see three files.
+Look in the [dist] folder, and you will see three files.
 You can open the [index.html] in `Midori` browser. The images
 are broken because the image URLs are not right anymore. We accept this
 for the moment because it will be automatically fixed when we have a
@@ -1107,6 +941,7 @@ npm run stats
 npm run analyze
 ```
 
+Open `http://localhost:8888` in Midori browser after running above command.
 
 You can visually see our bundle and package sizes. Remove unnecessary
 packages in your projects and see how your bundle is reorganized. You
